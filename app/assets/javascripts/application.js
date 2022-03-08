@@ -10,7 +10,29 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+
+//= require jquery
+//= require jquery_ujs
+//= require jquery-3.3.1.min
+//= require jquery.form.min
+//= require jquery.validation.min
+//= require jquery.mixitup.min
+//= require jquery.backstretch.min
+//= require jquery.nav.min.js
+//= require jquery.themepunch.revolution.min
+//= require jquery.themepunch.tools.min
+//= require bootstrap.min
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+//= require cable
+//= require contact
+//= require custom.fle_upload
+//= require demo.revolution_slider
+//= require gmaps
+//= require pack_hotel
+//= require quote
+//= require scripts
+//= require smoothscroll
+//= require owl.carousel.min

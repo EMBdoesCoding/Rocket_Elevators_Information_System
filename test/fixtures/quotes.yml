@@ -1,0 +1,37 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  department: MyString
+  number_of_floors: MyString
+  number_of_companies: MyString
+  number_of_basements: MyString
+  number_of_parking_spots: MyString
+  number_of_elevators: MyString
+  number_of_corporations: MyString
+  maximum_occupancy: MyString
+  number_of_apartments: MyString
+  business_hours: MyString
+  service_grade: MyString
+  elevator_amount: MyString
+  elevator_unit_price: MyString
+  elevator_total_price: MyString
+  installation_fees: MyString
+  final_price: MyString
+
+two:
+  department: MyString
+  number_of_floors: MyString
+  number_of_companies: MyString
+  number_of_basements: MyString
+  number_of_parking_spots: MyString
+  number_of_elevators: MyString
+  number_of_corporations: MyString
+  maximum_occupancy: MyString
+  number_of_apartments: MyString
+  business_hours: MyString
+  service_grade: MyString
+  elevator_amount: MyString
+  elevator_unit_price: MyString
+  elevator_total_price: MyString
+  installation_fees: MyString
+  final_price: MyString

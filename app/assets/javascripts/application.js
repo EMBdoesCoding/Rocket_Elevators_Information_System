@@ -27,7 +27,7 @@
 //= require cable
 //= require contact
 //= require custom.fle_upload
-// require demo.revolution_slider
+//= require demo.revolution_slider
 // require gmaps
 //= require pack_hotel
 //= require quote

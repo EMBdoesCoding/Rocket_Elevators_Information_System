@@ -107,7 +107,8 @@
 
 						<!-- Logo -->
 						<a class="logo float-left scrollTo" href="#top">
-							<img src="RocketElevatorAssets/R2.png" alt="Logo" />
+							<%= image_tag 'R2.png', alt:"R2" %>
+							<img src="/assets/images/R2.png" alt="Logo" />
 						</a>
 
 						<!-- 
@@ -201,11 +202,10 @@
 				-->
 				<div class="fullwidthbanner" data-height="600" data-shadow="0" data-navigationStyle="preview2">
 					<ul class="hide">
-					
 						<!-- SLIDE 1 -->
 						<li data-transition="parallaxtobottom" data-slotamount="7" data-masterspeed="600"  data-saveperformance="off"  data-title="Home">
 							<!-- MAIN IMAGE -->
-							<img src="RocketElevatorAssets/AdobeStock_130711085.jpeg"  alt="cover image"  data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
+							<%= image_tag("AdobeStock_130711085.jpeg",  alt: "cover image",  "data-bgposition":"center top", "data-bgfit":"cover", "data-bgrepeat":"no-repeat")%>
 							<div class="overlay dark-4"><!-- dark overlay [0 to 9 opacity] --></div>
 
                             
@@ -287,8 +287,7 @@
 						<!-- SLIDE 2 -->
 						<li data-transition="parallaxtotop" data-slotamount="7" data-masterspeed="300"  data-saveperformance="off" data-title="Residential">
 							<!-- MAIN IMAGE -->
-							<img src="RocketElevatorAssets/AdobeStock_179073967.jpeg" alt="cover image"  data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
-
+							<%= image_tag "AdobeStock_179073967.jpeg", alt: "cover image", "data-bgposition": "center top", "data-bgfit": "cover" "data-bgrepeat": "no-repeat" %>
 							<div class="overlay dark-4"><!-- dark overlay [0 to 9 opacity] --></div>
 
 							<div class="tp-caption font-roboto skewfromleft tp-resizeme"
@@ -339,7 +338,7 @@
 						</li>
                         <li data-transition="parallaxtotop" data-slotamount="7" data-masterspeed="300"  data-saveperformance="off" data-title="Corporate">
                             <!-- MAIN IMAGE -->
-                            <img src="RocketElevatorAssets/AdobeStock_3294993.jpeg" alt="cover image"  data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
+							<%= image_tag("AdobeStock_3294993.jpeg", alt="cover image",  "data-bgposition":"center top", "data-bgfit":"cover" "data-bgrepeat":"no-repeat") %>
                         
                             <div class="overlay dark-4"><!-- dark overlay [0 to 9 opacity] --></div>
                         
@@ -420,7 +419,8 @@
 								<span class="image-hover-icon image-hover-dark"><!-- image-hover-light | image-hover-dark -->
 									<i class="fa fa-vimeo-square"><!-- video icon --></i>
 								</span>-->
-								<img class="img-fluid" src="RocketElevatorAssets/AdobeStock_53477661.jpeg" alt="img" />
+								<%= image_tag("AdobeStock_53477661.jpeg", class:"img-fluid") %>
+								
 							</a>
 
 							<h3 class="mt-10">Our Achievements</h3>
@@ -433,7 +433,8 @@
 								<span class="image-hover-icon image-hover-dark"><!-- image-hover-light | image-hover-dark -->
 									<i class="fa fa-youtube-square"><!-- video icon --></i>
 								</span>-->
-								<img class="img-fluid" src="RocketElevatorAssets/AdobeStock_124493370.jpeg" alt="img" />
+								<%= image_tag("AdobeStock_124493370.jpeg", class:"img-fluid")%>
+								
 							</a>
 							<h3 class="mt-10">Residential Building Service</h3>
 							<p>Explore our residential building services and options</p>
@@ -441,7 +442,8 @@
 						</div>
 
 						<div class="col-sm-4">
-							<img class="img-fluid" src="RocketElevatorAssets/AdobeStock_78149317_1.jpg" alt="img" />
+							<%=(image_tag "AdobeStock_78149317_1.jpg", class:"img-fluid")%>
+							
 							<h3 class="mt-10">Corporate Building Service</h3>
 							<p>Find out how you can enhance your workspace here</p>
 							<a href="commercial.html" class="btn btn-default">READ MORE</a>
@@ -519,8 +521,7 @@
 
 											</span>
 										</span>
-
-										<img class="img-fluid" src="RocketElevatorAssets/AdobeStock_33298664.jpeg" width="600" height="399" alt="">
+										<%= image_tag("AdobeStock_33298664.jpeg", "class":"img-fluid", "width"="600", "height"="399")%>
 									</figure>
 
 									<div class="item-box-desc">
@@ -556,8 +557,7 @@
 
 											</span>
 										</span>
-
-										<img class="img-fluid" src="RocketElevatorAssets/AdobeStock_41696502.jpeg" width="600" height="399" alt="">
+										<%= image_tag("AdobeStock_41696502.jpeg", "class": "img-fluid", "width": "600", "height": "399")%>
 									</figure>
 
 									<div class="item-box-desc">
@@ -593,8 +593,7 @@
 
 											</span>
 										</span>
-
-										<img class="img-fluid" src="RocketElevatorAssets\AdobeStock_72034307.jpeg" width="600" height="399" alt="">
+										<%= image_tag("AdobeStock_72034307.jpeg", "class": "img-fluid", "width": "600", "height": "399") %>
 									</figure>
 
 									<div class="item-box-desc">
@@ -630,8 +629,7 @@
 
 											</span>
 										</span>
-
-										<img class="img-fluid" src="RocketElevatorAssets/AdobeStock_66781279.jpeg" width="600" height="399" alt="">
+										<%= image_tag("AdobeStock_66781279.jpeg", "class": "img-fluid", "width"="600", "height"="399")%>
 									</figure>
 
 									<div class="item-box-desc">
@@ -666,8 +664,7 @@
 
 											</span>
 										</span>
-
-										<img class="img-fluid" src="RocketElevatorAssets/AdobeStock_42622540-1.jpg" width="600" height="399" alt="">
+										<%= image_tag("AdobeStock_42622540-1.jpg", class:"img-fluid", "width":"600", "height":"399")%>
 									</figure>
 
 									<div class="item-box-desc">
@@ -703,8 +700,7 @@
 
 											</span>
 										</span>
-
-										<img class="img-fluid" src="RocketElevatorAssets/AdobeStock_103570025-1.jpg" width="600" height="399" alt="">
+										<%= image_tag "AdobeStock_103570025-1.jpg", class="img-fluid", "width": "600", "height": "399"%>
 									</figure>
 
 									<div class="item-box-desc">
@@ -739,8 +735,7 @@
 
 											</span>
 										</span>
-
-										<img class="img-fluid" src="RocketElevatorAssets/AdobeStock_122227340.jpeg" width="600" height="399" alt="">
+										<%= image_tag("AdobeStock_122227340.jpeg", class: "img-fluid", "width": "600", "height": "399") %>
 									</figure>
 
 									<div class="item-box-desc">
@@ -775,8 +770,8 @@
 
 											</span>
 										</span>
-
-										<img class="img-fluid" src="RocketElevatorAssets/AdobeStock_146216308.jpeg" width="600" height="399" alt="">
+										<%= image_tag("AdobeStock_146216308.jpeg", class="img-fluid", "width": "600", "height": "399") %>
+										<img class="img-fluid" src="/assets/images/AdobeStock_146216308.jpeg" width="600" height="399" alt="">
 									</figure>
 
 									<div class="item-box-desc">
@@ -809,8 +804,7 @@
 
 											</span>
 										</span>
-
-										<img class="img-fluid" src="RocketElevatorAssets/AdobeStock_162479912.jpeg" width="600" height="399" alt="">
+										<%= image_tag("AdobeStock_162479912.jpeg", class: "img-fluid", "width": "600", "height": "399") %>
 									</figure>
 
 									<div class="item-box-desc">
@@ -845,8 +839,7 @@
 
 											</span>
 										</span>
-
-										<img class="img-fluid" src="RocketElevatorAssets/AdobeStock_170843598.jpeg" width="600" height="399" alt="">
+										<%= image_tag("AdobeStock_170843598.jpeg", class="img-fluid", "width"="600", "height"="399") %>
 									</figure>
 
 									<div class="item-box-desc">
@@ -882,8 +875,7 @@
 
 											</span>
 										</span>
-
-										<img class="img-fluid" src="RocketElevatorAssets/M-1.jpg" width="600" height="399" alt="">
+										<%= image_tag("M-1.jpg", class: "img-fluid", "width": "600" "height": "399") %>
 									</figure>
 
 									<div class="item-box-desc">
@@ -918,8 +910,7 @@
 
 											</span>
 										</span>
-
-										<img class="img-fluid" src="RocketElevatorAssets/ask-2-history-who-invented-the-elevator-istock_000017202421xlarge-2-1.jpg" width="600" height="399" alt="">
+										<%= image_tag("ask-2-history-who-invented-the-elevator-istock_000017202421xlarge-2-1.jpg", class: "img-fluid", "width": "600" "height": "399") %>
 									</figure>
 
 									<div class="item-box-desc">
@@ -952,7 +943,7 @@
 					<div class="owl-carousel text-center owl-testimonial m-0" data-plugin-options='{"singleItem": true, "autoPlay": 3500, "navigation": false, "pagination": true, "transitionStyle":"fade"}'>
 						<div class="testimonial" id="CEO">
 							<figure>
-								<img class="rounded" src="RocketElevatorAssets/Screenshot_20220127-075620_Slack.jpg" alt="" />
+								<%= image_tag("Screenshot_20220127-075620_Slack.jpg", class="rounded") %>
 							</figure>
 							<div class="testimonial-content p-0">
 								<p class="lead">CEO</p>
@@ -964,7 +955,7 @@
 						</div>
 						<div class="testimonial" id="employee">
 							<figure>
-								<img class="rounded" src="RocketElevatorAssets/IMG_20210525_004543_281.jpg " alt="" />
+								<%= image_tag("IMG_20210525_004543_281.jpg", class="rounded") %>
 							</figure>
 							<div class="testimonial-content p-0">
 								<p class="lead">Employee of the Month</p>
@@ -1014,6 +1005,7 @@
 					<div class="owl-carousel owl-padding-10 buttons-autohide controlls-over" data-plugin-options='{"singleItem": false, "items":"4", "autoPlay": 4000, "navigation": true, "pagination": false}'>
 						<div class="img-hover">
 							<a href="https://nypost.com/2022/01/25/florida-man-arrested-at-waffle-house-after-over-bacon/">
+
 								<img class="img-fluid" src="https://claytonglass.co.uk/wp-content/uploads/2020/08/ed-robertson-ON6Xw8XEUQ8-unsplash.jpg" alt="">
 							</a>
 
@@ -1186,17 +1178,17 @@
 					<ul class="row clients-dotted list-inline">
 						<li class="col-md-3 col-sm-3 col-6">
 							<a href="https://www.google.com/search?q=fake+logos&rlz=1C1RXQR_enUS990US990&oq=fake+logos&aqs=chrome..69i57j0i512l6j0i22i30l3.4454j1j7&sourceid=chrome&ie=UTF-8">
-								<img class="img-fluid" src="RocketElevatorAssets/Wayne.png" alt="client" />
+								<img class="img-fluid" src="/assets/images/Wayne.png" alt="client" />
 							</a>
 						</li>
 						<li class="col-md-3 col-sm-3 col-6">
 							<a href="https://www.google.com/search?q=fake+logos&rlz=1C1RXQR_enUS990US990&oq=fake+logos&aqs=chrome..69i57j0i512l6j0i22i30l3.4454j1j7&sourceid=chrome&ie=UTF-8">
-								<img class="img-fluid" src="RocketElevatorAssets/99gen_arc.png" alt="client" />
+								<img class="img-fluid" src="/assets/images/99gen_arc.png" alt="client" />
 							</a>
 						</li>
 						<li class="col-md-3 col-sm-3 col-6">
 							<a href="https://www.google.com/search?q=fake+logos&rlz=1C1RXQR_enUS990US990&oq=fake+logos&aqs=chrome..69i57j0i512l6j0i22i30l3.4454j1j7&sourceid=chrome&ie=UTF-8">
-								<img class="img-fluid" src="RocketElevatorAssets/dinoco.jpg" alt="client" />
+								<img class="img-fluid" src="/assets/images/dinoco.jpg" alt="client" />
 							</a>
 						</li>
 						<li class="col-md-3 col-sm-3 col-6">

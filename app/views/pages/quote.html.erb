@@ -12,21 +12,16 @@
 
 		<!-- WEB FONTS : use %7C instead of | (pipe) --
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600%7CRaleway:300,400,500,600,700%7CLato:300,400,400italic,600,700" rel="stylesheet" type="text/css" />
-
 		<!- CORE CSS --
 		<link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-
 		<!- THEME CSS ->
 		<link href="assets/css/essentials.css" rel="stylesheet" type="text/css" />
 		<link href="assets/css/layout.css" rel="stylesheet" type="text/css" />
-
-
 		<!- PAGE LEVEL SCRIPTS ->
 		<link href="assets/css/color_scheme/blue.css" rel="stylesheet" type="text/css" />
 		<link href="assets/css/header-1.css" rel="stylesheet" type="text/css" />
 		<link href="assets/css/custom-forms-v2.css" rel="stylesheet" type="text/css" />
 	</head>
-
 	<!-
 		AVAILABLE BODY CLASSES:
 		
@@ -42,11 +37,9 @@
 
 			<!-- 
 				AVAILABLE HEADER CLASSES
-
 				Default nav height: 96px
 				.header-md 		= 70px nav height
 				.header-sm 		= 60px nav height
-
 				.b-0 		= remove bottom border (only with transparent use)
 				.sticky			= sticky header
 				.static			= static header
@@ -59,7 +52,6 @@
 				shadow-after-2 	= shadow 2 header bottom
 				shadow-before-3 = shadow 3 header top
 				shadow-after-3 	= shadow 3 header bottom
-
 				.clearfix		= required for mobile menu, do not remove!
 			-->
 			<div id="header" class="navbar-toggleable-md clearfix transparent sticky dark disable-uppercase">
@@ -116,12 +108,12 @@
 										</a>
 									</li>
 									<li><!-- CLIENTS -->
-										<a href="#index.htmlclients" id="clients-nav">
+										<a href="index.html#clients" id="clients-nav">
 											CLIENTS
 										</a>
 									</li>
 									<li><!-- CONTACT -->
-										<a href="#index.htmlcontact" id="contact-nav">
+										<a href="index.html#contact" id="contact-nav">
 											CONTACT
 										</a>
 									</li>
@@ -200,15 +192,12 @@
 											#alert_failed		= email not sent - internal server error (404 error or SMTP problem)
 											#alert_mandatory	= email not sent - required fields empty
 											Hashes are handled by assets/js/contact.js
-
 										Form data: required to be an array. Example:
 											contact[email][required]  WHERE: [email] = field name, [required] = only if this field is required (PHP will check this)
 											Also, add `required` to input fields if is a mandatory field. 
 											Example: <input required type="email" value="" class="form-control" name="contact[email][required]">
-
 										PLEASE NOTE: IF YOU WANT TO ADD OR REMOVE FIELDS (EXCEPT CAPTCHA), JUST EDIT THE HTML CODE, NO NEED TO EDIT php/contact.php or javascript
 													 ALL FIELDS ARE DETECTED DINAMICALY BY THE PHP
-
 										WARNING! Do not change the `email` and `name`!
 													contact[name][required] 	- should stay as it is because PHP is using it for AddReplyTo (phpmailer)
 													contact[email][required] 	- should stay as it is because PHP is using it for AddReplyTo (phpmailer)
@@ -554,6 +543,8 @@
 
 		<!-- SCROLL TO TOP -->
 		<a href="#" id="toTop"></a>
+
+		<script src="<%= asset_path 'quote' %>"></script>
 
 	
 		<!-- JAVASCRIPT FILES -->

@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   get 'quotes_controller/create'
   post '/quotes', to: 'quotes#create'
 
-  
   root 'welcome#index'
   get 'sign_up', to: 'registrations_#new'
   post 'sign_up', to: 'registrations_#create'

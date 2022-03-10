@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+    has_one :employee
     # adds virtual attributes for authentication
     has_secure_password
     # validates email

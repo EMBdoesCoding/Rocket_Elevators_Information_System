@@ -343,7 +343,9 @@
 													<input type="text" value="" class="form-control"  name="final-price"
 													id="final-price1" onkeyup="quotecalculate(this.value)" readonly>
 												</div>
-												
+												<div class="col-md-12">
+													<button type="submit" class="btn btn-primary" disabled><i class="fa fa-check"></i> SUBMIT</button>
+												</div>												
 											</div>	   
 									</fieldset>
 
@@ -555,18 +557,18 @@
 		<!-- SCROLL TO TOP -->
 		<a href="#" id="toTop"></a>
 
-	
-		<!-- JAVASCRIPT FILES -->
+		<script src="<%= asset_path 'quote' %>"></script>
+		<!-- JAVASCRIPT FILES 
 		<script>var plugin_path = 'assets/plugins/';</script>
 		<script src="assets/plugins/jquery/jquery-3.3.1.min.js"></script>
 		<script src="quote.js"></script>
 
 		<script src="assets/js/scripts.js"></script>
 
-		<!-- PAGE LEVEL SCRIPTS -->
+		<!- PAGE LEVEL SCRIPTS ->
 		<script src="assets/js/view/pack_hotel.js"></script>
 
-		<!-- 
+		<!- 
 			GMAP.JS 
 			http://hpneo.github.io/gmaps/
 		

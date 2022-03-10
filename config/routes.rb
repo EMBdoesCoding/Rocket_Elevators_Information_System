@@ -19,4 +19,15 @@ Rails.application.routes.draw do
   post 'password/reset', to: 'password_resets#create'
   get 'password/reset/edit', to: 'password_resets#edit'
   patch 'password/reset/edit', to: 'password_resets#update'
+  root 'pages#index'
+  
+    
+  
+  #route to home page, commercial,residential, and quote
+  get '/residential', to: 'pages#residential'
+  get '/commercial', to: 'pages#commercial'
+  get '/quote', to: 'pages#quote'
+
+
+
 end

@@ -8,7 +8,7 @@ gem 'font-awesome-sass', '~> 4.3.0'
 gem 'jquery-ui-rails'
 gem 'bootstrap-social-rails'
 gem 'jquery-rails'
-
+gem 'bootstrap', '~> 5.1'
 
 
 

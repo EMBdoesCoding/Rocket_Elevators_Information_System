@@ -229,6 +229,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   chromedriver-helper
   coffee-rails (~> 4.2)
+  coffee-script-source (~> 1.11, >= 1.11.1)
   font-awesome-sass (~> 4.3.0)
   jbuilder (~> 2.5)
   jquery-rails

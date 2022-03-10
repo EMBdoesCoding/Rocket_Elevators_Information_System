@@ -5,10 +5,9 @@ Rails.application.routes.draw do
     
   
   #route to home page, commercial,residential, and quote
-  get 'index' => 'pages#index'
-  get 'residential' => 'pages#residential'
-  get 'commercial' => 'pages#commercial'
-  get 'quote' => 'pages#quote'
+  get '/residential', to: 'pages#residential'
+  get '/commercial', to: 'pages#commercial'
+  get '/quote', to: 'pages#quote'
 
 
 

@@ -19,4 +19,4 @@ csv.each do |row|
     puts "#{e.last_name} saved."
 end
 
-puts "There are now #{Employee.count} rows in the transactions table."
+puts "There are now #{Employee.count} rows in the transactions table."User.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?

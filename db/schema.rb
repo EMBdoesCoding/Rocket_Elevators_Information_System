@@ -13,10 +13,10 @@
 ActiveRecord::Schema.define(version: 2022_03_09_134128) do
 
   create_table "employees", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
-    t.string "user_id"
     t.string "last_name"
     t.string "first_name"
     t.string "title"
+    t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

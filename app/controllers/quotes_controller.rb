@@ -1,22 +1,26 @@
 class QuotesController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
   def create
-    q = Quote.new
-    q.department = 'goblble'
-    q.number_of_floors
-    q.number_of_companies
-    q.number_of_basements
-    q.number_of_parking_spots
-    q.number_of_elevators
-    q.number_of_corporations
-    q.maximum_occupancy
-    q.number_of_apartments
-    q.business_hours
-    q.service_grade
-    q.elevator_amount
-    q.elevator_unit_price
-    q.elevator_total_price
-    q.installation_fees
-    q.final_price
-    q.save
+    quote = Quote.create!(
+      department: params[:department],
+      number_of_floors: params[:amount_of_floors],
+      number_of_companies: params[:number_of_companies],
+      number_of_basements: params[:number_of_basements],
+      number_of_parking_spots: params[:number_of_parking_spots],
+      number_of_elevators: params[:number_of_elevators],
+      number_of_corporations: params[:number_of_corporations],
+      maximum_occupancy: params[:maximum_occupancy],
+      number_of_apartments: params[:number_of_apartments],
+      business_hours: params[:business_hours],
+      service_grade: params[:service_grade],
+      elevator_amount: params[:elevator_amount],
+      elevator_unit_price: params[:elevator_unit_price], 
+      elevator_total_price: params[:elevator_total_price],
+      installation_fees: params[:installation_fees],
+      final_price: params[:final_price]
+    )
+
+    render json: quote
   end
 end

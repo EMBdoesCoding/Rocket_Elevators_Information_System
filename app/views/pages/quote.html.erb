@@ -117,6 +117,11 @@
 											CONTACT
 										</a>
 									</li>
+									<li><!-- LOGIN -->
+										<a href="#" id="contact-nav">
+											LOGIN
+										</a>
+									</li>
 								</ul>
 
 							</nav>
@@ -224,12 +229,12 @@
 								</div><!-- /Alert Mandatory -->
 
 
-								<form action="php/contact.php" method="post" enctype="multipart/form-data">
+								<form action="/quote" method="post" enctype="multipart/form-data">
 									<fieldset>
 										<input type="hidden" name="action" value="contact_send" />
 										<div class="col-md-12">
 											<label for="contact_department">Department *</label>
-											<select class="form-control pointer" name="contact[department]" id="department">
+											<select class="form-control pointer" name="department" id="department">
 												<option id="select" value="select">--- Select ---</option>
 												<option id="commercial" value="commercial">Commercial</option>
 												<option id="corporate" value="corporate">Corporate</option>
@@ -239,39 +244,39 @@
 										</div>
 											<div class="col-md-12 qdiv resi" id="number-of-apartments">
 												<label for="contact:name"> Number of Apartments</label>
-												<input min = "0" required type="number" value="" class="form-control" name="contact[name][required]" id="num-of-apartments" oninput="quotecalculate(this)">
+												<input min = "0" required type="number" value="" class="form-control" name="number_of_apartments" id="num-of-apartments" oninput="quotecalculate(this)">
 											</div>
 											<div class="col-md-12 qdiv resi comm corp hybr" id="number-of-floors">
 												<label for="contact:email">Number of Floors</label>
-												<input min = "0" required type="number"  class="form-control" name="contact[email][required]" id="num-of-floors" oninput="quotecalculate(this)">
+												<input min = "0" required type="number"  class="form-control" name="number_of_floors" id="num-of-floors" oninput="quotecalculate(this)">
 											</div>
 											<div class="col-md-12 qdiv comm hybr" id="number-of-companies">
 												<label for="contact:name"> Number of Companies</label>
-												<input min = "0" required type="number" value="" class="form-control" name="contact[name][required]" id="num-of-companies" oninput="quotecalculate(this)">
+												<input min = "0" required type="number" value="" class="form-control" name="number_of_companies" id="num-of-companies" oninput="quotecalculate(this)">
 											</div>
 											<div class="col-md-12 qdiv resi comm corp hybr" id="number-of-basements">
 												<label for="contact:phone">Number of Basements</label>
-												<input min = "0" type="number" value="" class="form-control" name="contact[phone]" id="num-of-basements"  oninput="quotecalculate(this)">
+												<input min = "0" type="number" value="" class="form-control" name="number_of_basements" id="num-of-basements"  oninput="quotecalculate(this)">
 											</div>
 											<div class="col-md-12 qdiv comm corp hybr" id="number-of-parking-spots">
 												<label for="contact:phone">Number of Parking Spots</label>
-												<input min = "0" type="number" value="" class="form-control" name="contact[phone]" id="num-of-parking-spots" oninput="quotecalculate(this)">
+												<input min = "0" type="number" value="" class="form-control" name="number_of_parking_spots" id="num-of-parking-spots" oninput="quotecalculate(this)">
 											</div>
 											<div class="col-md-12 qdiv comm" id="number-of-elevators">
 												<label for="contact:phone">Number of Elevators</label>
-												<input min = "0" type="number" value="" class="form-control" name="contact[phone]" id="num-of-elevators" oninput="quotecalculate(this)">
+												<input min = "0" type="number" value="" class="form-control" name="number_of_elevators" id="num-of-elevators" oninput="quotecalculate(this)">
 											</div>
 											<div class="col-md-12 qdiv corp" id="number-of-corporations">
 												<label for="contact:name"> Number of Corporations</label>
-												<input min = "0" required type="number" value="" class="form-control" name="contact[name][required]" id="num-of-corporations" oninput="quotecalculate(this)">
+												<input min = "0" required type="number" value="" class="form-control" name="number_of_corporations" id="num-of-corporations" oninput="quotecalculate(this)">
 											</div>
 											<div class="col-md-12 qdiv corp hybr" id="maximum-occupancy">
 												<label for="contact:phone">Maximum Occupancy</label>
-												<input min = "0" type="number" value="" class="form-control" name="contact[phone]" id="max-occupancy" oninput="quotecalculate(this)">
+												<input min = "0" type="number" value="" class="form-control" name="maximum_occupancy" id="max-occupancy" oninput="quotecalculate(this)">
 											</div>
 											<div class="col-md-12 qdiv hybr" id="business-hours">
 												<label for="contact:phone">Business Hours</label>
-												<input min = "0" type="number" value="" class="form-control" name="contact[phone]" id="business-hrs" oninput="quotecalculate(this)">
+												<input min = "0" type="number" value="" class="form-control" name="business_hours" id="business-hrs" oninput="quotecalculate(this)">
 											</div>
 											<div id="radiobuttons" class="container" name="buttons">
 
@@ -279,7 +284,7 @@
 												<ul>
 													<li>
 														<label for="standard-option">Standard</label>
-														<input type="radio" id="standard-option" name="material" value="standard" onclick="quotecalculate(this)" oninput="quotecalculate(this)">
+														<input type="radio" id="standard-option" name="service_grade" value="standard" onclick="quotecalculate(this)" oninput="quotecalculate(this)">
 														
 														<div class="check">
 														<div class="inside"></div>
@@ -287,7 +292,7 @@
 												
 													<li>
 														<label for="premium-option">Premium</label>
-														<input type="radio" id="premium-option" name="material" value="premium" onclick="quotecalculate()" oninput="quotecalculate (this)" >
+														<input type="radio" id="premium-option" name="service_grade" value="premium" onclick="quotecalculate()" oninput="quotecalculate (this)" >
 														
 														<div class="check">
 														<div class="inside"></div>
@@ -296,7 +301,7 @@
 												
 													<li>
 														<label for="excelium-option">Excelium</label>
-														<input type="radio" id="excelium-option" name="material" value="excelium" oninput="quotecalculate()" oninput="quotecalculate(this)">
+														<input type="radio" id="excelium-option" name="service_grade" value="excelium" onclick="quotecalculate()" oninput="quotecalculate(this)">
 														<div class="check">
 														<div class="inside"></div>
 													</li>
@@ -305,35 +310,35 @@
 											<div>
 												<div class="col-md-4 " id="elevator-amount">
 													<label>Elevator Amount</label>
-													<input type="text" value="" class="form-control" name="elevator-amount" 
+													<input type="text" value="" class="form-control" name="elevator_amount" 
 													id="elevator-amount1" onkeyup="quotecalculate(this.value)" readonly>
 												</div>
 						
 												<div class="col-md-4" id="elevator-unit-price">
 													<label>Elevator Unit Price</label>
-													<input type="text" value="" class="form-control" name="elevator-unit-price" 
+													<input type="text" value="" class="form-control" name="elevator_unit_price" 
 													id="elevator-unit-price1" onkeyup="quotecalculate(this.value)" readonly>
 												</div>
 						
 												<div class="col-md-4" id="elevator-total-price">
 													<label>Elevator Total Price</label>
-													<input type="text" value="" class="form-control" name="elevator-total-price"
+													<input type="text" value="" class="form-control" name="elevator_total_price"
 													id="elevator-total-price1" onkeyup="quotecalculate(this.value)" readonly>
 												</div>
 						
 												<div class="col-md-4" id="installation-fees">
 													<label >Installation fees</label>
-													<input type="text" value="" class="form-control" name="installation-fees"
+													<input type="text" value="" class="form-control" name="installation_fees"
 													id="installation-fees1" onkeyup="quotecalculate(this.value)" readonly>
 												</div>
 						
 												<div class="col-md-4" id="final-price">
 													<label>Final Price</label>
-													<input type="text" value="" class="form-control"  name="final-price"
+													<input type="text" value="" class="form-control"  name="final_price"
 													id="final-price1" onkeyup="quotecalculate(this.value)" readonly>
 												</div>
 												<div class="col-md-12">
-													<button type="submit" class="btn btn-primary" disabled><i class="fa fa-check"></i> SUBMIT</button>
+													<button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> SUBMIT</button>
 												</div>												
 											</div>	   
 									</fieldset>

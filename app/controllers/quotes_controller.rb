@@ -21,6 +21,5 @@ class QuotesController < ApplicationController
       final_price: params[:final_price]
     )
 
-    render json: quote
   end
 end

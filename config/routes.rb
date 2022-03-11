@@ -15,7 +15,5 @@ Rails.application.routes.draw do
   get '/commercial', to: 'pages#commercial'
   get '/quote', to: 'pages#quote'
 
-  get '/login', to: 'pages#quote'
-
-  
+  get '/login', to: 'pages#index'
 end

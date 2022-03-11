@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2022_03_11_212529) do
 
-  create_table "active_admin_comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "active_admin_comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
     t.string "resource_type"
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 2022_03_11_212529) do
     t.index ["user_id"], name: "index_employees_on_user_id"
   end
 
-  create_table "quotes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "quotes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "department"
     t.string "number_of_floors"
     t.string "number_of_companies"

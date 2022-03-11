@@ -90,7 +90,7 @@
 										</a>
 									</li>
 									<li><!-- LOGIN -->
-										<a href="#" id="contact-nav">
+										<a href="welcome#index" id="contact-nav">
 											LOGIN
 										</a>
 									</li>
@@ -201,130 +201,114 @@
 								</div><!-- /Alert Mandatory -->
 
 
-								<form action="/quote" method="post" enctype="multipart/form-data">
-									<fieldset>
-										<input type="hidden" name="action" value="contact_send" />
-										<div class="col-md-12">
-											<label for="contact_department">Department *</label>
-											<select class="form-control pointer" name="department" id="department">
-												<option id="select" value="select">--- Select ---</option>
-												<option id="commercial" value="commercial">Commercial</option>
-												<option id="corporate" value="corporate">Corporate</option>
-												<option id="residential" value="residential">Residential</option>
-												<option id="hybrid" value="hybrid">Hybrid</option>
-											</select>
+								<div class="">
+
+							<form action="/quote" method="post" class="text-center">
+								<fieldset id="fieldset1" oninput=CalculateElevatorsNeeded()>
+									<div class="text-center">
+                                        	<div>
+												<label style="display: inline-block">Project Type</label>
+												<select id="building-type" name="department" class="" autofocus>
+													<option value="">--- Select ---</option>
+													<option id="residential" value="residential">Residential</option>
+                                                    <option id="commercial" value="commercial">Commercial</option>
+													<option id="corporate" value="corporate">Corporate</option>
+													<option id="hybrid" value="hybrid">Hybrid</option>
+												</select>
+											</div>
+                                    </div>
+                                    <div class="">
+											<div id="number-of-apartments" class="">
+												<label style="display: inline-block"># of aparments in the building</label>
+												<input id="resNumOfApartments" name="number_of_apartments" type="number" value="" class="" min="0" onchange=imposeMinMax(this) />
+											</div>
+                                            <div id="number-of-companies">
+                                                <label style="display: inline-block"># of distinct businesses in the building</label>
+                                                <input id="comNumOfBusiness" name="number_of_companies" type="number" value="" class="" min="0" onchange=imposeMinMax(this) />
+                                            </div>
+                                            <div id="number-of-corporations">
+                                                <label style="display: inline-block"># of separate tenant companies</label>
+                                                <input id="corpNumOfTenants" name="number_of_corporations" type="number" value="" class="" min="0" onchange=imposeMinMax(this) />
+                                            </div>
+                                    </div>
+                                    <div class="">
+											<div id="number-of-floors" class="">
+												<label style="display: inline-block"># of floors in the building (excluding basements)</label>
+												<input id="numOfFloors" name="number_of_floors" type="number" value="" class="" min="0" onchange=imposeMinMax(this) />
+											</div>
+                                    </div>
+                                    <div class="">
+											<div id="number-of-basements" class="">
+												<label style="display: inline-block"># of basements contained in the building</label>
+												<input id="numOfBasements" name="number_of_basements" type="number" value="" class="" min="0" onchange=imposeMinMax(this) />
+											</div>
+									</div>
+									<div class="">
+											<div id="number-of-parking-spots" class="">
+												<label style="display: inline-block"># of Parking Spaces available</label>
+												<input id="comNumOfParkingSpaces" name="number_of_parking_spots" type="number" value="" class="" min="0" onchange=imposeMinMax(this) />
+											</div>
+                                            <div id="number-of-elevators" class="">
+												<label style="display: inline-block"># of Elevator Cages to be deployed</label>
+												<input id="comNumOfElevatorCages" name="number_of_elevators" type="number" value="" class="" min="0" onchange=imposeMinMax(this) />
+											</div>
+                                            <div id="maximum-occupancy" class="">
+                                                <label style="display: inline-block">Max. # of occupants per floor</label>
+                                                <input id="maxNumOfOccupants" name="maximum_occupancy" type="number" value="" class="" min="0" onchange=imposeMinMax(this) />
+                                            </div>
+                                            <div id="business-hours" class="">
+                                                <label style="display: inline-block"># of building active hours per day (max. 24)</label>
+                                                <input id="hoursOfActivity" name="business_hours" type="number" value="" class="" min="0" max="24" onchange=imposeMinMax(this) />
+                                            </div>
+                                    </div>
+
+								</fieldset>
+
+                                <fieldset class="text-center">
+                                    <input type="radio" id="standard" name="service_grade" value="standard" onchange=UnitPriceUpdate() />
+                                    <label style="display:inline">Standard </label>
+                                    <input type="radio" id="premium" name="service_grade" value="premium" onchange=UnitPriceUpdate() />
+                                    <label style="display:inline">Premium</label>
+                                    <input type="radio" id="excelium" name="service_grade" value="excelium" onchange=UnitPriceUpdate() />
+                                    <label style="display: inline">Excelium</label>
+                                </fieldset>
+
+                                <fieldset>
+                                    <div class="text-center">
+                                        <div id="elevator-amount">
+                                            <label style="display: inline-block">Required number of elevators</label>
+                                            <input readonly name="elevator_amount" id="required-elevators" type="number" value="" class="" />
 										</div>
-											<div class="col-md-12 qdiv resi" id="number-of-apartments">
-												<label for="contact:name"> Number of Apartments</label>
-												<input min = "0" required type="number" value="" class="form-control" name="number_of_apartments" id="num-of-apartments" oninput="quotecalculate(this)">
-											</div>
-											<div class="col-md-12 qdiv resi comm corp hybr" id="number-of-floors">
-												<label for="contact:email">Number of Floors</label>
-												<input min = "0" required type="number"  class="form-control" name="number_of_floors" id="num-of-floors" oninput="quotecalculate(this)">
-											</div>
-											<div class="col-md-12 qdiv comm hybr" id="number-of-companies">
-												<label for="contact:name"> Number of Companies</label>
-												<input min = "0" required type="number" value="" class="form-control" name="number_of_companies" id="num-of-companies" oninput="quotecalculate(this)">
-											</div>
-											<div class="col-md-12 qdiv resi comm corp hybr" id="number-of-basements">
-												<label for="contact:phone">Number of Basements</label>
-												<input min = "0" type="number" value="" class="form-control" name="number_of_basements" id="num-of-basements"  oninput="quotecalculate(this)">
-											</div>
-											<div class="col-md-12 qdiv comm corp hybr" id="number-of-parking-spots">
-												<label for="contact:phone">Number of Parking Spots</label>
-												<input min = "0" type="number" value="" class="form-control" name="number_of_parking_spots" id="num-of-parking-spots" oninput="quotecalculate(this)">
-											</div>
-											<div class="col-md-12 qdiv comm" id="number-of-elevators">
-												<label for="contact:phone">Number of Elevators</label>
-												<input min = "0" type="number" value="" class="form-control" name="number_of_elevators" id="num-of-elevators" oninput="quotecalculate(this)">
-											</div>
-											<div class="col-md-12 qdiv corp" id="number-of-corporations">
-												<label for="contact:name"> Number of Corporations</label>
-												<input min = "0" required type="number" value="" class="form-control" name="number_of_corporations" id="num-of-corporations" oninput="quotecalculate(this)">
-											</div>
-											<div class="col-md-12 qdiv corp hybr" id="maximum-occupancy">
-												<label for="contact:phone">Maximum Occupancy</label>
-												<input min = "0" type="number" value="" class="form-control" name="maximum_occupancy" id="max-occupancy" oninput="quotecalculate(this)">
-											</div>
-											<div class="col-md-12 qdiv hybr" id="business-hours">
-												<label for="contact:phone">Business Hours</label>
-												<input min = "0" type="number" value="" class="form-control" name="business_hours" id="business-hrs" oninput="quotecalculate(this)">
-											</div>
-											<div id="radiobuttons" class="container" name="buttons">
 
-												<label>Select the type of service in your interest</label>
-												<ul>
-													<li>
-														<label for="standard-option">Standard</label>
-														<input type="radio" id="standard-option" name="service_grade" value="standard" onclick="quotecalculate(this)" oninput="quotecalculate(this)">
-														
-														<div class="check">
-														<div class="inside"></div>
-													</li>
-												
-													<li>
-														<label for="premium-option">Premium</label>
-														<input type="radio" id="premium-option" name="service_grade" value="premium" onclick="quotecalculate()" oninput="quotecalculate (this)" >
-														
-														<div class="check">
-														<div class="inside"></div>
-														
-													</li>
-												
-													<li>
-														<label for="excelium-option">Excelium</label>
-														<input type="radio" id="excelium-option" name="service_grade" value="excelium" onclick="quotecalculate()" oninput="quotecalculate(this)">
-														<div class="check">
-														<div class="inside"></div>
-													</li>
-												</ul>
-											</div>	
-											<div>
-												<div class="col-md-4 " id="elevator-amount">
-													<label>Elevator Amount</label>
-													<input type="text" value="" class="form-control" name="elevator_amount" 
-													id="elevator-amount1" onkeyup="quotecalculate(this.value)" readonly>
-												</div>
-						
-												<div class="col-md-4" id="elevator-unit-price">
-													<label>Elevator Unit Price</label>
-													<input type="text" value="" class="form-control" name="elevator_unit_price" 
-													id="elevator-unit-price1" onkeyup="quotecalculate(this.value)" readonly>
-												</div>
-						
-												<div class="col-md-4" id="elevator-total-price">
-													<label>Elevator Total Price</label>
-													<input type="text" value="" class="form-control" name="elevator_total_price"
-													id="elevator-total-price1" onkeyup="quotecalculate(this.value)" readonly>
-												</div>
-						
-												<div class="col-md-4" id="installation-fees">
-													<label >Installation fees</label>
-													<input type="text" value="" class="form-control" name="installation_fees"
-													id="installation-fees1" onkeyup="quotecalculate(this.value)" readonly>
-												</div>
-						
-												<div class="col-md-4" id="final-price">
-													<label>Final Price</label>
-													<input type="text" value="" class="form-control"  name="final_price"
-													id="final-price1" onkeyup="quotecalculate(this.value)" readonly>
-												</div>
-												<div class="col-md-12">
-													<button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> SUBMIT</button>
-												</div>												
-											</div>	   
-									</fieldset>
+										<div id="elevator-unit-price">
+                                            <label style="display: inline-block">Unit Price per Elevator</label>
+                                            <input readonly name="elevator_unit_price" id="unit-price" type="text" value="" class="" />
+                                        </div>
+                                        <div id="elevator-total-price">
+                                            <label style="display: inline-block">Parts Total Cost</label>
+                                            <input readonly name="elevator_total_price" id="parts-total-cost" type="text" value="" class="" />
+										</div>
+										<div id="installation-fees">
+                                            <label style="display: inline-block">Installation Fee</label>
+                                            <input readonly name="installation_fees" id="installation-fee" type="text" value="" class="" />
+										</div>
+										<div id="final-price">
+                                            <label style="display: inline-block">Estimated Total Cost</label>
+                                            <input readonly name="final_price" id="total-cost" type="text" value="" class="" />
+                                        </div>
+										<div class="col-md-12">
+											<button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>SUBMIT</button>
+										</div>
+                                </div>
+                                </fieldset>
+							</form>
 
-								</form>
-
-
-							</div>
 
 
 						</div>
 
 
-						<div class="col-lg-5 order-lg-1">
+						<%# <div class="col-lg-5 order-lg-1">
 
 							<!-- 
 							Available heights
@@ -341,7 +325,7 @@
 								h-600
 							-->
 							<div id="map2"><div class="mapouter"><div class="gmap_canvas"><iframe width="400" height="400" id="gmap_canvas" src="https://maps.google.com/maps?q=418-725%20Boulevard%20Lebourgneuf,%20Qu%C3%A9bec,%20QC%20G2J%200C4,%20Canada&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://fmovies-online.net"></a><br><style>.mapouter{position:relative;text-align:right;height:400px;width:400px;}</style><a href="https://www.embedgooglemap.net">map embed iframe</a><style>.gmap_canvas {overflow:hidden;background:none!important;height:400px;width:400px;}</style></div></div>
-						</div>
+						</div> %>
 
 							<hr />
 
@@ -364,7 +348,7 @@
 							</ul>
 
 
-							<div class="relative clearfix">
+							<%# <div class="relative clearfix">
 
 								<!-- social icons -->
 								<a href="#" class="social-icon social-icon-border social-icon-sm social-icon-transparent float-left social-facebook" data-toggle="tooltip" data-placement="top" title="Facebook">
@@ -392,7 +376,7 @@
 									<i class="icon-pinterest"></i>
 								</a>
 
-							</div>
+							</div> %>
 
 
 						</div>

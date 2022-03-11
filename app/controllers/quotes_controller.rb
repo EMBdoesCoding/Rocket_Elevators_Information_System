@@ -4,7 +4,7 @@ class QuotesController < ApplicationController
   def create
     quote = Quote.create!(
       department: params[:department],
-      number_of_floors: params[:amount_of_floors],
+      number_of_floors: params[:number_of_floors],
       number_of_companies: params[:number_of_companies],
       number_of_basements: params[:number_of_basements],
       number_of_parking_spots: params[:number_of_parking_spots],
@@ -20,6 +20,8 @@ class QuotesController < ApplicationController
       installation_fees: params[:installation_fees],
       final_price: params[:final_price]
     )
+    
+    redirect_to "http://localhost:3000/quote.html"
 
   end
 end

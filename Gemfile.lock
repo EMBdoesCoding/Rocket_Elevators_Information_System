@@ -73,9 +73,6 @@ GEM
       autoprefixer-rails (>= 9.1.0)
       popper_js (>= 2.9.3, < 3)
       sassc-rails (>= 2.0.0)
-    bootstrap-sass (3.3.7)
-      autoprefixer-rails (>= 5.2.1)
-      sass (>= 3.3.4)
     bootstrap-social-rails (4.12.0)
       railties (>= 3.1)
     builder (3.2.4)
@@ -120,8 +117,8 @@ GEM
     erubi (1.10.0)
     execjs (2.8.1)
     ffi (1.15.5)
-    font-awesome-sass (4.3.2.1)
-      sass (~> 3.2)
+    font-awesome-rails (4.7.0.8)
+      railties (>= 3.2, < 8.0)
     formtastic (4.0.0)
       actionpack (>= 5.2.0)
     formtastic_i18n (0.7.0)
@@ -172,10 +169,14 @@ GEM
     matrix (0.4.2)
     method_source (1.0.0)
     mini_mime (1.1.2)
+    mini_portile2 (2.8.0)
     minitest (5.15.0)
     msgpack (1.4.5)
     mysql2 (0.5.3)
     nio4r (2.5.8)
+    nokogiri (1.13.3)
+      mini_portile2 (~> 2.8.0)
+      racc (~> 1.4)
     nokogiri (1.13.3-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
@@ -291,6 +292,7 @@ GEM
       nokogiri (~> 1.8)
 
 PLATFORMS
+  ruby
   x86_64-linux
 
 DEPENDENCIES
@@ -298,7 +300,6 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   bootsnap (>= 1.1.0)
   bootstrap (~> 5.1)
-  bootstrap-sass (~> 3.3.4)
   bootstrap-social-rails
   byebug
   cancancan
@@ -307,7 +308,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise
   draper
-  font-awesome-sass (~> 4.3.0)
+  font-awesome-rails
   jbuilder (~> 2.5)
   jquery-rails
   jquery-ui-rails

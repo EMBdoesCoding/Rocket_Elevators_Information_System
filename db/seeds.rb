@@ -16,9 +16,9 @@ csv.each do |row|
     e.title = row['title']
     e.email = row['email']
     if e.save
-    puts "#{e.last_name} saved."
-    end 
+        puts "#{e.last_name} saved."
+    end
 end
 
 puts "There are now #{Employee.count} rows in the transactions table."
-User.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+#User.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?

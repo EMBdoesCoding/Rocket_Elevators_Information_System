@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_10_170109) do
+ActiveRecord::Schema.define(version: 2022_03_11_164715) do
 
   create_table "active_admin_comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "namespace"
@@ -61,6 +61,9 @@ ActiveRecord::Schema.define(version: 2022_03_10_170109) do
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "employee_id"
+    t.index ["employee_id"], name: "index_users_on_employee_id"
   end
 
+  add_foreign_key "users", "employees"
 end

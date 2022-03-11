@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Auth</title>
+    <title>Rocket Elevators</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script>var plugin_path = '/assets/plugins/';</script>
   </head>
 
   <body class="smoothscroll enable-animation">
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <!--<p class="notice"><%= notice %></p>-->
+    <!--<p class="alert"><%= alert %></p>-->
 
     <%= yield %>
-
-    <%= javascript_tag 'application', 'data-turbolinks-track': 'reload' %>
   </body>
 </html>

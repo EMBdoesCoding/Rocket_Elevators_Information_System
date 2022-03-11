@@ -11,10 +11,10 @@
 // about supported directives.
 //
 
+//= require popper
 //= require rails-ujs
 //= require jquery
 //= require jquery_ujs
-//= requires turbolinks
 //= require jquery.form.min
 //= require jquery.validation.min
 //= require jquery.mixitup.min
@@ -22,17 +22,13 @@
 //= require jquery.nav.min.js
 //= require jquery.themepunch.revolution.min
 //= require jquery.themepunch.tools.min
-//= require bootstrap.min.js
-//= require bootstrap
-//= require scripts.js
+//= require bootstrap.min
+//= require scripts
 //= require activestorage
 //= require cable
 //= require contact
 //= require custom.fle_upload
 //= require demo.revolution_slider
-// require gmaps.js
 //= require pack_hotel
-//= require quote
 //= require smoothscroll
 //= require owl.carousel.min
-// require_tree .

@@ -10,6 +10,7 @@ gem 'bootstrap-social-rails'
 gem 'jquery-rails'
 gem 'bootstrap', '~> 5.1'
 
+gem 'pry'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

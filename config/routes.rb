@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   # get 'quotes_controller/create'
   post '/quote', to: 'quotes#create'
-
+  
   get 'sign_up', to: 'registrations_#new'
   post 'sign_up', to: 'registrations_#create'
 
@@ -26,7 +25,5 @@ Rails.application.routes.draw do
   get '/residential', to: 'pages#residential'
   get '/commercial', to: 'pages#commercial'
   get '/quote', to: 'pages#quote'
-
-
-
+  get '/welcome', to: 'welcome#index'
 end

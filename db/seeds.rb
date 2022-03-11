@@ -15,8 +15,9 @@ csv.each do |row|
     e.last_name = row['last_name']
     e.title = row['title']
     e.email = row['email']
-    e.save
+    if e.save
     puts "#{e.last_name} saved."
+    end 
 end
 
 puts "There are now #{Employee.count} rows in the transactions table."

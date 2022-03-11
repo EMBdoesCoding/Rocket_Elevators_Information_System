@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   # get 'quotes_controller/create'
-  post '/quotes', to: 'quotes#create'
+  post '/quote', to: 'quotes#create'
 
   get 'sign_up', to: 'registrations_#new'
   post 'sign_up', to: 'registrations_#create'

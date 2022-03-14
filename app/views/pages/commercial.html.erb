@@ -101,9 +101,8 @@
 						</button>
 
 						<!-- Logo -->
-						<a class="logo float-left scrollTo" href="#top">
-							<%= image_tag 'R2.png', alt:"R2" %>
-							<img src="/assets/images/R2.png" alt="Logo" />
+						<a class="logo float-left scrollTo" href="index.html">
+								<%= image_tag 'R2.png', alt:"R2" %>
 						</a>
 
 						<!-- 
@@ -153,10 +152,17 @@
 										</a>
 									</li>
 									<li><!-- LOGIN -->
-										<a href="#" id="contact-nav">
+										<a href=<%= new_user_session_path %> id="contact-nav">
 											LOGIN
 										</a>
 									</li>
+									<% if user_signed_in? %>
+										<li><!-- BACK OFFICE -->
+											<a href="/admin" id="contact-nav">
+												Back Office
+											</a>
+										</li>
+									<% end %>
 								</ul>
 
 							</nav>
@@ -204,10 +210,10 @@
 					<ul class="hide">
 
 						<!-- SLIDE  -->
-						<li data-transition="random" data-slotamount="1" data-masterspeed="1000" data-saveperformance="off" data-title="Slide title 1" data-thumb="demo_files/images/150x99/27-min.jpg">
+						<li data-transition="" data-slotamount="1" data-masterspeed="1000" data-saveperformance="off" data-title="Home" >
 
-							<img src="assets/images/_smarty/1x1.png" data-lazyload="RocketElevatorAssets/AdobeStock_179073967.jpeg" alt="" data-bgfit="cover" data-bgposition="center bottom" data-bgrepeat="no-repeat" />
-
+							
+							<%= image_tag("AdobeStock_179073967.jpeg", :alt=>"", :data=>"cover", :data=>"center bottom", :data=>"no-repeat" )%>
 							<div class="overlay dark-4"><!-- dark overlay [1 to 9 opacity] --></div>
 
 							<div class="tp-caption customin ltl tp-resizeme large_bold_white"
@@ -389,7 +395,7 @@
 							</label>
 							<div class="progress progress-xxs">
 								<div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 99%; min-width: 2em;"></div>
-							</div>
+							</div>``
 						</div>
 						<!-- /skills ->
 						<!-- recent news ->
@@ -590,4 +596,4 @@
 		<script src="assets/plugins/slider.revolution/js/jquery.themepunch.revolution.min.js"></script>
 		<script src="assets/js/view/demo.revolution_slider.js"></script>-->
 	
-</html>Rails.application.routes.draw do                                                                                                           mount RailsAdmin::Engine => '/admin, as: 'rails_admin'
+<%# </html>Rails.application.routes.draw do                                                                                                           mount RailsAdmin::Engine => '/admin, as: 'rails_admin' %>

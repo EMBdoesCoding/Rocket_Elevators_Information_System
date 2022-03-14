@@ -137,7 +137,6 @@
 						<!-- Logo -->
 						<a class="logo float-left scrollTo" href="#top">
 							<%= image_tag 'R2.png', alt:"R2" %>
-							<img src="/assets/images/R2.png" alt="Logo" />
 						</a>
 
 						<!-- 
@@ -157,40 +156,47 @@
 								-->
 								<ul id="topMain" class="nav nav-pills nav-main nav-onepage">
 									<li class="active"><!-- HOME -->
-										<a href="index.html" id="home-nav">
+										<a href="/index.html" id="home-nav">
 											HOME
 										</a>
 									</li>
 									<li><!-- SERVICES -->
-										<a href="index.html#services" id="services-nav">
+										<a href="/index#services" id="services-nav">
 											SERVICES
 										</a>
 									</li>
 									<li><!-- WORK -->
-										<a href="index.html#portfolio" id="portfolio-nav">
+										<a href="/index#portfolio" id="portfolio-nav">
 											PORTFOLIO
 										</a>
 									</li>
 									<li><!-- NEWS -->
-										<a href="index.html#news" id="news-nav">
+										<a href="/index#news" id="news-nav">
 											NEWS
 										</a>
 									</li>
 									<li><!-- CLIENTS -->
-										<a href="index.html#clients" id="clients-nav">
+										<a href="/index#clients" id="clients-nav">
 											CLIENTS
 										</a>
 									</li>
 									<li><!-- CONTACT -->
-										<a href="index.html#contact" id="contact-nav">
+										<a href="/index#contact" id="contact-nav">
 											CONTACT
 										</a>
 									</li>
 									<li><!-- LOGIN -->
-										<a href="#" id="contact-nav">
+										<a href=<%= new_user_session_path %> id="contact-nav">
 											LOGIN
 										</a>
 									</li>
+									<% if user_signed_in? %>
+										<li><!-- BACK OFFICE -->
+											<a href="/admin" id="contact-nav">
+												Back Office
+											</a>
+										</li>
+									<% end %>
 								</ul>
 
 							</nav>
@@ -597,65 +603,65 @@
 
 
 			<!-- FOOTER -->
-			<footer id="footer">
-				<div class="container">
+	<footer id="footer">
+		<div class="container">
 
 
-					<div class="row">
+			<div class="row">
 
-						<!-- col #1 -->
-						<div class="col-md-8">
+				<!-- col #1 -->
+				<div class="col-md-8">
 
-							<h3 class="letter-spacing-1">WHY US?</h3>
+					<h3 class="letter-spacing-1">WHY US?</h3>
 
-							<!-- Small Description -->
-							<p>
-								We have the conviction that we create the most innovative and reliable products on the market. Contact us today for any questions you might have.
-							</p>
-							<h2>(418) 555-1234</h2>
+					<!-- Small Description -->
+					<p>
+						We have the conviction that we create the most innovative and reliable products on the market. Contact us today for any questions you might have.
+					</p>
+					<h2>(418) 555-1234</h2>
+				</div>
+				<!-- /col #1 -->
+
+				<!-- col #2 -->
+				<div class="col-md-4">
+					<h3 class="letter-spacing-1">KEEP IN TOUCH</h3>
+
+					<!-- Newsletter Form -->
+					<p>Subscribe to Our Newsletter to get Important News & Offers</p>
+
+					<form class="validate" action="php/newsletter.php" method="post" data-success="Subscribed! Thank you!" data-toastr-position="bottom-right">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+							<input type="email" id="email" name="email" class="form-control required" placeholder="Enter your Email">
+							<span class="input-group-btn">
+								<button class="btn btn-success" type="submit" disabled>Subscribe</button>
+							</span>
 						</div>
-						<!-- /col #1 -->
-
-						<!-- col #2 -->
-						<div class="col-md-4">
-							<h3 class="letter-spacing-1">KEEP IN TOUCH</h3>
-
-							<!-- Newsletter Form -->
-							<p>Subscribe to Our Newsletter to get Important News & Offers</p>
-
-							<form class="validate" action="php/newsletter.php" method="post" data-success="Subscribed! Thank you!" data-toastr-position="bottom-right">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-									<input type="email" id="email" name="email" class="form-control required" placeholder="Enter your Email">
-									<span class="input-group-btn">
-										<button class="btn btn-success" type="submit">Subscribe</button>
-									</span>
-								</div>
-							</form>
-							<!-- /Newsletter Form -->
-
-
-						</div>
-						<!-- /col #2 -->
-
-					</div>
+					</form>
+					<!-- /Newsletter Form -->
 
 
 				</div>
+				<!-- /col #2 -->
 
-				<div class="copyright">
-					<div class="container">
-						<ul class="float-right m-0 list-inline mobile-block">
-							<li><a href="#">Terms &amp; Conditions</a></li>
-							<li>&bull;</li>
-							<li><a href="#">Privacy</a></li>
-						</ul>
-						&copy; All Rights Reserved, Company LTD
-					</div>
-				</div>
+			</div>
 
-			</footer>
-			<!-- /FOOTER -->
+
+		</div>
+
+		<div class="copyright">
+			<div class="container">
+				<ul class="float-right m-0 list-inline mobile-block">
+					<li><a href="#">Terms &amp; Conditions</a></li>
+					<li>&bull;</li>
+					<li><a href="#">Privacy</a></li>
+				</ul>
+				&copy; All Rights Reserved, Company LTD
+			</div>
+		</div>
+
+	</footer>
+	<!-- /FOOTER -->
 
 		</div>
 		<!-- /wrapper -->

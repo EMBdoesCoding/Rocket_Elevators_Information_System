@@ -16,4 +16,5 @@ Rails.application.routes.draw do
   get '/quote', to: 'pages#quote'
 
   get '/login', to: 'pages#index'
+  get '/(*url)', to: redirect('/404')
 end

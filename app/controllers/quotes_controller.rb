@@ -21,7 +21,7 @@ class QuotesController < ApplicationController
       final_price: params[:final_price]
     )
     
-    redirect_to "http://localhost:3000/quote.html"
+    redirect_to('/quote')
 
   end
 end

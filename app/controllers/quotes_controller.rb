@@ -20,7 +20,7 @@ class QuotesController < ApplicationController
       installation_fees: params[:installation_fees],
       final_price: params[:final_price]
     )
-    
+    flash[:alert] = 'Your form has been submitted'
     redirect_to('/quote')
 
   end

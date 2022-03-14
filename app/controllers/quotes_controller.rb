@@ -20,8 +20,8 @@ class QuotesController < ApplicationController
       installation_fees: params[:installation_fees],
       final_price: params[:final_price]
     )
-    
-    redirect_to "http://localhost:3000/quote.html"
+    flash[:alert] = 'Your form has been submitted'
+    redirect_to('/quote')
 
   end
 end

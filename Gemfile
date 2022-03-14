@@ -11,6 +11,7 @@ gem 'bootstrap-social-rails'
 gem 'jquery-rails'
 gem 'bootstrap', '~> 5.1'
 
+gem 'pry'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -18,7 +19,7 @@ gem 'rails', '~> 5.2.6'
 # Use mysql as the database for Active Record
 gem 'mysql2', '>= 0.4.4', '< 0.6.0'
 # Use Puma as the app server
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 4.3.11'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -58,6 +59,13 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'capistrano', '~> 3.10', require: false
+  gem 'capistrano-rbenv', '~> 2.2'
+  gem 'capistrano-rails', '~> 1.4', require: false
+  gem 'capistrano-bundler', '>= 1.1.0'
+  gem 'capistrano3-puma', github: "seuros/capistrano-puma"
+  gem 'ed25519', '>= 1.2', '< 2.0'
+  gem 'bcrypt_pbkdf', '>= 1.0', '< 2.0'
 end
 
 group :test do
@@ -72,7 +80,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Gemfile
-gem 'bcrypt', '~> 3.1.7'
+# gem 'bcrypt', '~> 3.1.7'
 
 gem 'activeadmin'
 gem 'devise'

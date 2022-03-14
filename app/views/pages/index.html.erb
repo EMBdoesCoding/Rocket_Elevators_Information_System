@@ -62,10 +62,17 @@
 								</a>
 							</li>
 							<li><!-- LOGIN -->
-								<a href="#" id="contact-nav">
+								<a href=<%= new_user_session_path %> id="contact-nav">
 									LOGIN
 								</a>
 							</li>
+							<% if user_signed_in? %>
+								<li><!-- BACK OFFICE -->
+									<a href="/admin" id="contact-nav">
+										Back Office
+									</a>
+								</li>
+							<% end %>
 						</ul>
 
 					</nav>

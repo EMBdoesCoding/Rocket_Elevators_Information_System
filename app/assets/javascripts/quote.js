@@ -87,7 +87,7 @@ function LoadSelection(){
     }
 }
 
-buildingTypeSelector.addEventListener("change", LoadSelection)
+// buildingTypeSelector.addEventListener("change", LoadSelection)
 
 //function RequiredShafts(){
 //

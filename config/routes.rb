@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   # get 'quotes_controller/create'
   post '/quote', to: 'quotes#create'
 
+
+  post '/lead', to: 'leads#create'
+
   #route to home page, commercial,residential, and quote
   root to: 'pages#index'
   get '/residential', to: 'pages#residential'

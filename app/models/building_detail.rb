@@ -1,0 +1,4 @@
+class BuildingDetail < ApplicationRecord
+
+    
+end

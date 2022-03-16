@@ -349,7 +349,7 @@ DEPENDENCIES
   devise
   draper
   ed25519 (>= 1.2, < 2.0)
-  faker (~> 2.20, >= 2.20.0)
+  faker
   font-awesome-rails
   jbuilder (~> 2.5)
   jquery-rails

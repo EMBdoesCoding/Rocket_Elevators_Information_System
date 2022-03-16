@@ -11,6 +11,12 @@ Employee.delete_all
 User.delete_all
 AdminUser.delete_all
 Lead.delete_all
+User.delete.all
+Customer.delete.all
+Building.delete.all
+Elevator.delete.all
+Column.delete.all
+Battery.delete.all
 
 
 require 'csv'

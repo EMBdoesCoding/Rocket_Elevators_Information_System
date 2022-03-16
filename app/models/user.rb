@@ -5,5 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   
   has_one :employee
-  belongs_to :customer
+  has_one :customer
 end

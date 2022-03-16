@@ -11,8 +11,6 @@ gem 'bootstrap-social-rails'
 gem 'jquery-rails'
 gem 'bootstrap', '~> 5.1'
 
-gem 'pry'
-
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.6'
@@ -87,3 +85,8 @@ gem 'devise'
 gem 'cancancan'
 gem 'draper'
 gem 'pundit'
+gem 'faker', '~> 2.20', '>= 2.20.0'
+
+gem 'secondbase'
+
+gem 'pg'

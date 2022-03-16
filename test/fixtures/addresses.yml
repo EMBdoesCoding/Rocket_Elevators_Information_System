@@ -4,7 +4,7 @@ one:
   type: 
   status: MyString
   entity: MyString
-  number_and_street: MyString
+  number_street: MyString
   suite_apartment: MyString
   city: MyString
   postal_code: MyString
@@ -15,7 +15,7 @@ two:
   type: 
   status: MyString
   entity: MyString
-  number_and_street: MyString
+  number_street: MyString
   suite_apartment: MyString
   city: MyString
   postal_code: MyString

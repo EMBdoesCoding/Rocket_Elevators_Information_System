@@ -2,20 +2,20 @@
 
 one:
   customer_id: MyString
-  address: MyString
+  building_address: MyString
   building_administrator_name: MyString
   building_administrator_email: MyString
   building_administrator_phone: MyString
-  technical_contact_name: MyString
-  technical_contact_email: MyString
-  technical_contact_phone: MyString
+  tech_contact_name: MyString
+  tech_contact_email: MyString
+  tech_contact_phone: MyString
 
 two:
   customer_id: MyString
-  address: MyString
+  building_address: MyString
   building_administrator_name: MyString
   building_administrator_email: MyString
   building_administrator_phone: MyString
-  technical_contact_name: MyString
-  technical_contact_email: MyString
-  technical_contact_phone: MyString
+  tech_contact_name: MyString
+  tech_contact_email: MyString
+  tech_contact_phone: MyString

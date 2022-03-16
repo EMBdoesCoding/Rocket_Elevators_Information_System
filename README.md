@@ -23,3 +23,4 @@ Programs needed to be able to create the application and run it ..
 - Ubuntu
 - Visual studio code
 - DBeaver
+- 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_14_200010) do
+ActiveRecord::Schema.define(version: 2022_03_15_193251) do
 
   create_table "active_admin_comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "namespace"
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2022_03_14_200010) do
     t.string "type"
     t.string "status"
     t.string "entity"
-    t.string "number_and_street"
+    t.string "number_street"
     t.string "suite_apartment"
     t.string "city"
     t.string "postal_code"
@@ -59,22 +59,30 @@ ActiveRecord::Schema.define(version: 2022_03_14_200010) do
     t.string "employee_id"
     t.string "commission_date"
     t.string "last_inspection_date"
-    t.string "operations_certificate"
+    t.string "certificate_of_operations"
     t.text "information"
     t.text "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  create_table "building_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+    t.string "building_id"
+    t.string "info_key"
+    t.string "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "buildings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "customer_id"
-    t.string "address"
+    t.string "building_address"
     t.string "building_administrator_name"
     t.string "building_administrator_email"
     t.string "building_administrator_phone"
-    t.string "technical_contact_name"
-    t.string "technical_contact_email"
-    t.string "technical_contact_phone"
+    t.string "tech_contact_name"
+    t.string "tech_contact_email"
+    t.string "tech_contact_phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -94,14 +102,14 @@ ActiveRecord::Schema.define(version: 2022_03_14_200010) do
     t.string "user_id"
     t.string "creation_date"
     t.string "company_name"
-    t.string "company_hq_address"
+    t.string "hq_address"
     t.string "company_contact_name"
     t.string "company_contact_phone"
     t.string "company_contact_email"
     t.text "company_description"
     t.string "technical_authority_name"
     t.string "technical_authority_phone"
-    t.string "technical_authority_email"
+    t.string "teachnical_authority_email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -114,7 +122,7 @@ ActiveRecord::Schema.define(version: 2022_03_14_200010) do
     t.string "status"
     t.string "commission_date"
     t.string "last_inspection_date"
-    t.string "inspection_certificate"
+    t.string "certificate_of_inspection"
     t.text "information"
     t.text "notes"
     t.datetime "created_at", null: false
@@ -133,7 +141,7 @@ ActiveRecord::Schema.define(version: 2022_03_14_200010) do
   end
 
   create_table "leads", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
-    t.string "contact_full_name"
+    t.string "contact_name"
     t.string "company_name"
     t.string "email"
     t.string "phone"
@@ -141,8 +149,7 @@ ActiveRecord::Schema.define(version: 2022_03_14_200010) do
     t.text "project_description"
     t.string "department"
     t.text "message"
-    t.binary "attached_file"
-    t.string "contact_request_date"
+    t.binary "attached_file", limit: 16777215
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

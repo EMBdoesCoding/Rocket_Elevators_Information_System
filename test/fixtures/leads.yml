@@ -1,7 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  contact_full_name: MyString
+  contact_name: MyString
   company_name: MyString
   email: MyString
   phone: MyString
@@ -13,7 +13,7 @@ one:
   contact_request_date: MyString
 
 two:
-  contact_full_name: MyString
+  contact_name: MyString
   company_name: MyString
   email: MyString
   phone: MyString

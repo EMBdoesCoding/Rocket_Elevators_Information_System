@@ -7,7 +7,7 @@ one:
   employee_id: MyString
   commission_date: MyString
   last_inspection_date: MyString
-  operations_certificate: MyString
+  certificate_of_operations: MyString
   information: MyText
   notes: MyText
 
@@ -18,6 +18,6 @@ two:
   employee_id: MyString
   commission_date: MyString
   last_inspection_date: MyString
-  operations_certificate: MyString
+  certificate_of_operations: MyString
   information: MyText
   notes: MyText

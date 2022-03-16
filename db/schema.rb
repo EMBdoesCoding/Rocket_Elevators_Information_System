@@ -149,8 +149,7 @@ ActiveRecord::Schema.define(version: 2022_03_15_193251) do
     t.text "project_description"
     t.string "department"
     t.text "message"
-    t.binary "attached_file"
-    t.string "contact_request_date"
+    t.binary "attached_file", limit: 16777215
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

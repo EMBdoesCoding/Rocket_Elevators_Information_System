@@ -10,7 +10,7 @@ class CreateLeads < ActiveRecord::Migration[5.2]
       t.string :department
       t.text :message
       t.blob :attached_file, limit: 10.megabyte
-      # t.string :contact_request_date
+     # t.string :contact_request_date
 
       t.timestamps
     end

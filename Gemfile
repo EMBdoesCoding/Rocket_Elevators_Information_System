@@ -85,4 +85,8 @@ gem 'devise'
 gem 'cancancan'
 gem 'draper'
 gem 'pundit'
-gem 'faker'
+gem 'faker', '~> 2.20', '>= 2.20.0'
+
+gem 'secondbase'
+
+gem 'pg'

@@ -11,7 +11,7 @@ class LeadsController < ApplicationController
             project_description: params[:project_description],
             department: params[:department],
             message: params[:message],
-            attached_file: params[:attached_file]
+            attached_file: params[:attached_file].read
         )
 
         redirect_to('/index')

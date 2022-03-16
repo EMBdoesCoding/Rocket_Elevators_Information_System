@@ -112,7 +112,7 @@ end
         certificate_of_inspection:  Faker::Code.rut,
         information:    Faker::Lorem.paragraph,
         notes:  Faker::Quote.yoda,    
-        )
+        ) 
 end
 
 #generate random columns
@@ -143,7 +143,7 @@ end
 end
 
 # #generate random building details
-# 28.times do 
+# 20.times do 
 #     Building_detail.create!(        
 #         building_id:    Faker::Number.between(from: 1, to: 20),
 #         info_key:   [Type, Construction Year, Number of Elevators Inside, Maximum Number of Occupants, Renovation Year],

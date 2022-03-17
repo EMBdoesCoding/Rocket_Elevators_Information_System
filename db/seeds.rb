@@ -22,7 +22,7 @@ require 'csv'
 csv_text = File.read(Rails.root.join('lib', 'seeds', 'Employee_List.csv'))
 csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
 csv.each do |row|
-    @user = User.create!(
+    user = User.create!(
         email: row['email'],
         password: 'password'
     )
@@ -37,11 +37,19 @@ csv.each do |row|
         last_name: row['last_name'],
         title: row['title'],
         email: row['email'],
-        user: @user
+        user: user
     )
 end
 
 puts "There are now #{Employee.count} rows in the transactions table."
+
+require 'json'
+
+
+
+
+
+
 
 
 # Fake data seeding to be entered into database
@@ -92,10 +100,10 @@ end
 #generate random customers
 37.times do 
     Customer.create!(
-        user_id: @user,
+        user_id: ,
         creation_date:  Faker::Date.between(from: 3.years.ago, to: Date.today),
         company_name:   Faker::Company.name,
-        address_id:"1231312",
+        address_id:,
         company_contact_name:   Faker::Name.name,
         company_contact_phone:  Faker::PhoneNumber.cell_phone,
         company_contact_email:  Faker::Internet.email,
@@ -110,8 +118,8 @@ end
 #generate random buildings
 28.times do 
     Building.create!(        
-        customer_id:"1",
-        building_address: "13131",
+        customer_id:,
+        address_id: ,
         building_administrator_name:    Faker::Name.name,
         building_administrator_email:   Faker::Internet.email,
         building_administrator_phone:   Faker::PhoneNumber.cell_phone,
@@ -127,7 +135,7 @@ end
         column_id:  Faker::Number.between(from: 1, to: 35),
         serial_number:  Faker::Number.decimal_part(digits: 7),
         model: ["Standard", "Premium", "Excelium"].sample,
-        # type: ["Residential", "Commercial","Corporate", "Hybrid"].sample,
+        building_type: ["Residential", "Commercial","Corporate", "Hybrid"].sample,
         status:["Running", "Not Running"].sample,
         commission_date:    Faker::Date.between(from: 3.years.ago, to: Date.today),
         last_inspection_date:   Faker::Date.between(from: 3.years.ago, to: Date.today),
@@ -141,7 +149,7 @@ end
 35.times do 
     Column.create!(        
         battery_id: Faker::Number.between(from: 1, to: 15),
-        # type:   ["Residential", "Commercial","Corporate", "Hybrid"].sample,
+        building_type:   ["Residential", "Commercial","Corporate", "Hybrid"].sample,
         number_of_floors_served:    Faker::Number.between(from: 1, to: 70),
         status: ["Running", "Not Running"].sample,
         information:    Faker::Lorem.sentence,
@@ -153,9 +161,9 @@ end
 15.times do 
     Battery.create!(        
         building_id:    Faker::Number.between(from: 1, to: 28),
-        # type:   ["Residential", "Commercial","Corporate", "Hybrid"].sample,
+        building_type:   ["Residential", "Commercial","Corporate", "Hybrid"].sample,
         status: ["Running", "Not Running"].sample,
-        employee_id: "123456",
+        employee_id: ,
         commission_date:    Faker::Date.between(from: 3.years.ago, to: Date.today),
         last_inspection_date:   Faker::Date.between(from: 3.years.ago, to: Date.today),
         certificate_of_operations:  Faker::Code.rut,

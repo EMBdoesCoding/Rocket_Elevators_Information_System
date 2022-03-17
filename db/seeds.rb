@@ -47,6 +47,23 @@ puts "There are now #{Employee.count} rows in the transactions table."
 # Fake data seeding to be entered into database
 require 'faker'
 
+
+#Generate real addresses
+28.times do
+    Address.create!(
+
+    type_of_address:["Home","Buisness", "Shipping", "Billing", ].sample,
+    status: ["Verified", "Unverified"].sample,
+    entity: [].sample,
+    number_street:
+    suite_apartment:
+    city:
+    postal_code:
+    country:
+    notes:  Faker::Lorem.paragraph,
+    )
+end
+
 # generate random leads
 706.times do 
     Lead.create!(
@@ -148,7 +165,7 @@ end
 end
 
 # #generate random building details
-# 20.times do 
+# 28.times do 
 #     Building_detail.create!(        
 #         building_id:    Faker::Number.between(from: 1, to: 20),
 #         info_key:   [Type, Construction Year, Number of Elevators Inside, Maximum Number of Occupants, Renovation Year],

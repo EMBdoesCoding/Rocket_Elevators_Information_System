@@ -11,19 +11,18 @@ Employee.delete_all
 User.delete_all
 AdminUser.delete_all
 Lead.delete_all
-User.delete.all
-Customer.delete.all
-Building.delete.all
-Elevator.delete.all
-Column.delete.all
-Battery.delete.all
+Customer.delete_all
+Building.delete_all
+Elevator.delete_all
+Column.delete_all
+Battery.delete_all
 
 
 require 'csv'
 csv_text = File.read(Rails.root.join('lib', 'seeds', 'Employee_List.csv'))
 csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
 csv.each do |row|
-    user = User.create!(
+    @user = User.create!(
         email: row['email'],
         password: 'password'
     )
@@ -38,7 +37,7 @@ csv.each do |row|
         last_name: row['last_name'],
         title: row['title'],
         email: row['email'],
-        user: user
+        user: @user
     )
 end
 
@@ -76,10 +75,10 @@ end
 #generate random customers
 37.times do 
     Customer.create!(
-        # user_id:
+        user_id: @user,
         creation_date:  Faker::Date.between(from: 3.years.ago, to: Date.today),
         company_name:   Faker::Company.name,
-        # hq_address:
+        address_id:"1231312",
         company_contact_name:   Faker::Name.name,
         company_contact_phone:  Faker::PhoneNumber.cell_phone,
         company_contact_email:  Faker::Internet.email,
@@ -94,8 +93,8 @@ end
 #generate random buildings
 28.times do 
     Building.create!(        
-        # customer_id:
-        # building_address:
+        customer_id:"1",
+        building_address: "13131",
         building_administrator_name:    Faker::Name.name,
         building_administrator_email:   Faker::Internet.email,
         building_administrator_phone:   Faker::PhoneNumber.cell_phone,
@@ -139,7 +138,7 @@ end
         building_id:    Faker::Number.between(from: 1, to: 28),
         # type:   ["Residential", "Commercial","Corporate", "Hybrid"].sample,
         status: ["Running", "Not Running"].sample,
-        # employee_id:
+        employee_id: "123456",
         commission_date:    Faker::Date.between(from: 3.years.ago, to: Date.today),
         last_inspection_date:   Faker::Date.between(from: 3.years.ago, to: Date.today),
         certificate_of_operations:  Faker::Code.rut,

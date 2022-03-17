@@ -11,6 +11,7 @@ Employee.delete_all
 User.delete_all
 AdminUser.delete_all
 Lead.delete_all
+Address.delete_all
 Customer.delete_all
 Building.delete_all
 Elevator.delete_all
@@ -43,7 +44,7 @@ end
 
 puts "There are now #{Employee.count} rows in the transactions table."
 
-require 'json'
+
 
 
 
@@ -55,22 +56,28 @@ require 'json'
 # Fake data seeding to be entered into database
 require 'faker'
 
+address_text = File.read(Rails.root.join('lib', 'seeds', 'Address.json'))
+address_parse = JSON.parse(address_text)
 
+counter = 0
 #Generate real addresses
 28.times do
+    # csv.each do |row|
     Address.create!(
 
-    type_of_address:["Home","Buisness", "Shipping", "Billing", ].sample,
+    type_of_address: ["Home","Buisness", "Shipping", "Billing", ].sample,
     status: ["Verified", "Unverified"].sample,
-    entity: [].sample,
-    number_street:
-    suite_apartment:
-    city:
-    postal_code:
-    country:
+    entity: ["Customer", "Buisness"].sample,
+    number_street: address_parse['address'][counter]['address1'],
+    # suite_apartment:,
+    # city:,
+    # postal_code:,
+    # country:,
     notes:  Faker::Lorem.paragraph,
     )
+    counter += 1
 end
+puts "Address table populated"
 
 # generate random leads
 706.times do 
@@ -99,11 +106,13 @@ end
 
 #generate random customers
 37.times do 
+    record = Address.order('RAND()').first,
+    user2 = User.order('RAND()').first,
     Customer.create!(
-        user_id: ,
+        user_id: user2,
         creation_date:  Faker::Date.between(from: 3.years.ago, to: Date.today),
         company_name:   Faker::Company.name,
-        address_id:,
+        address_id: record,
         company_contact_name:   Faker::Name.name,
         company_contact_phone:  Faker::PhoneNumber.cell_phone,
         company_contact_email:  Faker::Internet.email,
@@ -118,8 +127,8 @@ end
 #generate random buildings
 28.times do 
     Building.create!(        
-        customer_id:,
-        address_id: ,
+        # customer_id:,
+        # address_id: ,
         building_administrator_name:    Faker::Name.name,
         building_administrator_email:   Faker::Internet.email,
         building_administrator_phone:   Faker::PhoneNumber.cell_phone,
@@ -163,7 +172,7 @@ end
         building_id:    Faker::Number.between(from: 1, to: 28),
         building_type:   ["Residential", "Commercial","Corporate", "Hybrid"].sample,
         status: ["Running", "Not Running"].sample,
-        employee_id: ,
+        # employee_id: ,
         commission_date:    Faker::Date.between(from: 3.years.ago, to: Date.today),
         last_inspection_date:   Faker::Date.between(from: 3.years.ago, to: Date.today),
         certificate_of_operations:  Faker::Code.rut,

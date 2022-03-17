@@ -86,7 +86,7 @@ puts "-- ___-- Real Address Table Populated -- ___--"
 # generate random leads
 706.times do 
     Lead.create!(
-        contact_name:   Faker::Name.name,
+        contact_name:   Faker::FunnyName.two_word_name,
         company_name:   Faker::Company.name,
         email:  Faker::Internet.email,
         phone:  Faker::PhoneNumber.cell_phone,
@@ -123,11 +123,11 @@ record = Address.first.id
         creation_date:  Faker::Date.between(from: 3.years.ago, to: Date.today),
         company_name:   Faker::Company.name,
         address_id: record + counter,
-        company_contact_name:   Faker::Name.name,
+        company_contact_name:   Faker::FunnyName.two_word_name,
         company_contact_phone:  Faker::PhoneNumber.cell_phone,
         company_contact_email:  user.email,
-        company_description:    Faker::Quote.yoda,
-        technical_authority_name:   Faker::Name.name,
+        company_description:    Faker::Movie.quote,
+        technical_authority_name:   Faker::FunnyName.two_word_name,
         technical_authority_phone:  Faker::PhoneNumber.cell_phone,
         teachnical_authority_email: Faker::Internet.email,
     )
@@ -141,10 +141,10 @@ cust = Customer.first.id
     Building.create!(        
         customer_id: cust + e,
         address_id: record + counter,
-        building_administrator_name:    Faker::Name.name,
+        building_administrator_name:    Faker::FunnyName.two_word_name,
         building_administrator_email:   Faker::Internet.email,
         building_administrator_phone:   Faker::PhoneNumber.cell_phone,
-        tech_contact_name:  Faker::Name.name,
+        tech_contact_name:  Faker::FunnyName.two_word_name,
         tech_contact_email: Faker::Internet.email,
         tech_contact_phone: Faker::PhoneNumber.cell_phone,        
     )

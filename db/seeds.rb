@@ -11,12 +11,12 @@ Employee.delete_all
 User.delete_all
 AdminUser.delete_all
 Lead.delete_all
-User.delete.all
-Customer.delete.all
-Building.delete.all
-Elevator.delete.all
-Column.delete.all
-Battery.delete.all
+User.delete_all
+Customer.delete_all
+Building.delete_all
+Elevator.delete_all
+Column.delete_all
+Battery.delete_all
 
 
 require 'csv'
@@ -163,3 +163,4 @@ end
 
 
 
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?

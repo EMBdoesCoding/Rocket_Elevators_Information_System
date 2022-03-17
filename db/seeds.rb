@@ -58,6 +58,8 @@ require 'faker'
 
 address_text = File.read(Rails.root.join('lib', 'seeds', 'Address.json'))
 address_parse = JSON.parse(address_text)
+randomarray = Array.new(address_parse['address'].count) {|e| e += 1}
+arandom = randomarray.shuffle
 
 counter = 0
 #Generate real addresses
@@ -68,14 +70,13 @@ counter = 0
     type_of_address: ["Home","Buisness", "Shipping", "Billing", ].sample,
     status: ["Verified", "Unverified"].sample,
     entity: ["Customer", "Buisness"].sample,
-    number_street: address_parse['address'][counter]['address1'],
-    # suite_apartment:,
-    # city:,
-    # postal_code:,
-    # country:,
+    number_street: address_parse['address'][arandom[counter]]['address1'],
+    suite_apartment: address_parse['address'][arandom[counter]]['address2'],
+    city:address_parse['address'][arandom[counter]]['city'],
+    postal_code:address_parse['address'][arandom[counter]]['postalCode'],
+    country: "USA",
     notes:  Faker::Lorem.paragraph,
     )
-    counter += 1
 end
 puts "Address table populated"
 
@@ -106,16 +107,19 @@ end
 
 #generate random customers
 37.times do 
-    record = Address.order('RAND()').first,
-    user2 = User.order('RAND()').first,
+    user = User.create!(
+        email: Faker::Internet.email,
+        password: 'password'
+    )
+    record = Address.first,
     Customer.create!(
-        user_id: user2,
+        user_id: user,
         creation_date:  Faker::Date.between(from: 3.years.ago, to: Date.today),
         company_name:   Faker::Company.name,
         address_id: record,
         company_contact_name:   Faker::Name.name,
         company_contact_phone:  Faker::PhoneNumber.cell_phone,
-        company_contact_email:  Faker::Internet.email,
+        company_contact_email:  user.email,
         company_description:    Faker::Quote.yoda,
         technical_authority_name:   Faker::Name.name,
         technical_authority_phone:  Faker::PhoneNumber.cell_phone,

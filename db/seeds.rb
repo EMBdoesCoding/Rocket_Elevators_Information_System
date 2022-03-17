@@ -8,11 +8,11 @@
 
 
 Employee.delete_all
+Customer.delete_all
 User.delete_all
 AdminUser.delete_all
 Lead.delete_all
 Address.delete_all
-Customer.delete_all
 Building.delete_all
 Elevator.delete_all
 Column.delete_all
@@ -63,7 +63,7 @@ arandom = randomarray.shuffle
 
 counter = 0
 #Generate real addresses
-28.times do
+65.times do
     # csv.each do |row|
     Address.create!(
 
@@ -97,26 +97,28 @@ puts "Address table populated"
 end
 
 # generate random users
-57.times do   
-    User.create!(
-        email:  Faker::Internet.email,
-        password: 'password',
+# 57.times do   
+#     User.create!(
+#         email:  Faker::Internet.email,
+#         password: 'password',
                      
-    )
-end 
+#     )
+# end 
 
 #generate random customers
+counter = 0
+record = Address.first.id
 37.times do 
     user = User.create!(
         email: Faker::Internet.email,
         password: 'password'
     )
-    record = Address.first,
+
     Customer.create!(
-        user_id: user,
+        user: user,
         creation_date:  Faker::Date.between(from: 3.years.ago, to: Date.today),
         company_name:   Faker::Company.name,
-        address_id: record,
+        address_id: record + counter,
         company_contact_name:   Faker::Name.name,
         company_contact_phone:  Faker::PhoneNumber.cell_phone,
         company_contact_email:  user.email,
@@ -124,22 +126,52 @@ end
         technical_authority_name:   Faker::Name.name,
         technical_authority_phone:  Faker::PhoneNumber.cell_phone,
         teachnical_authority_email: Faker::Internet.email,
-        )
+    )
+    counter += 1
 end
 
 
 #generate random buildings
-28.times do 
+cust = Customer.first.id
+28.times do |e|
     Building.create!(        
-        # customer_id:,
-        # address_id: ,
+        customer_id: cust + e,
+        address_id: record + counter,
         building_administrator_name:    Faker::Name.name,
         building_administrator_email:   Faker::Internet.email,
         building_administrator_phone:   Faker::PhoneNumber.cell_phone,
         tech_contact_name:  Faker::Name.name,
         tech_contact_email: Faker::Internet.email,
         tech_contact_phone: Faker::PhoneNumber.cell_phone,        
-        )
+    )
+    counter += 1
+end
+
+#Generate random batteries
+15.times do 
+    Battery.create!(        
+        building_id:    Faker::Number.between(from: 1, to: 28),
+        building_type:   ["Residential", "Commercial","Corporate", "Hybrid"].sample,
+        status: ["Running", "Not Running"].sample,
+        employee: Employee.take,
+        commission_date:    Faker::Date.between(from: 3.years.ago, to: Date.today),
+        last_inspection_date:   Faker::Date.between(from: 3.years.ago, to: Date.today),
+        certificate_of_operations:  Faker::Code.rut,
+        information:    Faker::Lorem.sentence,
+        notes:  Faker::Lorem.paragraph,
+    )
+end
+
+#generate random columns
+35.times do 
+    Column.create!(        
+        battery_id: Faker::Number.between(from: 1, to: 15),
+        building_type:   ["Residential", "Commercial","Corporate", "Hybrid"].sample,
+        number_of_floors_served:    Faker::Number.between(from: 1, to: 70),
+        status: ["Running", "Not Running"].sample,
+        information:    Faker::Lorem.sentence,
+        notes:  Faker::Lorem.paragraph,
+    )
 end
 
 #generate random elevators
@@ -158,32 +190,6 @@ end
         ) 
 end
 
-#generate random columns
-35.times do 
-    Column.create!(        
-        battery_id: Faker::Number.between(from: 1, to: 15),
-        building_type:   ["Residential", "Commercial","Corporate", "Hybrid"].sample,
-        number_of_floors_served:    Faker::Number.between(from: 1, to: 70),
-        status: ["Running", "Not Running"].sample,
-        information:    Faker::Lorem.sentence,
-        notes:  Faker::Lorem.paragraph,
-    )
-end
-
-#Generate random batteries
-15.times do 
-    Battery.create!(        
-        building_id:    Faker::Number.between(from: 1, to: 28),
-        building_type:   ["Residential", "Commercial","Corporate", "Hybrid"].sample,
-        status: ["Running", "Not Running"].sample,
-        # employee_id: ,
-        commission_date:    Faker::Date.between(from: 3.years.ago, to: Date.today),
-        last_inspection_date:   Faker::Date.between(from: 3.years.ago, to: Date.today),
-        certificate_of_operations:  Faker::Code.rut,
-        information:    Faker::Lorem.sentence,
-        notes:  Faker::Lorem.paragraph,
-    )
-end
 
 # #generate random building details
 # 28.times do 

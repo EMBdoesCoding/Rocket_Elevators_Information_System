@@ -77,6 +77,7 @@ counter = 0
     country: "USA",
     notes:  Faker::Lorem.paragraph,
     )
+    counter += 1
 end
 puts "Address table populated"
 

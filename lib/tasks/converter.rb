@@ -67,10 +67,10 @@ end
 def self.move_elevators
     Elevator.all.each do |e|
         column = Column.find(e.column_id)
+        customer = Customer.find(building.customer_id)
         battery = Battery.find(column.battery_id)
         building = Building.find(battery.building_id)
         address = Address.find(building.address_id)
-        customer = Customer.find(building.customer_id)
 
         FactElevator.create!(
             {
@@ -78,9 +78,9 @@ def self.move_elevators
                 commission_date: e.commission_date,
                 building_id: building.id,
                 customer_id: customer.id,
+                elevator_number: elevator_number
                 building_city: address.city
             }
         )
     end
 end
-# wowo

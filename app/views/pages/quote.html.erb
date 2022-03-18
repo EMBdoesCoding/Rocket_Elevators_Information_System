@@ -38,8 +38,9 @@
 						</button>
 
 						<!-- Logo -->
-						<a class="logo float-left scrollTo" href="/index">
+						<a class="logo float-left scrollTo" href="#top">
 							<%= image_tag 'R2.png', alt:"R2" %>
+							<img src="/assets/images/R2.png" alt="Logo" />
 						</a>
 
 						<!-- 
@@ -93,13 +94,6 @@
 											LOGIN
 										</a>
 									</li>
-									<% if user_signed_in? %>
-										<li><!-- BACK OFFICE -->
-											<a href="/admin" id="contact-nav">
-												Back Office
-											</a>
-										</li>
-									<% end %>
 								</ul>
 
 							</nav>
@@ -113,88 +107,41 @@
 
 
 
-			<!-- REVOLUTION SLIDER -->
-			<section id="slider" class="fullwidthbanner-container roundedcorners">
+			<!-- 
 				<!--
-					Navigation Styles:
-					
-						data-navigationStyle="" theme default navigation
+			<!-- 
+				PAGE HEADER 
+				
+				CLASSES:
+					.page-header-xs	= 20px margins
+					.page-header-md	= 50px margins
+					.page-header-lg	= 80px margins
+					.page-header-xlg= 130px margins
+					.dark		= dark page header
+					.light		= light page header
+			-->
+			<section class="page-header page-header-md b-0 dark" 
+				data-background-delay="5000" 
+				data-background-fade="1000" 
+				data-background="RocketElevatorAssets/AdobeStock_3294993.jpeg">
+
+				<span class="overlay dark-5 raster"><!-- dark overlay [1 to 9 opacity] --></span>
+
+
+				<div class="display-table">
+					<div class="display-table-cell vertical-align-middle">
 						
-						data-navigationStyle="preview1"
-						data-navigationStyle="preview2"
-						data-navigationStyle="preview3"
-						data-navigationStyle="preview4"
-						
-					Bottom Shadows
-						data-shadow="1"
-						data-shadow="2"
-						data-shadow="3"
-						
-					Slider Height (do not use on fullscreen mode)
-						data-height="300"
-						data-height="350"
-						data-height="400"
-						data-height="450"
-						data-height="500"
-						data-height="550"
-						data-height="600"
-						data-height="650"
-						data-height="700"
-						data-height="750"
-						data-height="800"
-				-->
-				<div class="fullscreenbanner" data-navigationStyle="preview4">
-					<ul class="hide">
+						<div class="container text-xs-center">
 
-						<!-- SLIDE  -->
-						<%# <li data-transition="random" data-slotamount="1" data-masterspeed="1000" data-saveperformance="off" data-title="Slide title 1" > %>
-						<li data-transition="" data-slotamount="7" data-masterspeed="600"  data-saveperformance="off"  data-title="Home">
-							
-							<%= image_tag("AdobeStock_3294993.jpeg", :alt=>"", :data=>"cover", :data=>"center bottom", :data=>"no-repeat" )%>
-							<div class="overlay dark-4"><!-- dark overlay [1 to 9 opacity] --></div>
+							<h1 class="fw-400 wow fadeIn" data-wow-delay="0.2s">GET A QUOTE</h1>
 
-							<div class="tp-caption customin ltl tp-resizeme large_bold_white"
-								data-x="center"
-								data-y="230"
-								data-customin="x:0;y:150;z:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:200;transformOrigin:50% 0%;"
-								data-speed="800"
-								data-start="1200"
-								data-easing="easeOutQuad"
-								data-splitin="none"
-								data-splitout="none"
-								data-elementdelay="0.01"
-								data-endelementdelay="0.1"
-								data-endspeed="1000"
-								data-endeasing="Power4.easeIn" style="z-index: 10;">
-								Request A Quote Page
-							</div>
+						</div>
 
-							<div class="tp-caption customin ltl tp-resizeme small_light_white"
-								data-x="center"
-								data-y="330"
-								data-customin="x:0;y:150;z:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:200;transformOrigin:50% 0%;"
-								data-speed="800"
-								data-start="1400"
-								data-easing="easeOutQuad"
-								data-splitin="none"
-								data-splitout="none"
-								data-elementdelay="0.01"
-								data-endelementdelay="0.1"
-								data-endspeed="1000"
-								data-endeasing="Power4.easeIn" style="z-index: 10; width: 750px; max-width: 750px; white-space: normal; text-align:center; font-size:20px;">
-								<span class="font-lato">
-									Please fill the following form below out so you can get an accurate quote for your project, thank you!
-								</span>
-							</div>
-
-						</li>
-
-						<!-- SLIDE  -->
-
-					</ul>
+					</div>
 				</div>
+
 			</section>
-			<!-- /REVOLUTION SLIDER -->
+			<!-- /PAGE HEADER -->
 
 
 
@@ -205,9 +152,9 @@
 
 						<div class="col-lg-7 order-lg-2">
 							
-							<%# <div class="heading-title mt-0">
-								<h2 class="fs-20 fw-400">Please fill the following form below out so you can get an accurate quote for your project, thank you!</h2>
-							</div> %>
+							<div class="heading-title mt-0">
+								<h2 class="fs-20 fw-400">Quote Form</h2>
+							</div>
 
 
 							<div>
@@ -256,131 +203,130 @@
 								</div><!-- /Alert Mandatory -->
 
 
-								<form action="/quote" method="post" enctype="multipart/form-data">
-									<fieldset>
-										<input type="hidden" name="action" value="contact_send" />
-										<div class="col-md-12">
-											<label for="contact_department">Department *</label>
-											<select class="form-control pointer" name="department" id="department">
-												<option id="select" value="select">--- Select ---</option>
-												<option id="commercial" value="commercial">Commercial</option>
-												<option id="corporate" value="corporate">Corporate</option>
-												<option id="residential" value="residential">Residential</option>
-												<option id="hybrid" value="hybrid">Hybrid</option>
-											</select>
+								<div class="">
+
+							<form action="/quote" method="post" class="text-center">
+								<fieldset id="fieldset1" oninput=CalculateElevatorsNeeded()>
+									<div class="text-center">
+                                        	<div>
+												<label style="display: inline-block">Project Type</label>
+												<select id="building-type" name="department" class="" autofocus>
+													<option value="">--- Select ---</option>
+													<option id="residential" value="residential">Residential</option>
+                                                    <option id="commercial" value="commercial">Commercial</option>
+													<option id="corporate" value="corporate">Corporate</option>
+													<option id="hybrid" value="hybrid">Hybrid</option>
+												</select>
+											</div>
+                                    </div>
+                                    <div class="">
+											<div id="number-of-apartments" class="">
+												<label style="display: inline-block"># of aparments in the building</label>
+												<input id="resNumOfApartments" name="number_of_apartments" type="number" value="" class="" min="0" onchange=imposeMinMax(this) />
+											</div>
+                                            <div id="number-of-companies">
+                                                <label style="display: inline-block"># of distinct businesses in the building</label>
+                                                <input id="comNumOfBusiness" name="number_of_companies" type="number" value="" class="" min="0" onchange=imposeMinMax(this) />
+                                            </div>
+                                            <div id="number-of-corporations">
+                                                <label style="display: inline-block"># of separate tenant companies</label>
+                                                <input id="corpNumOfTenants" name="number_of_corporations" type="number" value="" class="" min="0" onchange=imposeMinMax(this) />
+                                            </div>
+                                    </div>
+                                    <div class="">
+											<div id="number-of-floors" class="">
+												<label style="display: inline-block"># of floors in the building (excluding basements)</label>
+												<input id="numOfFloors" name="number_of_floors" type="number" value="" class="" min="0" onchange=imposeMinMax(this) />
+											</div>
+                                    </div>
+                                    <div class="">
+											<div id="number-of-basements" class="">
+												<label style="display: inline-block"># of basements contained in the building</label>
+												<input id="numOfBasements" name="number_of_basements" type="number" value="" class="" min="0" onchange=imposeMinMax(this) />
+											</div>
+									</div>
+									<div class="">
+											<div id="number-of-parking-spots" class="">
+												<label style="display: inline-block"># of Parking Spaces available</label>
+												<input id="comNumOfParkingSpaces" name="number_of_parking_spots" type="number" value="" class="" min="0" onchange=imposeMinMax(this) />
+											</div>
+                                            <div id="number-of-elevators" class="">
+												<label style="display: inline-block"># of Elevator Cages to be deployed</label>
+												<input id="comNumOfElevatorCages" name="number_of_elevators" type="number" value="" class="" min="0" onchange=imposeMinMax(this) />
+											</div>
+                                            <div id="maximum-occupancy" class="">
+                                                <label style="display: inline-block">Max. # of occupants per floor</label>
+                                                <input id="maxNumOfOccupants" name="maximum_ocupancy" type="number" value="" class="" min="0" onchange=imposeMinMax(this) />
+                                            </div>
+                                            <div id="business-hours" class="">
+                                                <label style="display: inline-block"># of building active hours per day (max. 24)</label>
+                                                <input id="hoursOfActivity" name="business_hours" type="number" value="" class="" min="0" max="24" onchange=imposeMinMax(this) />
+                                            </div>
+                                    </div>
+
+								</fieldset>
+
+                                <fieldset class="text-center">
+                                    <input type="radio" id="standard" name="service_grade" value="standard" onchange=UnitPriceUpdate() />
+                                    <label style="display:inline">Standard </label>
+                                    <input type="radio" id="premium" name="service_grade" value="premium" onchange=UnitPriceUpdate() />
+                                    <label style="display:inline">Premium</label>
+                                    <input type="radio" id="excelium" name="service_grade" value="excelium" onchange=UnitPriceUpdate() />
+                                    <label style="display: inline">Excelium</label>
+                                </fieldset>
+
+                                <fieldset>
+                                    <div class="text-center">
+                                        <div id="elevator-amount">
+                                            <label style="display: inline-block">Required number of elevators</label>
+                                            <input readonly name="elevator_amount" id="required-elevators" type="number" value="" class="" />
 										</div>
-											<div class="col-md-12 qdiv resi" id="number-of-apartments">
-												<label for="contact:name"> Number of Apartments</label>
-												<input min = "0" required type="number" value="" class="form-control" name="number_of_apartments" id="num-of-apartments" oninput="quotecalculate(this)">
-											</div>
-											<div class="col-md-12 qdiv resi comm corp hybr" id="number-of-floors">
-												<label for="contact:email">Number of Floors</label>
-												<input min = "0" required type="number"  class="form-control" name="number_of_floors" id="num-of-floors" oninput="quotecalculate(this)">
-											</div>
-											<div class="col-md-12 qdiv comm hybr" id="number-of-companies">
-												<label for="contact:name"> Number of Companies</label>
-												<input min = "0" required type="number" value="" class="form-control" name="number_of_companies" id="num-of-companies" oninput="quotecalculate(this)">
-											</div>
-											<div class="col-md-12 qdiv resi comm corp hybr" id="number-of-basements">
-												<label for="contact:phone">Number of Basements</label>
-												<input min = "0" type="number" value="" class="form-control" name="number_of_basements" id="num-of-basements"  oninput="quotecalculate(this)">
-											</div>
-											<div class="col-md-12 qdiv comm corp hybr" id="number-of-parking-spots">
-												<label for="contact:phone">Number of Parking Spots</label>
-												<input min = "0" type="number" value="" class="form-control" name="number_of_parking_spots" id="num-of-parking-spots" oninput="quotecalculate(this)">
-											</div>
-											<div class="col-md-12 qdiv comm" id="number-of-elevators">
-												<label for="contact:phone">Number of Elevators</label>
-												<input min = "0" type="number" value="" class="form-control" name="number_of_elevators" id="num-of-elevators" oninput="quotecalculate(this)">
-											</div>
-											<div class="col-md-12 qdiv corp" id="number-of-corporations">
-												<label for="contact:name"> Number of Corporations</label>
-												<input min = "0" required type="number" value="" class="form-control" name="number_of_corporations" id="num-of-corporations" oninput="quotecalculate(this)">
-											</div>
-											<div class="col-md-12 qdiv corp hybr" id="maximum-occupancy">
-												<label for="contact:phone">Maximum Occupancy</label>
-												<input min = "0" type="number" value="" class="form-control" name="maximum_occupancy" id="max-occupancy" oninput="quotecalculate(this)">
-											</div>
-											<div class="col-md-12 qdiv hybr" id="business-hours">
-												<label for="contact:phone">Business Hours</label>
-												<input min = "0" type="number" value="" class="form-control" name="business_hours" id="business-hrs" oninput="quotecalculate(this)">
-											</div>
-											<div id="radiobuttons" class="container" name="buttons">
 
-												<label>Select the type of service in your interest</label>
-												<ul>
-													<li>
-														<label for="standard-option">Standard</label>
-														<input type="radio" id="standard-option" name="service_grade" value="standard" onclick="quotecalculate(this)" oninput="quotecalculate(this)">
-														
-														<div class="check">
-														<div class="inside"></div>
-													</li>
-												
-													<li>
-														<label for="premium-option">Premium</label>
-														<input type="radio" id="premium-option" name="service_grade" value="premium" onclick="quotecalculate()" oninput="quotecalculate (this)" >
-														
-														<div class="check">
-														<div class="inside"></div>
-														
-													</li>
-												
-													<li>
-														<label for="excelium-option">Excelium</label>
-														<input type="radio" id="excelium-option" name="service_grade" value="excelium" onclick="quotecalculate()" oninput="quotecalculate(this)">
-														<div class="check">
-														<div class="inside"></div>
-													</li>
-												</ul>
+										<div id="elevator-unit-price">
+                                            <label style="display: inline-block">Unit Price per Elevator</label>
+                                            <input readonly name="elevator_unit_price" id="unit-price" type="text" value="" class="" />
+                                        </div>
+                                        <div id="elevator-total-price">
+                                            <label style="display: inline-block">Parts Total Cost</label>
+                                            <input readonly name="elevator_total_price" id="parts-total-cost" type="text" value="" class="" />
+										</div>
+										<div id="installation-fees">
+                                            <label style="display: inline-block">Installation Fee</label>
+                                            <input readonly name="installation_fees" id="installation-fee" type="text" value="" class="" />
+										</div>
+										<div id="final-price">
+                                            <label style="display: inline-block">Estimated Total Cost</label>
+                                            <input readonly name="final_price" id="total-cost" type="text" value="" class="" />
+                                        </div>
+										<div id="number-of-apartments" class="">
+												<label style="display: inline-block">Company Name</label>
+												<input id="resNumOfApartments" name="number_of_apartments" type="text" value="" class=""  />
+											</div>
+										<div id="number-of-apartments" class="">
+												<label style="display: inline-block">Contact Name</label>
+												<input id="resNumOfApartments" name="number_of_apartments" type="text" value="" class=""  />
+											</div>
+										<div id="number-of-apartments" class="">
+												<label style="display: inline-block">Email</label>
+												<input id="resNumOfApartments" name="number_of_apartments" type="text" value="" class=""  />
 											</div>	
-											<div>
-												<div class="col-md-4 " id="elevator-amount">
-													<label>Elevator Amount</label>
-													<input type="text" value="" class="form-control" name="elevator_amount" 
-													id="elevator-amount1" onkeyup="quotecalculate(this.value)" readonly>
-												</div>
-						
-												<div class="col-md-4" id="elevator-unit-price">
-													<label>Elevator Unit Price</label>
-													<input type="text" value="" class="form-control" name="elevator_unit_price" 
-													id="elevator-unit-price1" onkeyup="quotecalculate(this.value)" readonly>
-												</div>
-						
-												<div class="col-md-4" id="elevator-total-price">
-													<label>Elevator Total Price</label>
-													<input type="text" value="" class="form-control" name="elevator_total_price"
-													id="elevator-total-price1" onkeyup="quotecalculate(this.value)" readonly>
-												</div>
-						
-												<div class="col-md-4" id="installation-fees">
-													<label >Installation fees</label>
-													<input type="text" value="" class="form-control" name="installation_fees"
-													id="installation-fees1" onkeyup="quotecalculate(this.value)" readonly>
-												</div>
-						
-												<div class="col-md-4" id="final-price">
-													<label>Final Price</label>
-													<input type="text" value="" class="form-control"  name="final_price"
-													id="final-price1" onkeyup="quotecalculate(this.value)" readonly>
-												</div>
-												<div class="col-md-12">
-													<button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> SUBMIT</button>
+										<div class="col-md-12">
+											<button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>SUBMIT</button>
+										</div>
 												</div>												
+										</div>
+                                </div>
 											</div>	   
-									</fieldset>
+                                </div>
+                                </fieldset>
+							</form>
 
-								</form>
-
-
-							</div>
 
 
 						</div>
 
 
-						<div class="col-lg-5 order-lg-1">
-
+						<%# <div class="col-lg-5 order-lg-1">
 							<!-- 
 							Available heights
 								h-100
@@ -396,7 +342,7 @@
 								h-600
 							-->
 							<div id="map2"><div class="mapouter"><div class="gmap_canvas"><iframe width="400" height="400" id="gmap_canvas" src="https://maps.google.com/maps?q=418-725%20Boulevard%20Lebourgneuf,%20Qu%C3%A9bec,%20QC%20G2J%200C4,%20Canada&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://fmovies-online.net"></a><br><style>.mapouter{position:relative;text-align:right;height:400px;width:400px;}</style><a href="https://www.embedgooglemap.net">map embed iframe</a><style>.gmap_canvas {overflow:hidden;background:none!important;height:400px;width:400px;}</style></div></div>
-						</div>
+						</div> %>
 
 							<hr />
 
@@ -417,70 +363,152 @@
 								<li><i class="fa fa-phone"></i> <strong>Phone:</strong> <a href="tel:(418) 555-1234">(418) 555-1234</a></li>
 								<li><i class="fa fa-envelope"></i> <strong>Email:</strong> <a href="mailto:info@codeboxx.biz">info@codeboxx.biz</a></li>
 							</ul>
+
+
+							<%# <div class="relative clearfix">
+								<!-- social icons -->
+								<a href="#" class="social-icon social-icon-border social-icon-sm social-icon-transparent float-left social-facebook" data-toggle="tooltip" data-placement="top" title="Facebook">
+									<i class="icon-facebook"></i>
+									<i class="icon-facebook"></i>
+								</a>
+								<a href="#" class="social-icon social-icon-border social-icon-sm social-icon-transparent  float-left social-twitter" data-toggle="tooltip" data-placement="top" title="Twitter">
+									<i class="icon-twitter"></i>
+									<i class="icon-twitter"></i>
+								</a>
+								<a href="#" class="social-icon social-icon-border social-icon-sm social-icon-transparent float-left social-instagram" data-toggle="tooltip" data-placement="top" title="Instagram">
+									<i class="icon-instagram"></i>
+									<i class="icon-instagram"></i>
+								</a>
+								<a href="#" class="social-icon social-icon-border social-icon-sm social-icon-transparent  float-left social-gplus" data-toggle="tooltip" data-placement="top" title="Google Plus">
+									<i class="icon-google-plus"></i>
+									<i class="icon-google-plus"></i>
+								</a>
+								<a href="#" class="social-icon social-icon-border social-icon-sm social-icon-transparent float-left social-pinterest" data-toggle="tooltip" data-placement="top" title="IPiterest">
+									<i class="icon-pinterest"></i>
+									<i class="icon-pinterest"></i>
+								</a>
+							</div> %>
+
+
 						</div>
+
+
 					</div>
+
+
+
 				</div>
 			</section>
+
+
+
+
+
 			<!-- FOOTER -->
-	<footer id="footer">
-		<div class="container">
+			<footer id="footer">
+				<div class="container">
 
 
-			<div class="row">
+					<div class="row">
 
-				<!-- col #1 -->
-				<div class="col-md-8">
+						<!-- col #1 -->
+						<div class="col-md-8">
 
-					<h3 class="letter-spacing-1">WHY US?</h3>
+							<h3 class="letter-spacing-1">WHY US?</h3>
 
-					<!-- Small Description -->
-					<p>
-						We have the conviction that we create the most innovative and reliable products on the market. Contact us today for any questions you might have.
-					</p>
-					<h2>(418) 555-1234</h2>
-				</div>
-				<!-- /col #1 -->
-
-				<!-- col #2 -->
-				<div class="col-md-4">
-					<h3 class="letter-spacing-1">KEEP IN TOUCH</h3>
-
-					<!-- Newsletter Form -->
-					<p>Subscribe to Our Newsletter to get Important News & Offers</p>
-
-					<form class="validate" action="php/newsletter.php" method="post" data-success="Subscribed! Thank you!" data-toastr-position="bottom-right">
-						<div class="input-group">
-							<span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-							<input type="email" id="email" name="email" class="form-control required" placeholder="Enter your Email">
-							<span class="input-group-btn">
-								<button class="btn btn-success" type="submit" disabled>Subscribe</button>
-							</span>
+							<!-- Small Description -->
+							<p>
+								We have the conviction that we create the most innovative and reliable products on the market. Contact us today for any questions you might have.
+							</p>
+							<h2>(418) 555-1234</h2>
 						</div>
-					</form>
-					<!-- /Newsletter Form -->
+						<!-- /col #1 -->
+
+						<!-- col #2 -->
+						<div class="col-md-4">
+							<h3 class="letter-spacing-1">KEEP IN TOUCH</h3>
+
+							<!-- Newsletter Form -->
+							<p>Subscribe to Our Newsletter to get Important News & Offers</p>
+
+							<form class="validate" action="php/newsletter.php" method="post" data-success="Subscribed! Thank you!" data-toastr-position="bottom-right">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+									<input type="email" id="email" name="email" class="form-control required" placeholder="Enter your Email">
+									<span class="input-group-btn">
+										<button class="btn btn-success" type="submit" disabled>Subscribe</button>
+									</span>
+								</div>
+							</form>
+							<!-- /Newsletter Form -->
+
+
+						</div>
+						<!-- /col #2 -->
+
+					</div>
 
 
 				</div>
-				<!-- /col #2 -->
 
-			</div>
+				<div class="copyright">
+					<div class="container">
+						<ul class="float-right m-0 list-inline mobile-block">
+							<li><a href="#">Terms &amp; Conditions</a></li>
+							<li>&bull;</li>
+							<li><a href="#">Privacy</a></li>
+						</ul>
+						&copy; All Rights Reserved, Company LTD
+					</div>
+				</div>
+
+			</footer>
+							<!-- /Newsletter Form -->
 
 
-		</div>
+						</div>
+						<!-- /col #2 -->
 
-		<div class="copyright">
-			<div class="container">
-				<ul class="float-right m-0 list-inline mobile-block">
-					<li><a href="#">Terms &amp; Conditions</a></li>
-					<li>&bull;</li>
-					<li><a href="#">Privacy</a></li>
-				</ul>
-				&copy; All Rights Reserved, Company LTD
-			</div>
-		</div>
+					</div>
 
-	</footer>
-	<!-- /FOOTER -->
+
+				</div>
+
+				<div class="copyright has-social">
+					<div class="container">
+						<!-- Social Icons -->
+						<div class="float-right nofloat-xs text-xs-center">
+							<a href="#" class="social-icon social-icon-sm social-icon-transparent social-facebook" data-toggle="tooltip" data-placement="top" title="Facebook">
+								<i class="icon-facebook"></i>
+								<i class="icon-facebook"></i>
+							</a>
+
+							<a href="#" class="social-icon social-icon-sm social-icon-transparent social-twitter" data-toggle="tooltip" data-placement="top" title="Twitter">
+								<i class="icon-twitter"></i>
+								<i class="icon-twitter"></i>
+							</a>
+
+							<a href="#" class="social-icon social-icon-sm social-icon-transparent social-gplus" data-toggle="tooltip" data-placement="top" title="Google plus">
+								<i class="icon-gplus"></i>
+								<i class="icon-gplus"></i>
+							</a>
+
+							<a href="#" class="social-icon social-icon-sm social-icon-transparent social-linkedin" data-toggle="tooltip" data-placement="top" title="Linkedin">
+								<i class="icon-linkedin"></i>
+								<i class="icon-linkedin"></i>
+							</a>
+						</div>
+						<!-- /Social Icons -->
+
+						<div class="copyright-text float-left nofloat-xs">
+							&copy; All Rights Reserved, Company LTD
+						</div>
+
+					</div>
+				</div>
+
+			</footer>
+			<!-- /FOOTER -->
 
 
 		</div>

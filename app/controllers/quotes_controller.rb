@@ -18,7 +18,13 @@ class QuotesController < ApplicationController
       elevator_unit_price: params[:elevator_unit_price], 
       elevator_total_price: params[:elevator_total_price],
       installation_fees: params[:installation_fees],
-      final_price: params[:final_price]
+      final_price: params[:final_price],
+      contact_name: params[:contact_name],
+      company_name: params[:company_name],
+      contact_email: params[:contact_email],
+      
+
+
     )
     
     redirect_to('/quote')

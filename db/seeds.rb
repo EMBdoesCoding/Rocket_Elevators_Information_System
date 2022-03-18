@@ -177,25 +177,26 @@ puts "-- ___-- Column Table Populated with #{Column.count} records -- ___--"
         information:    Faker::Lorem.paragraph,
         notes:  Faker::Quote.yoda,    
         ) 
-end
-puts "-- ___-- Elevator Table Populated with #{Elevator.count} records -- ___--"
+    end
+    puts "-- ___-- Elevator Table Populated with #{Elevator.count} records -- ___--"
 
-info_key_array = ["Type", "Construction Year", "Number of Elevators Inside", "Maximum Number of Occupants", "Renovation Year"]
-info_value_array = [["Residential", "Commercial","Corporate", "Hybrid"].sample, Faker::Date.between(from: '1954-01-01', to: '2022-03-16'), Faker::Number.between(from: 1, to: 12), Faker::Number.between(from: 1, to: 300), Faker::Date.between(from: '1954-01-01', to: '2022-03-16') ]
+    
+    
+    info_key_array = ["Type", "Construction Year", "Number of Elevators Inside", "Maximum Number of Occupants", "Renovation Year"]
+    info_value_array = [["Residential", "Commercial","Corporate", "Hybrid"].sample, Faker::Date.between(from: '1954-01-01', to: '2022-03-16'), Faker::Number.between(from: 1, to: 12), Faker::Number.between(from: 1, to: 300), Faker::Date.between(from: '1954-01-01', to: '2022-03-16') ]
+    
+    #--------generate random building details
+    28.times do  
+        x = rand(5)
+        BuildingDetail.create!(        
+            building_id:    Faker::Number.between(from: 1, to: 28),
+            info_key:   info_key_array[x],
+            value:  [["Residential", "Commercial","Corporate", "Hybrid"].sample, Faker::Date.between(from: '1954-01-01', to: '2022-03-16'), Faker::Number.between(from: 1, to: 12), Faker::Number.between(from: 1, to: 300), Faker::Date.between(from: '1954-01-01', to: '2022-03-16') ][x],
+        )
+    end
 
-
-#--------generate random building details
-28.times do  
-    x = rand(5)
-    BuildingDetail.create!(        
-        building_id:    Faker::Number.between(from: 1, to: 28),
-        info_key:   info_key_array[x],
-        value:  [["Residential", "Commercial","Corporate", "Hybrid"].sample, Faker::Date.between(from: '1954-01-01', to: '2022-03-16'), Faker::Number.between(from: 1, to: 12), Faker::Number.between(from: 1, to: 300), Faker::Date.between(from: '1954-01-01', to: '2022-03-16') ][x],
-    )
-end
 puts "-- ___-- Building Details Table Populated with #{BuildingDetail.count} records -- ___--"
 
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
 
 #-------generate random submitted quotes
 def ResiCalc
@@ -268,9 +269,10 @@ def GetTypeHash buildingtype
     else
         hash = nil
     end
-
+    
     return hash
 end
+
 
 200.times do
     infohash = GetTypeHash(["Residential","Commercial","Corporate","Hybrid"].sample);
@@ -280,8 +282,8 @@ end
     totalelevprice = infohash[:totalelev] * totalunitprice;
     totalinstall = (totalelevprice * gradearr[0]).round(2);
     totalfinal = totalelevprice + totalinstall;
-        Quote.create!(
-            department: infohash[:buildingtype],
+    Quote.create!(
+        department: infohash[:buildingtype],
             number_of_floors: infohash[:numberfloors],
             number_of_companies: infohash[:numbercomp],
             number_of_basements: infohash[:numberbase],
@@ -297,6 +299,9 @@ end
             elevator_total_price: totalelevprice,
             installation_fees: totalinstall,
             final_price: totalfinal,
+            contact_name: Faker::FunnyName.two_word_name,
+            company_name: Faker::Company.name,
+            contact_email: Faker::Internet.email,
             date_created: Faker::Date.between(from: 3.years.ago, to: Date.today),
         )
 end

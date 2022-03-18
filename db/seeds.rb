@@ -75,7 +75,7 @@ end
 puts "-- ___-- Real Address Table Populated with #{Address.count} records -- ___--"
 
 # ----------generate random leads---------
-706.times do 
+200.times do 
     Lead.create!(
         contact_name:   Faker::FunnyName.two_word_name,
         company_name:   Faker::Company.name,
@@ -119,9 +119,9 @@ puts "-- ___-- Customer Table Populated with #{Customer.count} records -- ___--"
 
 #-------generate random buildings--------
 cust = Customer.first.id
-28.times do |e|
+95.times do |e|
     Building.create!(        
-        customer_id: cust + e,
+        customer_id: Faker::Number.between(from: cust, to: (cust+Customer.count-1)),
         address_id: record + counter,
         building_administrator_name:    Faker::FunnyName.two_word_name,
         building_administrator_email:   Faker::Internet.email,

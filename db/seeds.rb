@@ -199,7 +199,6 @@ puts "-- ___-- Column Table Populated with #{Column.count} records -- ___--"
 
 puts "-- ___-- Building Details Table Populated with #{BuildingDetail.count} records -- ___--"
 
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
 
 #-------generate random submitted quotes
 def ResiCalc
@@ -272,7 +271,7 @@ def GetTypeHash buildingtype
     else
         hash = nil
     end
-
+    
     return hash
 end
 
@@ -284,8 +283,8 @@ end
     totalelevprice = infohash[:totalelev] * totalunitprice;
     totalinstall = (totalelevprice * gradearr[0]).round(2);
     totalfinal = totalelevprice + totalinstall;
-        Quote.create!(
-            department: infohash[:buildingtype],
+    Quote.create!(
+        department: infohash[:buildingtype],
             number_of_floors: infohash[:numberfloors],
             number_of_companies: infohash[:numbercomp],
             number_of_basements: infohash[:numberbase],
@@ -304,10 +303,11 @@ end
             # Faker::Date.between(from: 3.years.ago, to: Date.today)
             )
         end
-
+        
         puts "-- ___-- Quotes Table Populated with #{Quote.count} records -- ___--"
-
-
+        
+        
+        AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
 
 
         

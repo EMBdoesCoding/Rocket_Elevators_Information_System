@@ -56,7 +56,16 @@ ActiveAdmin.setup do |config|
   #
   # This setting changes the method which Active Admin calls
   # within the application controller.
-  config.authentication_method = :authenticate_admin_user!
+  # config.authentication_method = :authenticate_admin_user!
+  config.on_unauthorized_access = :access_denied
+  
+  class ApplicationController
+    def access_denied(exception)
+      Rails.logger.error "access denied! '#{exception.message}'"
+    end
+  end
+
+
 
   # == User Authorization
   #
@@ -338,8 +347,8 @@ ActiveAdmin.setup do |config|
   # config.use_webpacker = true
 
 
-  ActiveAdmin.setup do |config|
-    config.authorization_adapter = ActiveAdmin::CanCanAdapter
-    # Other configs
-end
+#   ActiveAdmin.setup do |config|
+#     config.authorization_adapter = ActiveAdmin::CanCanAdapter
+#     # Other configs
+# end
 end

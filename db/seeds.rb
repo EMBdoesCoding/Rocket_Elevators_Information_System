@@ -75,7 +75,7 @@ end
 puts "-- ___-- Real Address Table Populated with #{Address.count} records -- ___--"
 
 # ----------generate random leads---------
-706.times do 
+200.times do 
     Lead.create!(
         contact_name:   Faker::FunnyName.two_word_name,
         company_name:   Faker::Company.name,

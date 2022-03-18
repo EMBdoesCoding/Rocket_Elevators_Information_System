@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2022_03_16_151311) do
   enable_extension "plpgsql"
 
   create_table "dim_customers", force: :cascade do |t|
-    t.datetime "creation_date"
+    t.string "creation_date"
     t.string "company_name"
     t.string "main_contact_name"
     t.string "main_contact_email"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2022_03_16_151311) do
 
   create_table "fact_elevators", force: :cascade do |t|
     t.string "serial_num"
-    t.datetime "date_of_commision"
+    t.string "date_of_commision"
     t.string "building_id"
     t.string "customer_id"
     t.string "building_city"

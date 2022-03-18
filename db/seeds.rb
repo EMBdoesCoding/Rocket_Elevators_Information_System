@@ -142,7 +142,7 @@ puts "-- ___-- Building Table Populated with #{Building.count} records -- ___--"
         building_id:    Faker::Number.between(from: 1, to: 28),
         building_type:   ["Residential", "Commercial","Corporate", "Hybrid"].sample,
         status: ["Running", "Not Running"].sample,
-        employee_id: Faker::Number.between(from: 1, to: Employee.count),
+        employee_id: Faker::Number.between(from: Employee.first.id, to: Employee.first.id+Employee.count),
         commission_date:    Faker::Date.between(from: 3.years.ago, to: Date.today),
         last_inspection_date:   Faker::Date.between(from: 3.years.ago, to: Date.today),
         certificate_of_operations:  Faker::Code.rut,

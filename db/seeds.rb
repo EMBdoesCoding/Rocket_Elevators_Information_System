@@ -273,6 +273,7 @@ def GetTypeHash buildingtype
     return hash
 end
 
+
 200.times do
     infohash = GetTypeHash(["Residential","Commercial","Corporate","Hybrid"].sample);
     servicegrade = ["Standard", "Premium", "Excelium"].sample;
@@ -298,6 +299,9 @@ end
             elevator_total_price: totalelevprice,
             installation_fees: totalinstall,
             final_price: totalfinal,
+            contact_name: Faker::FunnyName.two_word_name,
+            company_name: Faker::Company.name,
+            contact_email: Faker::Internet.email,
             date_created: Faker::Date.between(from: 3.years.ago, to: Date.today),
         )
 end

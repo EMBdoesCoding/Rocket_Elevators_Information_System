@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
+  authenticate :user, ->(user) { user.employee } do
   mount Blazer::Engine, at: "blazer"
+  end
   ActiveAdmin.routes(self)
   devise_for :users
   # devise_for :users, ActiveAdmin::Devise.config

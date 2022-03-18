@@ -1,70 +1,10 @@
-<!-
-		AVAILABLE BODY CLASSES:
-		
-		smoothscroll 			= create a browser smooth scroll
-		enable-animation		= enable WOW animations
-
-		bg-grey					= grey background
-		grain-grey				= grey grain background
-		grain-blue				= blue grain background
-		grain-green				= green grain background
-		grain-blue				= blue grain background
-		grain-orange			= orange grain background
-		grain-yellow			= yellow grain background
-		
-		boxed 					= boxed layout
-		pattern1 ... patern11	= pattern background
-		menu-vertical-hide		= hidden, open on click
-		
-		BACKGROUND IMAGE [together with .boxed class]
-		data-background="assets/images/_smarty/boxed_background/1.jpg"
-	
-	<body class="smoothscroll enable-animation ">
-
-		<%# <!- SLIDE TOP ->
-		<div id="slidetop">
-
-			<div class="container">
-				
-				<div class="row">
-
-					<div class="col-md-4">
-						<h6><i class="icon-heart"></i> WHY SMARTY?</h6>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a sodales sed, dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et, iaculis ac massa. </p>
-					</div>
-
-					<div class="col-md-4">
-						<h6><i class="fa-facheck"></i> RECENTLY VISITED</h6>
-						<ul class="list-unstyled">
-							<li><a href="#"><i class="fa fa-angle-right"></i> Consectetur adipiscing elit amet</a></li>
-							<li><a href="#"><i class="fa fa-angle-right"></i> This is a very long text, very very very very very very very very very very very very </a></li>
-							<li><a href="#"><i class="fa fa-angle-right"></i> Lorem ipsum dolor sit amet</a></li>
-							<li><a href="#"><i class="fa fa-angle-right"></i> Dolor sit amet,consectetur adipiscing elit amet</a></li>
-							<li><a href="#"><i class="fa fa-angle-right"></i> Consectetur adipiscing elit amet,consectetur adipiscing elit</a></li>
-						</ul>
-					</div>
-
-					<div class="col-md-4">
-						<h6><i class="icon-envelope"></i> CONTACT INFO</h6>
-						<ul class="list-unstyled">
-							<li><b>Address:</b> PO Box 21132, Here Weare St, <br /> Melbourne, Vivas 2355 Australia</li>
-							<li><b>Phone:</b> 1-800-565-2390</li>
-							<li><b>Email:</b> <a href="mailto:support@yourname.com">support@yourname.com</a></li>
-						</ul>
-					</div>
-
-				</div>
-
-			</div>
-
-			<a class="slidetop-toggle" href="#"><!-- toggle button --></a>
-
-		</div>
-		<!-- /SLIDE TOP --> %>
-
+<head>
+	<title>Rocket Elevators: Residential</title>
+</head>
 
 		<!-- wrapper -->
 		<div id="wrapper">
+
 
 
 			<!-- 
@@ -73,8 +13,6 @@
 				.header-md 		= 70px nav height
 				.header-sm 		= 60px nav height
 				.b-0 		= remove bottom border (only with transparent use)
-				.transparent	= transparent header
-				.translucent	= translucent header
 				.sticky			= sticky header
 				.static			= static header
 				.dark			= dark header
@@ -87,9 +25,8 @@
 				shadow-before-3 = shadow 3 header top
 				shadow-after-3 	= shadow 3 header bottom
 				.clearfix		= required for mobile menu, do not remove!
-				Example Usage:  class="clearfix sticky header-sm transparent b-0"
 			-->
-			<div id="header" class="navbar-toggleable-md sticky header-md clearfix">
+			<div id="header" class="navbar-toggleable-md clearfix transparent sticky dark disable-uppercase">
 
 				<!-- TOP NAV -->
 				<header id="topNav">
@@ -101,8 +38,8 @@
 						</button>
 
 						<!-- Logo -->
-						<a class="logo float-left scrollTo" href="index.html">
-								<%= image_tag 'R2.png', alt:"R2" %>
+						<a class="logo float-left scrollTo" href="/index">
+							<%= image_tag 'R2.png', alt:"R2" %>
 						</a>
 
 						<!-- 
@@ -210,8 +147,8 @@
 					<ul class="hide">
 
 						<!-- SLIDE  -->
-						<li data-transition="" data-slotamount="1" data-masterspeed="1000" data-saveperformance="off" data-title="Home" >
-
+						<%# <li data-transition="random" data-slotamount="1" data-masterspeed="1000" data-saveperformance="off" data-title="Slide title 1" > %>
+						<li data-transition="" data-slotamount="7" data-masterspeed="600"  data-saveperformance="off"  data-title="Home">
 							
 							<%= image_tag("AdobeStock_179073967.jpeg", :alt=>"", :data=>"cover", :data=>"center bottom", :data=>"no-repeat" )%>
 							<div class="overlay dark-4"><!-- dark overlay [1 to 9 opacity] --></div>
@@ -229,7 +166,7 @@
 								data-endelementdelay="0.1"
 								data-endspeed="1000"
 								data-endeasing="Power4.easeIn" style="z-index: 10;">
-								Corporate Building Services
+								Corprate Building Services
 							</div>
 
 							<div class="tp-caption customin ltl tp-resizeme small_light_white"
@@ -246,7 +183,7 @@
 								data-endspeed="1000"
 								data-endeasing="Power4.easeIn" style="z-index: 10; width: 750px; max-width: 750px; white-space: normal; text-align:center; font-size:20px;">
 								<span class="font-lato">
-									Ready to get your business moving up? Check out our corporate services
+									Ready to get your business moving up? Check out our corprate services
 								</span>
 							</div>
 

@@ -91,6 +91,4 @@ gem 'secondbase'
 
 gem 'pg'
  
-# gem 'chartKick'  ?
-
 gem 'blazer', '~> 2.5'

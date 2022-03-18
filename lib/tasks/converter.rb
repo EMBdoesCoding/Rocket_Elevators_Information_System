@@ -1,77 +1,68 @@
 require 'pg'
 require 'mysql2'
-def self.move_quote
+def move_quote
     Quote.all.each do |q|
-    user = User.find(q.user_id)
-    customer = Customer.find(user.id)
     FactQuote.create!(
             {
-                quote_id: q.id,
-                quote_created_at: q.created_at,
-                company_name: q.company_name,
-                email: q.email,
-                number_of_elevators: q.number_of_elevators
+                quoteid: q.id,
+                creation: q.date_created,
+                # company_name: q.company_name,
+                # email: q.email,
+                nbelevator: q.elevator_amount
             }
         )
     end
 end
-def self.move_contacts
-    User.all.each do |l|
-    customer = Customer.find(l.id)
-    lead = Lead.find(l.id)
+move_quote()
+def move_contacts
+    Lead.all.each do |l|
     FactContact.create!(
         {
-            contact_id: l.id,
-            created_at: l.created_at,
-            company_name: customer.company_name,
+            contactid: l.id,
+            creation_date: l.contact_request_date,
+            company_name: l.company_name,
             email: l.email,
-            project_name: lead.project_name
+            project_name: l.project_name,
         }
     )
     end
 end
-def self.move_customers
+move_contacts()
+def move_customers
     Customer.all.each do |c|
         elevator_number = 0
-        customer_buildings = Building.where(customer_id: c.id).to_a
-        customer_buildings.each do |building|
-            batteries = Battery.where(building_id: building.id).to_a
-            batteries.each do |battery|
-                columns = Column.where(battery_id: battery.id).to_a
-                columns.each do |column|
-                    elevators = Elevator.where(column_id: column.id).to_a
-                    elevator_number += elevators.size
+        c.buildings.all.each do |building|
+            building.batteries.all.each do |battery|
+                battery.columns.all.each do |column|
+                    elevator_number += column.elevators.count
+                end
             end
         end
-    end
-        city = Address.find(c.address_id).city
         DimCustomer.create!(
             {
-                created_at: c.created_at,
-                company_contact_name: c.company_contact_name,
-                company_contact_phone: c.company_contact_phone,
-                company_contact_email: c.company_contact_email,
-                elevator_number: elevator_number,
-                customer_city: city
+                creation_date: c.creation_date,
+                company_name: c.company_name,
+                main_contact_name: c.company_contact_name,
+                main_contact_email: c.company_contact_email,
+                num_of_elevators: elevator_number,
+                customer_city: c.address.city
             }
         )
     end
 end
-def self.move_elevators
+move_customers()
+def move_elevators
     Elevator.all.each do |e|
-        column = Column.find(e.column_id)
-        battery = Battery.find(column.battery_id)
-        building = Building.find(battery.building_id)
-        address = Address.find(building.address_id)
-        customer = Customer.find(building.customer_id)
+        # binding.pry
         FactElevator.create!(
             {
-                serial_number: e.serial_number,
-                commission_date: e.commission_date,
-                building_id: building.id,
-                customer_id: customer.id,
-                building_city: address.city
+                serial_num: e.serial_number,
+                date_of_commision: e.commission_date,
+                building_id: Battery.find(Column.find(e.column_id).battery_id).building_id,
+                customer_id: Building.find(Battery.find(Column.find(e.column.id).battery_id).building_id).customer_id,
+                building_city: Address.find(Building.find(Battery.find(Column.find(e.column.id).battery_id).building_id).address_id).city,
             }
         )
     end
 end
+move_elevators()

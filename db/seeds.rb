@@ -17,8 +17,9 @@ Building.delete_all
 Elevator.delete_all
 Column.delete_all
 Battery.delete_all
+BuildingDetail.delete_all
 
-
+# Seeding with required employee csv file
 require 'csv'
 csv_text = File.read(Rails.root.join('lib', 'seeds', 'Employee_List.csv'))
 csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
@@ -42,48 +43,42 @@ csv.each do |row|
     )
 end
 
-puts "There are now #{Employee.count} rows in the transactions table."
-
-
-
-
-
-
-
-
-
+puts "-- ___-- Employee Table Populated with #{Employee.count} records -- ___--"
 
 # Fake data seeding to be entered into database
 require 'faker'
 
+#load and parse json file
 address_text = File.read(Rails.root.join('lib', 'seeds', 'Address.json'))
 address_parse = JSON.parse(address_text)
+
+#create random array 
 randomarray = Array.new(address_parse['address'].count) {|e| e += 1}
 arandom = randomarray.shuffle
 
 counter = 0
-#Generate real addresses
+
+#-------Generate real addresses---------
 65.times do
-    # csv.each do |row|
     Address.create!(
-
-    type_of_address: ["Home","Buisness", "Shipping", "Billing", ].sample,
-    status: ["Verified", "Unverified"].sample,
-    entity: ["Customer", "Buisness"].sample,
-    number_street: address_parse['address'][arandom[counter]]['address1'],
-    suite_apartment: address_parse['address'][arandom[counter]]['address2'],
-    city:address_parse['address'][arandom[counter]]['city'],
-    postal_code:address_parse['address'][arandom[counter]]['postalCode'],
-    country: "USA",
-    notes:  Faker::Lorem.paragraph,
+        type_of_address: ["Home","Business", "Shipping", "Billing"].sample,
+        status: ["Verified", "Unverified"].sample,
+        entity: ["Customer", "Business"].sample,
+        number_street: address_parse['address'][arandom[counter]]['address1'],
+        suite_apartment: address_parse['address'][arandom[counter]]['address2'],
+        city:address_parse['address'][arandom[counter]]['city'],
+        postal_code:address_parse['address'][arandom[counter]]['postalCode'],
+        country: "USA",
+        notes:  Faker::Lorem.paragraph,
     )
+    counter += 1
 end
-puts "Address table populated"
+puts "-- ___-- Real Address Table Populated with #{Address.count} records -- ___--"
 
-# generate random leads
+# ----------generate random leads---------
 706.times do 
     Lead.create!(
-        contact_name:   Faker::Name.name,
+        contact_name:   Faker::FunnyName.two_word_name,
         company_name:   Faker::Company.name,
         email:  Faker::Internet.email,
         phone:  Faker::PhoneNumber.cell_phone,
@@ -95,17 +90,9 @@ puts "Address table populated"
         contact_request_date:   Faker::Date.between(from: 3.years.ago, to: Date.today)
     )
 end
+puts "-- ___-- Lead Table Populated with #{Lead.count} records -- ___--"
 
-# generate random users
-# 57.times do   
-#     User.create!(
-#         email:  Faker::Internet.email,
-#         password: 'password',
-                     
-#     )
-# end 
-
-#generate random customers
+#----------generate random customers--------
 counter = 0
 record = Address.first.id
 37.times do 
@@ -119,41 +106,43 @@ record = Address.first.id
         creation_date:  Faker::Date.between(from: 3.years.ago, to: Date.today),
         company_name:   Faker::Company.name,
         address_id: record + counter,
-        company_contact_name:   Faker::Name.name,
+        company_contact_name:   Faker::FunnyName.two_word_name,
         company_contact_phone:  Faker::PhoneNumber.cell_phone,
         company_contact_email:  user.email,
-        company_description:    Faker::Quote.yoda,
-        technical_authority_name:   Faker::Name.name,
+        company_description:    Faker::Movie.quote,
+        technical_authority_name:   Faker::FunnyName.two_word_name,
         technical_authority_phone:  Faker::PhoneNumber.cell_phone,
         teachnical_authority_email: Faker::Internet.email,
     )
     counter += 1
 end
+puts "-- ___-- Customer Table Populated with #{Customer.count} records -- ___--"
 
-
-#generate random buildings
+#-------generate random buildings--------
 cust = Customer.first.id
 28.times do |e|
     Building.create!(        
         customer_id: cust + e,
         address_id: record + counter,
-        building_administrator_name:    Faker::Name.name,
+        building_administrator_name:    Faker::FunnyName.two_word_name,
         building_administrator_email:   Faker::Internet.email,
         building_administrator_phone:   Faker::PhoneNumber.cell_phone,
-        tech_contact_name:  Faker::Name.name,
+        tech_contact_name:  Faker::FunnyName.two_word_name,
         tech_contact_email: Faker::Internet.email,
         tech_contact_phone: Faker::PhoneNumber.cell_phone,        
     )
     counter += 1
 end
+puts "-- ___-- Building Table Populated with #{Building.count} records -- ___--"
 
-#Generate random batteries
+
+#-------Generate random batteries-------
 15.times do 
     Battery.create!(        
         building_id:    Faker::Number.between(from: 1, to: 28),
         building_type:   ["Residential", "Commercial","Corporate", "Hybrid"].sample,
         status: ["Running", "Not Running"].sample,
-        employee: Employee.take,
+        employee_id: Faker::Number.between(from: 1, to: Employee.count),
         commission_date:    Faker::Date.between(from: 3.years.ago, to: Date.today),
         last_inspection_date:   Faker::Date.between(from: 3.years.ago, to: Date.today),
         certificate_of_operations:  Faker::Code.rut,
@@ -161,8 +150,9 @@ end
         notes:  Faker::Lorem.paragraph,
     )
 end
+puts "-- ___-- Battery Table Populated with #{Battery.count} records -- ___--"
 
-#generate random columns
+#---------generate random columns---------
 35.times do 
     Column.create!(        
         battery_id: Faker::Number.between(from: 1, to: 15),
@@ -173,8 +163,9 @@ end
         notes:  Faker::Lorem.paragraph,
     )
 end
+puts "-- ___-- Column Table Populated with #{Column.count} records -- ___--"
 
-#generate random elevators
+#--------generate random elevators---------
 202.times do 
     Elevator.create!(        
         column_id:  Faker::Number.between(from: 1, to: 35),
@@ -189,26 +180,26 @@ end
         notes:  Faker::Quote.yoda,    
         ) 
 end
+puts "-- ___-- Elevator Table Populated with #{Elevator.count} records -- ___--"
+
+info_key_array = ["Type", "Construction Year", "Number of Elevators Inside", "Maximum Number of Occupants", "Renovation Year"]
+info_value_array = [["Residential", "Commercial","Corporate", "Hybrid"].sample, Faker::Date.between(from: '1954-01-01', to: '2022-03-16'), Faker::Number.between(from: 1, to: 12), Faker::Number.between(from: 1, to: 300), Faker::Date.between(from: '1954-01-01', to: '2022-03-16') ]
 
 
-# #generate random building details
-# 28.times do 
-#     Building_detail.create!(        
-#         building_id:    Faker::Number.between(from: 1, to: 20),
-#         info_key:   [Type, Construction Year, Number of Elevators Inside, Maximum Number of Occupants, Renovation Year],
-#         value:  ["Residential", "Commercial","Corporate", "Hybrid".sample, Faker::Date.between(from: '1954-01-01', to: '2022-03-16'), Faker::Number.between(from: 1, to: 12), Faker::Number.between(from: 1, to: 300), Faker::Date.between(from: '1954-01-01', to: '2022-03-16') ]
-#     )
-# end
-
-
-
-
-
-
+#--------generate random building details
+28.times do  
+    x = rand(5)
+    BuildingDetail.create!(        
+        building_id:    Faker::Number.between(from: 1, to: 28),
+        info_key:   info_key_array[x],
+        value:  [["Residential", "Commercial","Corporate", "Hybrid"].sample, Faker::Date.between(from: '1954-01-01', to: '2022-03-16'), Faker::Number.between(from: 1, to: 12), Faker::Number.between(from: 1, to: 300), Faker::Date.between(from: '1954-01-01', to: '2022-03-16') ][x],
+    )
+end
+puts "-- ___-- Building Details Table Populated with #{BuildingDetail.count} records -- ___--"
 
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
 
-
+#-------generate random submitted quotes
 def ResiCalc
     numberfloors = Faker::Number.between(from: 2, to: 60);
     numberapt = Faker::Number.between(from: numberfloors, to: numberfloors*50);
@@ -308,6 +299,8 @@ end
             elevator_total_price: totalelevprice,
             installation_fees: totalinstall,
             final_price: totalfinal,
+            # Faker::Date.between(from: 3.years.ago, to: Date.today)
         )
 end
 
+puts "-- ___-- Quotes Table Populated with #{Quote.count} records -- ___--"

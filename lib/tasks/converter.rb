@@ -4,70 +4,62 @@
 require 'mysql2'
 require 'pg'
 
-class DBConnection
-  def pg_connect
-    PG.connect( :hostaddr=>"localhost", :port=>5432, 
-      :dbname=>"database", :user=>"postgres_user", :password=>'postgres_password')
-  end
-  
-  def mysql_connect
-    Mysql2::Client.new(:host => "localhost", :username => "root",
-      :password => "Lare1213!", :database => "database")
-  end
-end
-
 def self.move_quote
     Quote.all.each do |q|
-      FactQuote.create!(
-        {
-          quote_id: q.id,
-          quote_created_at: q.created_at,
-          company_name: customer.company_name,
-          email: user.email,
-          elevator_number: q.elevator_number
-        }
-      )
+        FactQuote.create!(
+            {
+            quote_id: q.id,
+            quote_created_at: q.created_at,
+            company_name: q.company_name,
+            email: q.email,
+            number_of_elevators: q.number_of_elevators
+            }
+        )
     end
 end
 
 def self.move_contacts
     Lead.all.each do |l|
-      FactContact.create!(
-        {
-          contact_id: l.id,
-          creation_date: l.created_at,
-          company_name: l.company_name,
-          email: l.email,
-          project_name: l.project_name
-        }
-      )
+        FactContact.create!(
+            {
+            contact_id: l.id,
+            created_at: l.created_at,
+            company_name: l.company_name,
+            email: l.email,
+            project_name: l.project_name
+            }
+        )
     end
-  end
+end
 
 def self.move_customers
     Customers.all.each do |c|
         DimCustomers.create!(
             {
-            company_name: c.
-            company_main_contact: c.
-            company_main_email: c.
-            num_elevators: c.
-            customers_city: c.
+            company_contact_name: c.company_contact_name
+            company_contact_phone: c.company_contact_phone
+            company_contact_email: c.company_contact_email
+            elevator_number = 0
+                Building.each do |building|
+                    Battery.each do |battery|
+                        Column.each do |column|
+                            elevator_number += elevators.length
+            customers_city: c.customers_city
             }
         )
     end
 end
 
 def self.move_elevators
-    elevators.all.each do |e|
+    Elevators.all.each do |e|
         FactElevators.create!(
             {
-            serial_num: e.
-            date_of_commision: e.
-            building_id: e.
-            customer_id: e.
-            building_city: e.
-        }
-    )
+            serial_number: e.serial_number
+            commission_date: e.commission_date
+            building_id: e.building_id  #!
+            customer_id: e.customer_id  #!
+            city: e.city
+            }
+        )
     end
 end

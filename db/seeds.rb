@@ -207,3 +207,107 @@ end
 
 
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+
+
+def ResiCalc
+    numberfloors = Faker::Number.between(from: 2, to: 60);
+    numberapt = Faker::Number.between(from: numberfloors, to: numberfloors*50);
+    numberbase = Faker::Number.between(from: 0, to: 10);
+    totalelev = ((numberapt/numberfloors)/6.to_f).ceil * (numberfloors/20.to_f).ceil;
+    return {buildingtype: "Residential", numberfloors: numberfloors, numberapt: numberapt, numberbase: numberbase, totalelev: totalelev};
+end
+
+def CommCalc
+    numberfloors = Faker::Number.between(from: 2, to: 90);
+    numbercomp = Faker::Number.between(from: 1, to: 100);
+    numberbase = Faker::Number.between(from: 0, to: 10);
+    numberpark = Faker::Number.between(from: 10, to: 300);
+    numberelev = Faker::Number.between(from: 5, to: 30);
+    return {buildingtype: "Commercial", numberfloors: numberfloors, numbercomp: numbercomp, numberbase: numberbase, numberpark: numberpark, numberelev: numberelev, totalelev: numberelev};
+end
+
+def CorpCalc
+    numberfloors = Faker::Number.between(from: 2, to: 90);
+    numberbase = Faker::Number.between(from: 0, to: 10);
+    numberpark = Faker::Number.between(from: 10, to: 300);
+    numbercorp = Faker::Number.between(from: 1, to: 100);
+    maxocc = Faker::Number.between(from: 25, to: 1000);
+    columnsreq = ((numberfloors + numberbase)/20.to_f).ceil;
+    elevreq = ((maxocc*(numberfloors + numberbase))/1000.to_f).ceil;
+    totalelev = (elevreq/columnsreq.to_f).ceil * columnsreq;
+    hash = {buildingtype: "Corporate", numberfloors: numberfloors, numberbase: numberbase, numberpark: numberpark, numbercorp: numbercorp, maxocc: maxocc, totalelev: totalelev};
+    return hash
+end
+
+def HybrCalc
+    numberfloors = Faker::Number.between(from: 2, to: 80);
+    numbercomp = Faker::Number.between(from: 1, to: 100);
+    numberbase = Faker::Number.between(from: 0, to: 10);
+    numberpark = Faker::Number.between(from: 10, to: 300);
+    maxocc = Faker::Number.between(from: 25, to: 500);
+    businesshours = Faker::Number.between(from: 10, to: 24);
+    columnsreq = ((numberfloors + numberbase)/20.to_f).ceil;
+    elevreq = ((maxocc*(numberfloors + numberbase))/1000.to_f).ceil;
+    totalelev = (elevreq/columnsreq.to_f).ceil * columnsreq;
+    hash = {buildingtype: "Hybrid", numberfloors: numberfloors, numberbase: numberbase, numberpark: numberpark, numbercomp: numbercomp, maxocc: maxocc, businesshours: businesshours, totalelev: totalelev};
+    return hash
+end
+
+def GradeMult grade
+    case grade
+    when "Standard"
+        return 0.1, 7500
+    when "Premium"
+        return 0.13, 12345
+    when "Excelium"
+        return 0.16, 15400
+    else
+        return nil
+    end
+end
+
+def GetTypeHash buildingtype
+    case buildingtype
+    when "Residential"
+        hash = ResiCalc()
+    when "Commercial"
+        hash = CommCalc()
+    when "Corporate"
+        hash = CorpCalc()
+    when "Hybrid"
+        hash = HybrCalc()
+    else
+        hash = nil
+    end
+
+    return hash
+end
+
+200.times do
+    infohash = GetTypeHash(["Residential","Commercial","Corporate","Hybrid"].sample);
+    servicegrade = ["Standard", "Premium", "Excelium"].sample;
+    gradearr = GradeMult(servicegrade);
+    totalunitprice = gradearr[1];
+    totalelevprice = infohash[:totalelev] * totalunitprice;
+    totalinstall = (totalelevprice * gradearr[0]).round(2);
+    totalfinal = totalelevprice + totalinstall;
+        Quote.create!(
+            department: infohash[:buildingtype],
+            number_of_floors: infohash[:numberfloors],
+            number_of_companies: infohash[:numbercomp],
+            number_of_basements: infohash[:numberbase],
+            number_of_parking_spots: infohash[:numberpark],
+            number_of_elevators: infohash[:numberelev],
+            number_of_corporations: infohash[:numbercorp],
+            maximum_occupancy: infohash[:maxocc],
+            number_of_apartments: infohash[:numberapt],
+            business_hours: infohash[:businesshours],
+            service_grade: servicegrade,
+            elevator_amount: infohash[:totalelev],
+            elevator_unit_price: totalunitprice,
+            elevator_total_price: totalelevprice,
+            installation_fees: totalinstall,
+            final_price: totalfinal,
+        )
+end
+

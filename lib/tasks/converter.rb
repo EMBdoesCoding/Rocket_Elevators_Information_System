@@ -32,10 +32,25 @@ def self.move_contacts
     end
 end
 
+def self.move_elevators
+    Elevators.all.each do |e|
+        FactElevators.create!(
+            {
+            serial_number: e.serial_number
+            commission_date: e.commission_date
+            building_id: e.building_id
+            customer_id: e.customer_id
+            city: e.city
+            }
+        )
+    end
+end
+
 def self.move_customers
     Customers.all.each do |c|
         DimCustomers.create!(
             {
+            created_at: c.created_at
             company_contact_name: c.company_contact_name
             company_contact_phone: c.company_contact_phone
             company_contact_email: c.company_contact_email
@@ -50,16 +65,4 @@ def self.move_customers
     end
 end
 
-def self.move_elevators
-    Elevators.all.each do |e|
-        FactElevators.create!(
-            {
-            serial_number: e.serial_number
-            commission_date: e.commission_date
-            building_id: e.building_id  #!
-            customer_id: e.customer_id  #!
-            city: e.city
-            }
-        )
-    end
-end
+

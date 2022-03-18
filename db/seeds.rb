@@ -45,107 +45,107 @@ puts "There are now #{Employee.count} rows in the transactions table."
 
 
 # Fake data seeding to be entered into database
-require 'faker'
+# require 'faker'
 
-# generate random leads
-706.times do 
-    Lead.create!(
-        contact_name:   Faker::Name.name,
-        company_name:   Faker::Company.name,
-        email:  Faker::Internet.email,
-        phone:  Faker::PhoneNumber.cell_phone,
-        project_name:   Faker::FunnyName.two_word_name,
-        project_description:    Faker::Quote.yoda,
-        department: ["Sales","Support","Administration"].sample,
-        message:    Faker::Lorem.paragraph,
-        attached_file: "File goes in here",
-        contact_request_date:   Faker::Date.between(from: 3.years.ago, to: Date.today)
-    )
-end
+# # generate random leads
+# 706.times do 
+#     Lead.create!(
+#         contact_name:   Faker::Name.name,
+#         company_name:   Faker::Company.name,
+#         email:  Faker::Internet.email,
+#         phone:  Faker::PhoneNumber.cell_phone,
+#         project_name:   Faker::FunnyName.two_word_name,
+#         project_description:    Faker::Quote.yoda,
+#         department: ["Sales","Support","Administration"].sample,
+#         message:    Faker::Lorem.paragraph,
+#         attached_file: "File goes in here",
+#         contact_request_date:   Faker::Date.between(from: 3.years.ago, to: Date.today)
+#     )
+# end
 
-# generate random users
-57.times do   
-    User.create!(
-        email:  Faker::Internet.email,
-        password: 'password',
+# # generate random users
+# 57.times do   
+#     User.create!(
+#         email:  Faker::Internet.email,
+#         password: 'password',
                      
-    )
-end 
+#     )
+# end 
 
-#generate random customers
-37.times do 
-    Customer.create!(
-        user_id: @user,
-        creation_date:  Faker::Date.between(from: 3.years.ago, to: Date.today),
-        company_name:   Faker::Company.name,
-        address_id:"1231312",
-        company_contact_name:   Faker::Name.name,
-        company_contact_phone:  Faker::PhoneNumber.cell_phone,
-        company_contact_email:  Faker::Internet.email,
-        company_description:    Faker::Quote.yoda,
-        technical_authority_name:   Faker::Name.name,
-        technical_authority_phone:  Faker::PhoneNumber.cell_phone,
-        teachnical_authority_email: Faker::Internet.email,
-        )
-end
+# #generate random customers
+# 37.times do 
+#     Customer.create!(
+#         user_id: @user,
+#         creation_date:  Faker::Date.between(from: 3.years.ago, to: Date.today),
+#         company_name:   Faker::Company.name,
+#         address_id:"1231312",
+#         company_contact_name:   Faker::Name.name,
+#         company_contact_phone:  Faker::PhoneNumber.cell_phone,
+#         company_contact_email:  Faker::Internet.email,
+#         company_description:    Faker::Quote.yoda,
+#         technical_authority_name:   Faker::Name.name,
+#         technical_authority_phone:  Faker::PhoneNumber.cell_phone,
+#         teachnical_authority_email: Faker::Internet.email,
+#         )
+# end
 
 
-#generate random buildings
-28.times do 
-    Building.create!(        
-        customer_id:"1",
-        building_address: "13131",
-        building_administrator_name:    Faker::Name.name,
-        building_administrator_email:   Faker::Internet.email,
-        building_administrator_phone:   Faker::PhoneNumber.cell_phone,
-        tech_contact_name:  Faker::Name.name,
-        tech_contact_email: Faker::Internet.email,
-        tech_contact_phone: Faker::PhoneNumber.cell_phone,        
-        )
-end
+# #generate random buildings
+# 28.times do 
+#     Building.create!(        
+#         customer_id:"1",
+#         building_address: "13131",
+#         building_administrator_name:    Faker::Name.name,
+#         building_administrator_email:   Faker::Internet.email,
+#         building_administrator_phone:   Faker::PhoneNumber.cell_phone,
+#         tech_contact_name:  Faker::Name.name,
+#         tech_contact_email: Faker::Internet.email,
+#         tech_contact_phone: Faker::PhoneNumber.cell_phone,        
+#         )
+# end
 
-#generate random elevators
-202.times do 
-    Elevator.create!(        
-        column_id:  Faker::Number.between(from: 1, to: 35),
-        serial_number:  Faker::Number.decimal_part(digits: 7),
-        model: ["Standard", "Premium", "Excelium"].sample,
-        # type: ["Residential", "Commercial","Corporate", "Hybrid"].sample,
-        status:["Running", "Not Running"].sample,
-        commission_date:    Faker::Date.between(from: 3.years.ago, to: Date.today),
-        last_inspection_date:   Faker::Date.between(from: 3.years.ago, to: Date.today),
-        certificate_of_inspection:  Faker::Code.rut,
-        information:    Faker::Lorem.paragraph,
-        notes:  Faker::Quote.yoda,    
-        ) 
-end
+# #generate random elevators
+# 202.times do 
+#     Elevator.create!(        
+#         column_id:  Faker::Number.between(from: 1, to: 35),
+#         serial_number:  Faker::Number.decimal_part(digits: 7),
+#         model: ["Standard", "Premium", "Excelium"].sample,
+#         # type: ["Residential", "Commercial","Corporate", "Hybrid"].sample,
+#         status:["Running", "Not Running"].sample,
+#         commission_date:    Faker::Date.between(from: 3.years.ago, to: Date.today),
+#         last_inspection_date:   Faker::Date.between(from: 3.years.ago, to: Date.today),
+#         certificate_of_inspection:  Faker::Code.rut,
+#         information:    Faker::Lorem.paragraph,
+#         notes:  Faker::Quote.yoda,    
+#         ) 
+# end
 
-#generate random columns
-35.times do 
-    Column.create!(        
-        battery_id: Faker::Number.between(from: 1, to: 15),
-        # type:   ["Residential", "Commercial","Corporate", "Hybrid"].sample,
-        number_of_floors_served:    Faker::Number.between(from: 1, to: 70),
-        status: ["Running", "Not Running"].sample,
-        information:    Faker::Lorem.sentence,
-        notes:  Faker::Lorem.paragraph,
-    )
-end
+# #generate random columns
+# 35.times do 
+#     Column.create!(        
+#         battery_id: Faker::Number.between(from: 1, to: 15),
+#         # type:   ["Residential", "Commercial","Corporate", "Hybrid"].sample,
+#         number_of_floors_served:    Faker::Number.between(from: 1, to: 70),
+#         status: ["Running", "Not Running"].sample,
+#         information:    Faker::Lorem.sentence,
+#         notes:  Faker::Lorem.paragraph,
+#     )
+# end
 
-#Generate random batteries
-15.times do 
-    Battery.create!(        
-        building_id:    Faker::Number.between(from: 1, to: 28),
-        # type:   ["Residential", "Commercial","Corporate", "Hybrid"].sample,
-        status: ["Running", "Not Running"].sample,
-        employee_id: "123456",
-        commission_date:    Faker::Date.between(from: 3.years.ago, to: Date.today),
-        last_inspection_date:   Faker::Date.between(from: 3.years.ago, to: Date.today),
-        certificate_of_operations:  Faker::Code.rut,
-        information:    Faker::Lorem.sentence,
-        notes:  Faker::Lorem.paragraph,
-    )
-end
+# #Generate random batteries
+# 15.times do 
+#     Battery.create!(        
+#         building_id:    Faker::Number.between(from: 1, to: 28),
+#         # type:   ["Residential", "Commercial","Corporate", "Hybrid"].sample,
+#         status: ["Running", "Not Running"].sample,
+#         employee_id: "123456",
+#         commission_date:    Faker::Date.between(from: 3.years.ago, to: Date.today),
+#         last_inspection_date:   Faker::Date.between(from: 3.years.ago, to: Date.today),
+#         certificate_of_operations:  Faker::Code.rut,
+#         information:    Faker::Lorem.sentence,
+#         notes:  Faker::Lorem.paragraph,
+#     )
+# end
 
 # #generate random building details
 # 20.times do 

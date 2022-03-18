@@ -38,9 +38,8 @@
 						</button>
 
 						<!-- Logo -->
-						<a class="logo float-left scrollTo" href="#top">
+						<a class="logo float-left scrollTo" href="/index">
 							<%= image_tag 'R2.png', alt:"R2" %>
-							<img src="/assets/images/R2.png" alt="Logo" />
 						</a>
 
 						<!-- 
@@ -94,6 +93,13 @@
 											LOGIN
 										</a>
 									</li>
+									<% if user_signed_in? %>
+										<li><!-- BACK OFFICE -->
+											<a href="/admin" id="contact-nav">
+												Back Office
+											</a>
+										</li>
+									<% end %>
 								</ul>
 
 							</nav>
@@ -107,41 +113,88 @@
 
 
 
-			<!-- 
+			<!-- REVOLUTION SLIDER -->
+			<section id="slider" class="fullwidthbanner-container roundedcorners">
 				<!--
-			<!-- 
-				PAGE HEADER 
-				
-				CLASSES:
-					.page-header-xs	= 20px margins
-					.page-header-md	= 50px margins
-					.page-header-lg	= 80px margins
-					.page-header-xlg= 130px margins
-					.dark		= dark page header
-					.light		= light page header
-			-->
-			<section class="page-header page-header-md b-0 dark" 
-				data-background-delay="5000" 
-				data-background-fade="1000" 
-				data-background="RocketElevatorAssets/AdobeStock_3294993.jpeg">
-
-				<span class="overlay dark-5 raster"><!-- dark overlay [1 to 9 opacity] --></span>
-
-
-				<div class="display-table">
-					<div class="display-table-cell vertical-align-middle">
+					Navigation Styles:
+					
+						data-navigationStyle="" theme default navigation
 						
-						<div class="container text-xs-center">
+						data-navigationStyle="preview1"
+						data-navigationStyle="preview2"
+						data-navigationStyle="preview3"
+						data-navigationStyle="preview4"
+						
+					Bottom Shadows
+						data-shadow="1"
+						data-shadow="2"
+						data-shadow="3"
+						
+					Slider Height (do not use on fullscreen mode)
+						data-height="300"
+						data-height="350"
+						data-height="400"
+						data-height="450"
+						data-height="500"
+						data-height="550"
+						data-height="600"
+						data-height="650"
+						data-height="700"
+						data-height="750"
+						data-height="800"
+				-->
+				<div class="fullscreenbanner" data-navigationStyle="preview4">
+					<ul class="hide">
 
-							<h1 class="fw-400 wow fadeIn" data-wow-delay="0.2s">GET A QUOTE</h1>
+						<!-- SLIDE  -->
+						<%# <li data-transition="random" data-slotamount="1" data-masterspeed="1000" data-saveperformance="off" data-title="Slide title 1" > %>
+						<li data-transition="" data-slotamount="7" data-masterspeed="600"  data-saveperformance="off"  data-title="Home">
+							
+							<%= image_tag("AdobeStock_3294993.jpeg", :alt=>"", :data=>"cover", :data=>"center bottom", :data=>"no-repeat" )%>
+							<div class="overlay dark-4"><!-- dark overlay [1 to 9 opacity] --></div>
 
-						</div>
+							<div class="tp-caption customin ltl tp-resizeme large_bold_white"
+								data-x="center"
+								data-y="230"
+								data-customin="x:0;y:150;z:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:200;transformOrigin:50% 0%;"
+								data-speed="800"
+								data-start="1200"
+								data-easing="easeOutQuad"
+								data-splitin="none"
+								data-splitout="none"
+								data-elementdelay="0.01"
+								data-endelementdelay="0.1"
+								data-endspeed="1000"
+								data-endeasing="Power4.easeIn" style="z-index: 10;">
+								Request A Quote Page
+							</div>
 
-					</div>
+							<div class="tp-caption customin ltl tp-resizeme small_light_white"
+								data-x="center"
+								data-y="330"
+								data-customin="x:0;y:150;z:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:200;transformOrigin:50% 0%;"
+								data-speed="800"
+								data-start="1400"
+								data-easing="easeOutQuad"
+								data-splitin="none"
+								data-splitout="none"
+								data-elementdelay="0.01"
+								data-endelementdelay="0.1"
+								data-endspeed="1000"
+								data-endeasing="Power4.easeIn" style="z-index: 10; width: 750px; max-width: 750px; white-space: normal; text-align:center; font-size:20px;">
+								<span class="font-lato">
+									Please fill the following form below out so you can get an accurate quote for your project, thank you!
+								</span>
+							</div>
+
+						</li>
+
+						<!-- SLIDE  -->
+
+					</ul>
 				</div>
-
 			</section>
-			<!-- /PAGE HEADER -->
+			<!-- /REVOLUTION SLIDER -->
 
 
 
@@ -212,10 +265,10 @@
 												<label style="display: inline-block">Project Type</label>
 												<select id="building-type" name="department" class="" autofocus>
 													<option value="">--- Select ---</option>
-													<option id="residential" value="residential">Residential</option>
-                                                    <option id="commercial" value="commercial">Commercial</option>
-													<option id="corporate" value="corporate">Corporate</option>
-													<option id="hybrid" value="hybrid">Hybrid</option>
+													<option id="residential" value="Residential">Residential</option>
+                                                    <option id="commercial" value="Commercial">Commercial</option>
+													<option id="corporate" value="Corporate">Corporate</option>
+													<option id="hybrid" value="Hybrid">Hybrid</option>
 												</select>
 											</div>
                                     </div>
@@ -298,17 +351,17 @@
                                             <label style="display: inline-block">Estimated Total Cost</label>
                                             <input readonly name="final_price" id="total-cost" type="text" value="" class="" />
                                         </div>
-										<div id="number-of-apartments" class="">
+										<div id="contact-name" class="">
 												<label style="display: inline-block">Contact Name</label>
-												<input id="" name="contact_name" type="text" value="" class=""  />
+												<input id="contact_name" name="contact_name" type="text" value="" class=""  />
 											</div>
-										<div id="number-of-apartments" class="">
+										<div id="company-name" class="">
 												<label style="display: inline-block">Company Name</label>
-												<input id="" name="company_name" type="text" value="" class=""  />
+												<input id="company_name" name="company_name" type="text" value="" class=""  />
 											</div>
-										<div id="number-of-apartments" class="">
+										<div id="contact_email" class="">
 												<label style="display: inline-block">Email</label>
-												<input id="" name="contact_email" type="text" value="" class=""  />
+												<input id="contact_email" name="contact_email" type="text" value="" class=""  />
 											</div>	
 										<div class="col-md-12">
 											<button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>SUBMIT</button>

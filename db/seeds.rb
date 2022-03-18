@@ -49,14 +49,13 @@ puts "-- ___-- Employee Table Populated with #{Employee.count} records -- ___--"
 require 'faker'
 
 #load and parse json file
-address_text = File.read(Rails.root.join('lib', 'seeds', 'Address.json'))
-address_parse = JSON.parse(address_text)
+address_text = File.read(Rails.root.join('lib', 'seeds', 'Address.json'));
+address_parse = JSON.parse(address_text);
 
 #create random array 
-randomarray = Array.new(address_parse['address'].count) {|e| e += 1}
-arandom = randomarray.shuffle
-
-counter = 0
+randomarray = Array.new(address_parse['address'].count) {|e| e += 1};
+arandom = randomarray.shuffle;
+counter = 0;
 
 #-------Generate real addresses---------
 65.times do
@@ -135,14 +134,13 @@ cust = Customer.first.id
 end
 puts "-- ___-- Building Table Populated with #{Building.count} records -- ___--"
 
-
 #-------Generate random batteries-------
 15.times do 
     Battery.create!(        
         building_id:    Faker::Number.between(from: 1, to: 28),
         building_type:   ["Residential", "Commercial","Corporate", "Hybrid"].sample,
         status: ["Running", "Not Running"].sample,
-        employee_id: Faker::Number.between(from: Employee.first.id, to: Employee.first.id+Employee.count),
+        employee_id: Faker::Number.between(from: Employee.first.id, to: (Employee.first.id+Employee.count-1)),
         commission_date:    Faker::Date.between(from: 3.years.ago, to: Date.today),
         last_inspection_date:   Faker::Date.between(from: 3.years.ago, to: Date.today),
         certificate_of_operations:  Faker::Code.rut,
@@ -301,6 +299,7 @@ end
             elevator_total_price: totalelevprice,
             installation_fees: totalinstall,
             final_price: totalfinal,
+<<<<<<< HEAD
             # Faker::Date.between(from: 3.years.ago, to: Date.today)
             )
         end
@@ -563,3 +562,10 @@ end
         #     )
         # end
         # puts "-- ___-- Hybrid Quotes Populated -- ___--"
+=======
+            date_created: Faker::Date.between(from: 3.years.ago, to: Date.today),
+        )
+end
+
+puts "-- ___-- Quotes Table Populated with #{Quote.count} records -- ___--"
+>>>>>>> e84e4a399490584fe9c71bc89e60d3b17218a157

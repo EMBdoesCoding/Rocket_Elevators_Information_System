@@ -1,11 +1,7 @@
 require 'pg'
 require 'mysql2'
-
-def self.move_quote
+def move_quote
     Quote.all.each do |q|
-    user = User.find(q.user_id)
-    customer = Customer.find(user.id)
-
     FactQuote.create!(
             {
                 quote_id: q.id,
@@ -17,12 +13,8 @@ def self.move_quote
         )
     end
 end
-
-def self.move_contacts
+def move_contacts
     User.all.each do |l|
-    customer = Customer.find(l.id)
-    lead = Lead.find(l.id)
-
     FactContact.create!(
         {
             contact_id: l.id,
@@ -34,23 +26,16 @@ def self.move_contacts
     )
     end
 end
-
-def self.move_customers
+def move_customers
     Customer.all.each do |c|
         elevator_number = 0
-        customer_buildings = Building.where(customer_id: c.id).to_a
         customer_buildings.each do |building|
-            batteries = Battery.where(building_id: building.id).to_a
             batteries.each do |battery|
-                columns = Column.where(battery_id: battery.id).to_a
                 columns.each do |column|
-                    elevators = Elevator.where(column_id: column.id).to_a
                     elevator_number += elevators.size
             end
         end
     end
-        city = Address.find(c.address_id).city
-
         DimCustomer.create!(
             {
                 created_at: c.created_at,
@@ -58,27 +43,21 @@ def self.move_customers
                 company_contact_phone: c.company_contact_phone,
                 company_contact_email: c.company_contact_email,
                 elevator_number: elevator_number,
-                customer_city: city
+                customer_city: address.city
             }
         )
     end
 end
 
-def self.move_elevators
+def move_elevators
     Elevator.all.each do |e|
-        column = Column.find(e.column_id)
-        customer = Customer.find(building.customer_id)
-        battery = Battery.find(column.battery_id)
-        building = Building.find(battery.building_id)
-        address = Address.find(building.address_id)
-
         FactElevator.create!(
             {
                 serial_number: e.serial_number,
                 commission_date: e.commission_date,
                 building_id: building.id,
                 customer_id: customer.id,
-                elevator_number: elevator_number
+                elevator_number: elevator_number,
                 building_city: address.city
             }
         )

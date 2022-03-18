@@ -19,7 +19,7 @@ Column.delete_all
 Battery.delete_all
 BuildingDetail.delete_all
 
-
+# Seeding with required employee csv file
 require 'csv'
 csv_text = File.read(Rails.root.join('lib', 'seeds', 'Employee_List.csv'))
 csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
@@ -43,50 +43,41 @@ csv.each do |row|
     )
 end
 
-puts "There are now #{Employee.count} rows in the transactions table."
-
-
-
-
-
-
-
-
-
+puts "-- ___-- Employee Table Populated with #{Employee.count} records -- ___--"
 
 # Fake data seeding to be entered into database
 require 'faker'
-require 'json'
 
-address_text = File.read(Rails.root.join('lib', 'seeds', 'Address.json'))
-address_parse = JSON.parse(address_text)
-randomarray = Array.new(address_parse['address'].count) {|e| e += 1}
-arandom = randomarray.shuffle
+#load and parse json file
+address_text = File.read(Rails.root.join('lib', 'seeds', 'Address.json'));
+address_parse = JSON.parse(address_text);
 
-counter = 0
-#Generate real addresses
+#create random array 
+randomarray = Array.new(address_parse['address'].count) {|e| e += 1};
+arandom = randomarray.shuffle;
+counter = 0;
+
+#-------Generate real addresses---------
 65.times do
-    # csv.each do |row|
     Address.create!(
-
-    type_of_address: ["Home","Buisness", "Shipping", "Billing", ].sample,
-    status: ["Verified", "Unverified"].sample,
-    entity: ["Customer", "Buisness"].sample,
-    number_street: address_parse['address'][arandom[counter]]['address1'],
-    suite_apartment: address_parse['address'][arandom[counter]]['address2'],
-    city:address_parse['address'][arandom[counter]]['city'],
-    postal_code:address_parse['address'][arandom[counter]]['postalCode'],
-    country: "USA",
-    notes:  Faker::Lorem.paragraph,
+        type_of_address: ["Home","Business", "Shipping", "Billing"].sample,
+        status: ["Verified", "Unverified"].sample,
+        entity: ["Customer", "Business"].sample,
+        number_street: address_parse['address'][arandom[counter]]['address1'],
+        suite_apartment: address_parse['address'][arandom[counter]]['address2'],
+        city:address_parse['address'][arandom[counter]]['city'],
+        postal_code:address_parse['address'][arandom[counter]]['postalCode'],
+        country: "USA",
+        notes:  Faker::Lorem.paragraph,
     )
     counter += 1
 end
-puts "-- ___-- Real Address Table Populated -- ___--"
+puts "-- ___-- Real Address Table Populated with #{Address.count} records -- ___--"
 
-# generate random leads
+# ----------generate random leads---------
 706.times do 
     Lead.create!(
-        contact_name:   Faker::Name.name,
+        contact_name:   Faker::FunnyName.two_word_name,
         company_name:   Faker::Company.name,
         email:  Faker::Internet.email,
         phone:  Faker::PhoneNumber.cell_phone,
@@ -98,18 +89,9 @@ puts "-- ___-- Real Address Table Populated -- ___--"
         contact_request_date:   Faker::Date.between(from: 3.years.ago, to: Date.today)
     )
 end
-puts "-- ___-- Lead Table Populated -- ___--"
+puts "-- ___-- Lead Table Populated with #{Lead.count} records -- ___--"
 
-# generate random users
-# 57.times do   
-#     User.create!(
-#         email:  Faker::Internet.email,
-#         password: 'password',
-                     
-#     )
-# end 
-
-#generate random customers
+#----------generate random customers--------
 counter = 0
 record = Address.first.id
 37.times do 
@@ -123,43 +105,42 @@ record = Address.first.id
         creation_date:  Faker::Date.between(from: 3.years.ago, to: Date.today),
         company_name:   Faker::Company.name,
         address_id: record + counter,
-        company_contact_name:   Faker::Name.name,
+        company_contact_name:   Faker::FunnyName.two_word_name,
         company_contact_phone:  Faker::PhoneNumber.cell_phone,
         company_contact_email:  user.email,
-        company_description:    Faker::Quote.yoda,
-        technical_authority_name:   Faker::Name.name,
+        company_description:    Faker::Movie.quote,
+        technical_authority_name:   Faker::FunnyName.two_word_name,
         technical_authority_phone:  Faker::PhoneNumber.cell_phone,
         teachnical_authority_email: Faker::Internet.email,
     )
     counter += 1
 end
-puts "-- ___-- Customer Table Populated -- ___--"
+puts "-- ___-- Customer Table Populated with #{Customer.count} records -- ___--"
 
-#generate random buildings
+#-------generate random buildings--------
 cust = Customer.first.id
 28.times do |e|
     Building.create!(        
         customer_id: cust + e,
         address_id: record + counter,
-        building_administrator_name:    Faker::Name.name,
+        building_administrator_name:    Faker::FunnyName.two_word_name,
         building_administrator_email:   Faker::Internet.email,
         building_administrator_phone:   Faker::PhoneNumber.cell_phone,
-        tech_contact_name:  Faker::Name.name,
+        tech_contact_name:  Faker::FunnyName.two_word_name,
         tech_contact_email: Faker::Internet.email,
         tech_contact_phone: Faker::PhoneNumber.cell_phone,        
     )
     counter += 1
 end
-puts "-- ___-- Bulding Table Populated -- ___--"
+puts "-- ___-- Building Table Populated with #{Building.count} records -- ___--"
 
-
-#Generate random batteries
+#-------Generate random batteries-------
 15.times do 
     Battery.create!(        
         building_id:    Faker::Number.between(from: 1, to: 28),
         building_type:   ["Residential", "Commercial","Corporate", "Hybrid"].sample,
         status: ["Running", "Not Running"].sample,
-        employee_id: Faker::Number.between(from: 1, to: Employee.count),
+        employee_id: Faker::Number.between(from: Employee.first.id, to: (Employee.first.id+Employee.count-1)),
         commission_date:    Faker::Date.between(from: 3.years.ago, to: Date.today),
         last_inspection_date:   Faker::Date.between(from: 3.years.ago, to: Date.today),
         certificate_of_operations:  Faker::Code.rut,
@@ -167,9 +148,9 @@ puts "-- ___-- Bulding Table Populated -- ___--"
         notes:  Faker::Lorem.paragraph,
     )
 end
-puts "-- ___-- Battery Table Populated -- ___--"
+puts "-- ___-- Battery Table Populated with #{Battery.count} records -- ___--"
 
-#generate random columns
+#---------generate random columns---------
 35.times do 
     Column.create!(        
         battery_id: Faker::Number.between(from: 1, to: 15),
@@ -180,9 +161,9 @@ puts "-- ___-- Battery Table Populated -- ___--"
         notes:  Faker::Lorem.paragraph,
     )
 end
-puts "-- ___-- Column Table Populated -- ___--"
+puts "-- ___-- Column Table Populated with #{Column.count} records -- ___--"
 
-#generate random elevators
+#--------generate random elevators---------
 202.times do 
     Elevator.create!(        
         column_id:  Faker::Number.between(from: 1, to: 35),
@@ -197,13 +178,13 @@ puts "-- ___-- Column Table Populated -- ___--"
         notes:  Faker::Quote.yoda,    
         ) 
 end
-puts "-- ___-- Elevator Table Populated"
+puts "-- ___-- Elevator Table Populated with #{Elevator.count} records -- ___--"
 
 info_key_array = ["Type", "Construction Year", "Number of Elevators Inside", "Maximum Number of Occupants", "Renovation Year"]
 info_value_array = [["Residential", "Commercial","Corporate", "Hybrid"].sample, Faker::Date.between(from: '1954-01-01', to: '2022-03-16'), Faker::Number.between(from: 1, to: 12), Faker::Number.between(from: 1, to: 300), Faker::Date.between(from: '1954-01-01', to: '2022-03-16') ]
 
 
-#generate random building details
+#--------generate random building details
 28.times do  
     x = rand(5)
     BuildingDetail.create!(        
@@ -212,13 +193,112 @@ info_value_array = [["Residential", "Commercial","Corporate", "Hybrid"].sample, 
         value:  [["Residential", "Commercial","Corporate", "Hybrid"].sample, Faker::Date.between(from: '1954-01-01', to: '2022-03-16'), Faker::Number.between(from: 1, to: 12), Faker::Number.between(from: 1, to: 300), Faker::Date.between(from: '1954-01-01', to: '2022-03-16') ][x],
     )
 end
-puts "-- ___-- Building Details Table Populated -- ___--"
-
-
-
-
-
-
-
+puts "-- ___-- Building Details Table Populated with #{BuildingDetail.count} records -- ___--"
 
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+
+#-------generate random submitted quotes
+def ResiCalc
+    numberfloors = Faker::Number.between(from: 2, to: 60);
+    numberapt = Faker::Number.between(from: numberfloors, to: numberfloors*50);
+    numberbase = Faker::Number.between(from: 0, to: 10);
+    totalelev = ((numberapt/numberfloors)/6.to_f).ceil * (numberfloors/20.to_f).ceil;
+    return {buildingtype: "Residential", numberfloors: numberfloors, numberapt: numberapt, numberbase: numberbase, totalelev: totalelev};
+end
+
+def CommCalc
+    numberfloors = Faker::Number.between(from: 2, to: 90);
+    numbercomp = Faker::Number.between(from: 1, to: 100);
+    numberbase = Faker::Number.between(from: 0, to: 10);
+    numberpark = Faker::Number.between(from: 10, to: 300);
+    numberelev = Faker::Number.between(from: 5, to: 30);
+    return {buildingtype: "Commercial", numberfloors: numberfloors, numbercomp: numbercomp, numberbase: numberbase, numberpark: numberpark, numberelev: numberelev, totalelev: numberelev};
+end
+
+def CorpCalc
+    numberfloors = Faker::Number.between(from: 2, to: 90);
+    numberbase = Faker::Number.between(from: 0, to: 10);
+    numberpark = Faker::Number.between(from: 10, to: 300);
+    numbercorp = Faker::Number.between(from: 1, to: 100);
+    maxocc = Faker::Number.between(from: 25, to: 1000);
+    columnsreq = ((numberfloors + numberbase)/20.to_f).ceil;
+    elevreq = ((maxocc*(numberfloors + numberbase))/1000.to_f).ceil;
+    totalelev = (elevreq/columnsreq.to_f).ceil * columnsreq;
+    hash = {buildingtype: "Corporate", numberfloors: numberfloors, numberbase: numberbase, numberpark: numberpark, numbercorp: numbercorp, maxocc: maxocc, totalelev: totalelev};
+    return hash
+end
+
+def HybrCalc
+    numberfloors = Faker::Number.between(from: 2, to: 80);
+    numbercomp = Faker::Number.between(from: 1, to: 100);
+    numberbase = Faker::Number.between(from: 0, to: 10);
+    numberpark = Faker::Number.between(from: 10, to: 300);
+    maxocc = Faker::Number.between(from: 25, to: 500);
+    businesshours = Faker::Number.between(from: 10, to: 24);
+    columnsreq = ((numberfloors + numberbase)/20.to_f).ceil;
+    elevreq = ((maxocc*(numberfloors + numberbase))/1000.to_f).ceil;
+    totalelev = (elevreq/columnsreq.to_f).ceil * columnsreq;
+    hash = {buildingtype: "Hybrid", numberfloors: numberfloors, numberbase: numberbase, numberpark: numberpark, numbercomp: numbercomp, maxocc: maxocc, businesshours: businesshours, totalelev: totalelev};
+    return hash
+end
+
+def GradeMult grade
+    case grade
+    when "Standard"
+        return 0.1, 7500
+    when "Premium"
+        return 0.13, 12345
+    when "Excelium"
+        return 0.16, 15400
+    else
+        return nil
+    end
+end
+
+def GetTypeHash buildingtype
+    case buildingtype
+    when "Residential"
+        hash = ResiCalc()
+    when "Commercial"
+        hash = CommCalc()
+    when "Corporate"
+        hash = CorpCalc()
+    when "Hybrid"
+        hash = HybrCalc()
+    else
+        hash = nil
+    end
+
+    return hash
+end
+
+200.times do
+    infohash = GetTypeHash(["Residential","Commercial","Corporate","Hybrid"].sample);
+    servicegrade = ["Standard", "Premium", "Excelium"].sample;
+    gradearr = GradeMult(servicegrade);
+    totalunitprice = gradearr[1];
+    totalelevprice = infohash[:totalelev] * totalunitprice;
+    totalinstall = (totalelevprice * gradearr[0]).round(2);
+    totalfinal = totalelevprice + totalinstall;
+        Quote.create!(
+            department: infohash[:buildingtype],
+            number_of_floors: infohash[:numberfloors],
+            number_of_companies: infohash[:numbercomp],
+            number_of_basements: infohash[:numberbase],
+            number_of_parking_spots: infohash[:numberpark],
+            number_of_elevators: infohash[:numberelev],
+            number_of_corporations: infohash[:numbercorp],
+            maximum_occupancy: infohash[:maxocc],
+            number_of_apartments: infohash[:numberapt],
+            business_hours: infohash[:businesshours],
+            service_grade: servicegrade,
+            elevator_amount: infohash[:totalelev],
+            elevator_unit_price: totalunitprice,
+            elevator_total_price: totalelevprice,
+            installation_fees: totalinstall,
+            final_price: totalfinal,
+            date_created: Faker::Date.between(from: 3.years.ago, to: Date.today),
+        )
+end
+
+puts "-- ___-- Quotes Table Populated with #{Quote.count} records -- ___--"

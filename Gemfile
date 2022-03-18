@@ -90,3 +90,7 @@ gem 'faker', '~> 2.20', '>= 2.20.0'
  gem 'secondbase'
 
  gem 'pg'
+ 
+# gem 'chartKick'  ?
+
+gem 'blazer', '~> 2.5'

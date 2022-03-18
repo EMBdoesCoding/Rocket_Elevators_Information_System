@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
+  mount Blazer::Engine, at: "blazer"
   ActiveAdmin.routes(self)
   devise_for :users
   # devise_for :users, ActiveAdmin::Devise.config
@@ -21,4 +22,8 @@ Rails.application.routes.draw do
 
   get '/login', to: 'pages#index'
   get '/(*url)', to: redirect('/404')
+
+  # mount Blazer::Engine, at: "blazer"
+
+
 end

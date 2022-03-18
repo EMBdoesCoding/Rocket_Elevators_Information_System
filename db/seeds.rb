@@ -64,14 +64,15 @@ randomarray = Array.new(address_parse['address'].count) {|e| e += 1}
 arandom = randomarray.shuffle
 
 counter = 0
-#Generate real addresses
+#-------Generate real addresses---------
+# binding.pry
 65.times do
     # csv.each do |row|
     Address.create!(
 
-    type_of_address: ["Home","Buisness", "Shipping", "Billing", ].sample,
+    type_of_address: ["Home","Business", "Shipping", "Billing"].sample,
     status: ["Verified", "Unverified"].sample,
-    entity: ["Customer", "Buisness"].sample,
+    entity: ["Customer", "Business"].sample,
     number_street: address_parse['address'][arandom[counter]]['address1'],
     suite_apartment: address_parse['address'][arandom[counter]]['address2'],
     city:address_parse['address'][arandom[counter]]['city'],
@@ -83,7 +84,7 @@ counter = 0
 end
 puts "-- ___-- Real Address Table Populated -- ___--"
 
-# generate random leads
+# ----------generate random leads---------
 706.times do 
     Lead.create!(
         contact_name:   Faker::FunnyName.two_word_name,
@@ -109,7 +110,7 @@ puts "-- ___-- Lead Table Populated -- ___--"
 #     )
 # end 
 
-#generate random customers
+#----------generate random customers--------
 counter = 0
 record = Address.first.id
 37.times do 
@@ -135,7 +136,7 @@ record = Address.first.id
 end
 puts "-- ___-- Customer Table Populated -- ___--"
 
-#generate random buildings
+#-------generate random buildings--------
 cust = Customer.first.id
 28.times do |e|
     Building.create!(        
@@ -153,7 +154,7 @@ end
 puts "-- ___-- Bulding Table Populated -- ___--"
 
 
-#Generate random batteries
+#-------Generate random batteries-------
 15.times do 
     Battery.create!(        
         building_id:    Faker::Number.between(from: 1, to: 28),
@@ -169,7 +170,7 @@ puts "-- ___-- Bulding Table Populated -- ___--"
 end
 puts "-- ___-- Battery Table Populated -- ___--"
 
-#generate random columns
+#---------generate random columns---------
 35.times do 
     Column.create!(        
         battery_id: Faker::Number.between(from: 1, to: 15),
@@ -182,7 +183,7 @@ puts "-- ___-- Battery Table Populated -- ___--"
 end
 puts "-- ___-- Column Table Populated -- ___--"
 
-#generate random elevators
+#--------generate random elevators---------
 202.times do 
     Elevator.create!(        
         column_id:  Faker::Number.between(from: 1, to: 35),
@@ -203,7 +204,7 @@ info_key_array = ["Type", "Construction Year", "Number of Elevators Inside", "Ma
 info_value_array = [["Residential", "Commercial","Corporate", "Hybrid"].sample, Faker::Date.between(from: '1954-01-01', to: '2022-03-16'), Faker::Number.between(from: 1, to: 12), Faker::Number.between(from: 1, to: 300), Faker::Date.between(from: '1954-01-01', to: '2022-03-16') ]
 
 
-#generate random building details
+#--------generate random building details
 28.times do  
     x = rand(5)
     BuildingDetail.create!(        
@@ -215,10 +216,262 @@ end
 puts "-- ___-- Building Details Table Populated -- ___--"
 
 
+#---------------Generate randm quotes
+
+# #---Residential random quotes
+# 89.times do
+
+#     typeOfBuilding = "Residential"
+#     numberOfFloors = Faker::Number.between(from: 1, to: 100)
+#     # numberOfCompanies = Faker::Number.between(from: 1, to: 25)
+#     numberOfBasements = Faker::Number.between(from: 1, to: 6)
+#     # numberOfParkingSpots = Faker::Number.between(from: 1, to: 35)
+#     # numberOfElevatorCages = Faker::Number.between(from: 1, to: 45)
+#     # numberOfCorporations = Faker::Number.between(from: 1, to: 15)
+#     # numberOfOccupants = Faker::Number.between(from: 1, to: 300)
+#     numberOfAppartments = Faker::Number.between(from: 1, to: 800)
+#     # buisnessHours = Faker::Number.between(from: 1, to: 24)
+#     productServiceType = ["Standard", "Premium", "Excelium"].sample
+
+#     averagePerFloor = numberOfAppartments/numberOfFloors
+#     result = averagePerFloor/6
+#     columnsNeeded = numberOfFloors/20
+#     requiredElevators = result *columnsNeeded
+
+
+#     if productServiceType = "Standard"
+#         elevatorUnitPrice = 7565
+#         productServiceTypeFee = 0.10
+#         totalInstallFee = elevatorUnitPrice * productServiceTypeFee
+         
+#     elsif productServiceType = "Premium" 
+#         elevatorUnitPrice = 12345
+#         productServiceTypeFee = 0.13
+#         totalInstallFee = elevatorUnitPrice * productServiceTypeFee
+#     elsif productServiceType = "Excelium"
+#         elevatorUnitPrice = 15400
+#         productServiceTypeFee = 0.16
+#         totalInstallFee = elevatorUnitPrice * productServiceTypeFee
+
+#     end
+
+#     elevatorTotalPrice = elevatorUnitPrice * requiredElevators
+
+#     Quote.create!(
+
+#         department: typeOfBuilding,
+#         number_of_floors: numberOfFloors,
+#         # number_of_companies: numberOfCompanies,
+#         number_of_basements: numberOfBasements,
+#         # number_of_parking_spots: numberOfParkingSpots,
+#         # number_of_elevators: numberOfElevatorCages,
+#         # number_of_corporations: numberOfCorporations,
+#         # maximum_occupancy: numberOfOccupants,
+#         number_of_apartments: numberOfAppartments,
+#         # business_hours: businessHours,
+#         service_grade: productServiceType,
+#         elevator_amount: requiredElevators,
+#         elevator_unit_price: elevatorUnitPrice,
+#         elevator_total_price: elevatorTotalPrice,
+#         installation_fees: totalInstallFee,
+#         final_price: totalInstallFee + elevatorTotalPrice,
+
+#     )
+# end
+# puts "-- ___-- Residential Quotes Populated -- ___--"
+
+
+#---Commercial random quotes
+# 71.times do
+
+#     typeOfBuilding = "Commercial"
+#     numberOfFloors = Faker::Number.between(from: 1, to: 100)
+#     numberOfCompanies = Faker::Number.between(from: 1, to: 25)
+#     numberOfBasements = Faker::Number.between(from: 1, to: 6)
+#     numberOfParkingSpots = Faker::Number.between(from: 1, to: 35)
+#     numberOfElevatorCages = Faker::Number.between(from: 1, to: 45)
+#     # numberOfCorporations = Faker::Number.between(from: 1, to: 15)
+#     # numberOfOccupants = Faker::Number.between(from: 1, to: 300)
+#     # numberOfAppartments = Faker::Number.between(from: 1, to: 800)
+#     # businessHours = Faker::Number.between(from: 1, to: 24)
+#     productServiceType = ["Standard", "Premium", "Excelium"].sample
+
+    
+
+#     # averagePerFloor = numberOfAppartments/numberOfFloors
+
+#     if productServiceType = "Standard"
+#         elevatorUnitPrice = 7565
+#         productServiceTypeFee = 0.10
+#         totalFee = elevatorUnitPrice * productServiceTypeFee
+         
+#     elsif productServiceType = "Premium" 
+#         elevatorUnitPrice = 12345
+#         productServiceTypeFee = 0.13
+#         totalFee = elevatorUnitPrice * productServiceTypeFee
+
+#     elsif productServiceType = "Excelium"
+#         elevatorUnitPrice = 15400
+#         productServiceTypeFee = 0.16
+#         totalFee = elevatorUnitPrice * productServiceTypeFee
+
+#     end
+
+#     elevatorTotalPrice = elevatorUnitPrice * numberOfElevatorCages
+
+#     Quote.create!(
+
+#         department: typeOfBuilding,
+#         number_of_floors: numberOfFloors,
+#         number_of_companies: numberOfCompanies,
+#         number_of_basements: numberOfBasements,
+#         number_of_parking_spots: numberOfParkingSpots,
+#         number_of_elevators: numberOfElevatorCages,
+#         # number_of_corporations: numberOfCorporations,
+#         # maximum_occupancy: numberOfOccupants,
+#         # number_of_apartments: numberOfAppartments,
+#         # business_hours: businessHours,
+#         service_grade: productServiceType,
+#         elevator_amount: amountOfElevatorsNeeded,
+#         elevator_unit_price: elevatorUnitPrice,
+#         elevator_total_price: elevatorTotalPrice,
+#         installation_fees: totalFee,
+#         final_price: totalFee + elevatorTotalPrice,
+
+#     )
+# end
+# puts "-- ___-- Commercial Quotes Populated -- ___--"
 
 
 
+# #---Corprate random quotes
+60.times do
 
+    typeOfBuilding = "Corprate"
+    numberOfFloors = Faker::Number.between(from: 3, to: 100)
+    # numberOfCompanies = Faker::Number.between(from: 1, to: 25)
+    numberOfBasements = Faker::Number.between(from: 1, to: 6)
+    numberOfParkingSpots = Faker::Number.between(from: 1, to: 35)
+    # numberOfElevatorCages = Faker::Number.between(from: 1, to: 45)
+    numberOfCorporations = Faker::Number.between(from: 1, to: 15)
+    numberOfOccupants = Faker::Number.between(from: 1, to: 300)
+    # numberOfAppartments = Faker::Number.between(from: 1, to: 800)
+    # businessHours = Faker::Number.between(from: 1, to: 24)
+    productServiceType = ["Standard", "Premium", "Excelium"].sample
+    
 
+    floorWithBasements = (numberOfFloors + numberOfBasements).ceil()
+    totalOccupancy = (numberOfOccupants * floorWithBasements).ceil()
+    nbrOfElevators = (totalOccupancy/1000).ceil()
+    columnsNeeded = (floorWithBasements/20).ceil()
+    averageElevatorsPerColumn = (nbrOfElevators/columnsNeeded).ceil()
+    amountOfElevatorsNeeded = (averageElevatorsPerColumn/columnsNeeded).ceil()
+
+    if productServiceType = "Standard"
+        elevatorUnitPrice = 7565
+        productServiceTypeFee = 0.10
+        totalFee = elevatorUnitPrice * productServiceTypeFee
+         
+    elsif productServiceType = "Premium" 
+        elevatorUnitPrice = 12345
+        productServiceTypeFee = 0.13
+        totalFee = elevatorUnitPrice * productServiceTypeFee
+
+    elsif productServiceType = "Excelium"
+        elevatorUnitPrice = 15400
+        productServiceTypeFee = 0.16
+        totalFee = elevatorUnitPrice * productServiceTypeFee
+
+    end
+
+    elevatorTotalPrice = elevatorUnitPrice * amountOfElevatorsNeeded
+
+    Quote.create!(
+
+        department: typeOfBuilding,
+        number_of_floors: numberOfFloors,
+        # number_of_companies: numberOfCompanies,
+        number_of_basements: numberOfBasements,
+        number_of_parking_spots: numberOfParkingSpots,
+        # number_of_elevators: numberOfElevatorCages,
+        number_of_corporations: numberOfCorporations,
+        maximum_occupancy: numberOfOccupants,
+        # number_of_apartments: numberOfAppartments,
+        # business_hours: businessHours,
+        service_grade: productServiceType,
+        elevator_amount: amountOfElevatorsNeeded,
+        elevator_unit_price: elevatorUnitPrice,
+        elevator_total_price: elevatorTotalPrice,
+        installation_fees: totalFee,
+        final_price: totalFee + elevatorTotalPrice,
+
+    )
+end
+puts "-- ___-- Corprate Quotes Populated -- ___--"
+
+# #---Hybrid random quotes
+# 58.times do
+
+#     typeOfBuilding = "Hybrid"
+#     # numberOfFloors = Faker::Number.between(from: 1, to: 100)
+#     numberOfCompanies = Faker::Number.between(from: 1, to: 25)
+#     numberOfBasements = Faker::Number.between(from: 1, to: 6)
+#     numberOfParkingSpots = Faker::Number.between(from: 1, to: 35)
+#     numberOfElevatorCages = Faker::Number.between(from: 1, to: 45)
+#     # numberOfCorporations = Faker::Number.between(from: 1, to: 15)
+#     numberOfOccupants = Faker::Number.between(from: 1, to: 300)
+#     # numberOfAppartments = Faker::Number.between(from: 1, to: 800)
+#     businessHours = Faker::Number.between(from: 1, to: 24)
+#     productServiceType = ["Standard", "Premium", "Excelium"].sample
+#     amountOfElevatorsNeeded = 
+
+#     averagePerFloor = numberOfAppartments/numberOfFloors
+
+#     if productServiceType = "Standard"
+#         elevatorUnitPrice = 7565
+#         productServiceTypeFee = 0.10
+#         totalFee = elevatorUnitPrice * productServiceTypeFee
+         
+#     elsif productServiceType = "Premium" 
+#         elevatorUnitPrice = 12345
+#         productServiceTypeFee = 0.13
+#         totalFee = elevatorUnitPrice * productServiceTypeFee
+
+#     elsif productServiceType = "Excelium"
+#         elevatorUnitPrice = 15400
+#         productServiceTypeFee = 0.16
+#         totalFee = elevatorUnitPrice * productServiceTypeFee
+
+#     end
+
+#     elevatorTotalPrice = elevatorUnitPrice * numberOfElevatorCages
+
+#     Quote.create!(
+
+#         department: typeOfBuilding,
+#         number_of_floors: numberOfFloors,
+#         number_of_companies: numberOfCompanies,
+#         number_of_basements: numberOfBasements,
+#         number_of_parking_spots: numberOfParkingSpots,
+#         # number_of_elevators: numberOfElevatorCages,
+#         # number_of_corporations: numberOfCorporations,
+#         maximum_occupancy: numberOfOccupants,
+#         # number_of_apartments: numberOfAppartments,
+#         business_hours: businessHours,
+#         service_grade: productServiceType,
+#         elevator_amount: amountOfElevatorsNeeded,
+#         elevator_unit_price: elevatorUnitPrice,
+#         elevator_total_price: elevatorTotalPrice,
+#         installation_fees: totalFee,
+#         final_price: totalFee + elevatorTotalPrice,
+
+#     )
+# end
+# puts "-- ___-- Hybrid Quotes Populated -- ___--"
 
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+
+
+
+
+    

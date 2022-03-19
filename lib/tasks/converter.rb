@@ -6,14 +6,15 @@ def move_quote
             {
                 quoteid: q.id,
                 creation: q.date_created,
-                # company_name: q.company_name,
-                # email: q.email,
+                company_name: q.company_name,
+                email: q.contact_email,
                 nbelevator: q.elevator_amount
             }
         )
     end
 end
 move_quote()
+puts "=== FactQuote imported ==="
 def move_contacts
     Lead.all.each do |l|
     FactContact.create!(
@@ -28,6 +29,7 @@ def move_contacts
     end
 end
 move_contacts()
+puts "=== FactContact imported ==="
 def move_customers
     Customer.all.each do |c|
         elevator_number = 0
@@ -51,6 +53,7 @@ def move_customers
     end
 end
 move_customers()
+puts "=== DimCustomer imported ==="
 def move_elevators
     Elevator.all.each do |e|
         # binding.pry
@@ -66,3 +69,4 @@ def move_elevators
     end
 end
 move_elevators()
+puts "=== FactElevator imported ==="

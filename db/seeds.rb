@@ -53,20 +53,21 @@ address_text = File.read(Rails.root.join('lib', 'seeds', 'Address.json'));
 address_parse = JSON.parse(address_text);
 
 #create random array 
-randomarray = Array.new(address_parse['address'].count) {|e| e += 1};
+randomarray = Array.new(address_parse['address'].count-1) {|e| e += 1};
 arandom = randomarray.shuffle;
 counter = 0;
 
 #-------Generate real addresses---------
-65.times do
+(address_parse['address'].count-1).times do
+    thisaddress = address_parse['address'][arandom[counter]]
     Address.create!(
         type_of_address: ["Home","Business", "Shipping", "Billing"].sample,
         status: ["Verified", "Unverified"].sample,
         entity: ["Customer", "Business"].sample,
-        number_street: address_parse['address'][arandom[counter]]['address1'],
-        suite_apartment: address_parse['address'][arandom[counter]]['address2'],
-        city:address_parse['address'][arandom[counter]]['city'],
-        postal_code:address_parse['address'][arandom[counter]]['postalCode'],
+        number_street: thisaddress['address1'],
+        suite_apartment: thisaddress['address2'],
+        city: thisaddress['city'],
+        postal_code: thisaddress['postalCode'],
         country: "USA",
         notes:  Faker::Lorem.paragraph,
     )
@@ -94,7 +95,7 @@ puts "-- ___-- Lead Table Populated with #{Lead.count} records -- ___--"
 #----------generate random customers--------
 counter = 0
 record = Address.first.id
-37.times do 
+15.times do 
     user = User.create!(
         email: Faker::Internet.email,
         password: 'password'
@@ -118,82 +119,110 @@ end
 puts "-- ___-- Customer Table Populated with #{Customer.count} records -- ___--"
 
 #-------generate random buildings--------
-cust = Customer.first.id
-95.times do |e|
-    Building.create!(        
-        customer_id: Faker::Number.between(from: cust, to: (cust+Customer.count-1)),
-        address_id: record + counter,
-        building_administrator_name:    Faker::FunnyName.two_word_name,
-        building_administrator_email:   Faker::Internet.email,
-        building_administrator_phone:   Faker::PhoneNumber.cell_phone,
-        tech_contact_name:  Faker::FunnyName.two_word_name,
-        tech_contact_email: Faker::Internet.email,
-        tech_contact_phone: Faker::PhoneNumber.cell_phone,        
-    )
-    counter += 1
+Customer.all.each do |customerloop|
+    rand(1..4).times do
+        Building.create!(        
+            customer: customerloop,
+            address_id: record + counter,
+            building_administrator_name:    Faker::FunnyName.two_word_name,
+            building_administrator_email:   Faker::Internet.email,
+            building_administrator_phone:   Faker::PhoneNumber.cell_phone,
+            tech_contact_name:  Faker::FunnyName.two_word_name,
+            tech_contact_email: Faker::Internet.email,
+            tech_contact_phone: Faker::PhoneNumber.cell_phone,        
+        )
+        counter += 1
+    end
 end
 puts "-- ___-- Building Table Populated with #{Building.count} records -- ___--"
 
 #-------Generate random batteries-------
-15.times do 
-    Battery.create!(        
-        building_id:    Faker::Number.between(from: 1, to: 28),
-        building_type:   ["Residential", "Commercial","Corporate", "Hybrid"].sample,
-        status: ["Running", "Not Running"].sample,
-        employee_id: Faker::Number.between(from: Employee.first.id, to: (Employee.first.id+Employee.count-1)),
-        commission_date:    Faker::Date.between(from: 3.years.ago, to: Date.today),
-        last_inspection_date:   Faker::Date.between(from: 3.years.ago, to: Date.today),
-        certificate_of_operations:  Faker::Code.rut,
-        information:    Faker::Lorem.sentence,
-        notes:  Faker::Lorem.paragraph,
-    )
+Building.all.each do |buildingloop|
+    rand(1..3).times do
+        case rand(1..10)
+        when 1..9 then status = "Running"
+        when 10 then status = "Not Running"
+        end
+        Battery.create!(        
+            building: buildingloop,
+            building_type: ["Residential", "Commercial","Corporate", "Hybrid"].sample,
+            status: ["Running", "Running", "Running", "Running", "Not Running"].sample,
+            employee_id: Faker::Number.between(from: Employee.first.id, to: (Employee.first.id+Employee.count-1)),
+            commission_date:    Faker::Date.between(from: 3.years.ago, to: Date.today),
+            last_inspection_date:   Faker::Date.between(from: 3.years.ago, to: Date.today),
+            certificate_of_operations:  Faker::Code.rut,
+            information:    Faker::Lorem.sentence,
+            notes:  Faker::Lorem.paragraph,
+        )
+    end
 end
 puts "-- ___-- Battery Table Populated with #{Battery.count} records -- ___--"
 
 #---------generate random columns---------
-35.times do 
-    Column.create!(        
-        battery_id: Faker::Number.between(from: 1, to: 15),
-        building_type:   ["Residential", "Commercial","Corporate", "Hybrid"].sample,
-        number_of_floors_served:    Faker::Number.between(from: 1, to: 70),
-        status: ["Running", "Not Running"].sample,
-        information:    Faker::Lorem.sentence,
-        notes:  Faker::Lorem.paragraph,
-    )
+Battery.all.each do |batteryloop|
+    if batteryloop.status == "Not Running"
+        status = batteryloop.status
+    else
+        case rand(1..10)
+        when 1..9 then status = "Running"
+        when 10 then status = "Not Running"
+        end
+    end
+    rand(1..4).times do 
+        Column.create!(        
+            battery: batteryloop,
+            building_type: batteryloop.building_type,
+            number_of_floors_served: Faker::Number.between(from: 1, to: 70),
+            status: ["Running", "Running", "Running", "Not Running"].sample,
+            information: Faker::Lorem.sentence,
+            notes: Faker::Lorem.paragraph,
+        )
+    end
 end
 puts "-- ___-- Column Table Populated with #{Column.count} records -- ___--"
 
 #--------generate random elevators---------
-202.times do 
-    Elevator.create!(        
-        column_id:  Faker::Number.between(from: 1, to: 35),
-        serial_number:  Faker::Number.decimal_part(digits: 7),
-        model: ["Standard", "Premium", "Excelium"].sample,
-        building_type: ["Residential", "Commercial","Corporate", "Hybrid"].sample,
-        status:["Running", "Not Running"].sample,
-        commission_date:    Faker::Date.between(from: 3.years.ago, to: Date.today),
-        last_inspection_date:   Faker::Date.between(from: 3.years.ago, to: Date.today),
-        certificate_of_inspection:  Faker::Code.rut,
-        information:    Faker::Lorem.paragraph,
-        notes:  Faker::Quote.yoda,    
-        ) 
+Column.all.each do |columnloop|
+    model = ["Standard", "Premium", "Excelium"].sample
+    if columnloop.status == "Not Running"
+        status = columnloop.status
+    else
+        case rand(1..10)
+        when 1..9 then status = "Running"
+        when 10 then status = "Not Running"
+        end
     end
-    puts "-- ___-- Elevator Table Populated with #{Elevator.count} records -- ___--"
+    rand(1..6).times do
+        Elevator.create!(        
+            column: columnloop,
+            serial_number: Faker::Number.decimal_part(digits: 7),
+            model: model,
+            building_type: status,
+            status:["Running", "Not Running"].sample,
+            commission_date:    Faker::Date.between(from: 3.years.ago, to: Date.today),
+            last_inspection_date:   Faker::Date.between(from: 3.years.ago, to: Date.today),
+            certificate_of_inspection:  Faker::Code.rut,
+            information:    Faker::Lorem.paragraph,
+            notes:  Faker::Quote.yoda,    
+        )
+    end
+end
+puts "-- ___-- Elevator Table Populated with #{Elevator.count} records -- ___--"
 
     
     
-    info_key_array = ["Type", "Construction Year", "Number of Elevators Inside", "Maximum Number of Occupants", "Renovation Year"]
-    info_value_array = [["Residential", "Commercial","Corporate", "Hybrid"].sample, Faker::Date.between(from: '1954-01-01', to: '2022-03-16'), Faker::Number.between(from: 1, to: 12), Faker::Number.between(from: 1, to: 300), Faker::Date.between(from: '1954-01-01', to: '2022-03-16') ]
-    
-    #--------generate random building details
-    28.times do  
-        x = rand(5)
-        BuildingDetail.create!(        
-            building_id:    Faker::Number.between(from: 1, to: 28),
-            info_key:   info_key_array[x],
-            value:  [["Residential", "Commercial","Corporate", "Hybrid"].sample, Faker::Date.between(from: '1954-01-01', to: '2022-03-16'), Faker::Number.between(from: 1, to: 12), Faker::Number.between(from: 1, to: 300), Faker::Date.between(from: '1954-01-01', to: '2022-03-16') ][x],
-        )
-    end
+info_key_array = ["Type", "Construction Year", "Number of Elevators Inside", "Maximum Number of Occupants", "Renovation Year"]
+# info_value_array = [["Residential", "Commercial","Corporate", "Hybrid"].sample, Faker::Date.between(from: '1954-01-01', to: '2022-03-16'), Faker::Number.between(from: 1, to: 12), Faker::Number.between(from: 1, to: 300), Faker::Date.between(from: '1954-01-01', to: '2022-03-16') ]
+
+#--------generate random building details
+(Building.count * 3).times do  
+    x = rand(5)
+    BuildingDetail.create!(        
+        building_id:    Faker::Number.between(from: Building.first.id, to: (Building.first.id+Building.count - 1)),
+        info_key:   info_key_array[x],
+        value:  [["Residential", "Commercial","Corporate", "Hybrid"].sample, Faker::Date.between(from: '1954-01-01', to: '2022-03-16'), Faker::Number.between(from: 1, to: 12), Faker::Number.between(from: 1, to: 300), Faker::Date.between(from: '1954-01-01', to: '2022-03-16') ][x],
+    )
+end
 
 puts "-- ___-- Building Details Table Populated with #{BuildingDetail.count} records -- ___--"
 

@@ -87,7 +87,7 @@ puts "-- ___-- Real Address Table Populated with #{Address.count} records -- ___
         department: ["Sales","Support","Administration"].sample,
         message:    Faker::Lorem.paragraph,
         attached_file: "File goes in here",
-        contact_request_date:   Faker::Date.between(from: 3.years.ago, to: Date.today)
+        contact_request_date:   Faker::Time.between(from: 3.years.ago, to: Date.today)
     )
 end
 puts "-- ___-- Lead Table Populated with #{Lead.count} records -- ___--"
@@ -103,7 +103,7 @@ record = Address.first.id
 
     Customer.create!(
         user: user,
-        creation_date:  Faker::Date.between(from: 3.years.ago, to: Date.today),
+        creation_date:  Faker::Time.between(from: 3.years.ago, to: Date.today),
         company_name:   Faker::Company.name,
         address_id: record + counter,
         company_contact_name:   Faker::FunnyName.two_word_name,
@@ -173,7 +173,7 @@ Battery.all.each do |batteryloop|
             battery: batteryloop,
             building_type: batteryloop.building_type,
             number_of_floors_served: Faker::Number.between(from: 1, to: 70),
-            status: ["Running", "Running", "Running", "Not Running"].sample,
+            status: status,
             information: Faker::Lorem.sentence,
             notes: Faker::Lorem.paragraph,
         )
@@ -197,8 +197,8 @@ Column.all.each do |columnloop|
             column: columnloop,
             serial_number: Faker::Number.decimal_part(digits: 7),
             model: model,
-            building_type: status,
-            status:["Running", "Not Running"].sample,
+            building_type: columnloop.building_type,
+            status:status,
             commission_date:    Faker::Date.between(from: 3.years.ago, to: Date.today),
             last_inspection_date:   Faker::Date.between(from: 3.years.ago, to: Date.today),
             certificate_of_inspection:  Faker::Code.rut,
@@ -331,7 +331,7 @@ end
             contact_name: Faker::FunnyName.two_word_name,
             company_name: Faker::Company.name,
             contact_email: Faker::Internet.email,
-            date_created: Faker::Date.between(from: 3.years.ago, to: Date.today),
+            date_created: Faker::Time.between(from: 3.years.ago, to: Date.today),
         )
 end
 
